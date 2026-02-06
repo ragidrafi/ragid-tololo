@@ -1,5 +1,5 @@
 import { siteData } from "@/data/cms";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-bg-animated.webp";
 
 const HeroSection = () => {
   const { titleEn1, titleEn2, titleHe1, titleHe2, body } = siteData.hero;
@@ -8,7 +8,7 @@ const HeroSection = () => {
     <section id="hero" className="relative min-h-[85vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <img src={heroBg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-background/70" />
+        <div className="absolute inset-0 bg-background/80" />
       </div>
 
       <div className="container-narrow relative z-10 pt-20 space-y-6 text-center">

@@ -181,7 +181,7 @@ export function MorphingCardStack({
 
                   {isTopCard && layout === "stack" && (
                     <p className="text-xs text-muted-foreground mt-3 text-center">
-                      לפרוייקט הבא
+                      החליקו לפרוייקט הבא
                     </p>
                   )}
                 </motion.div>

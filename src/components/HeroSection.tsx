@@ -1,5 +1,4 @@
 import { siteData } from "@/data/cms";
-import heroBg from "@/assets/hero-bg-animated.webp";
 
 const HeroSection = () => {
   const { titleEn1, titleEn2, titleHe1, titleHe2, body } = siteData.hero;
@@ -7,7 +6,14 @@ const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-[85vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover" />
+        <video
+          src="/videos/hero-bg.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-background/80" />
       </div>
 

@@ -1,7 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { useMotionValue, animate, motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import useMeasure from 'react-use-measure';
 
 type InfiniteSliderProps = {
@@ -23,110 +22,89 @@ export function InfiniteSlider({
   reverse = false,
   className,
 }: InfiniteSliderProps) {
-  const [currentDuration, setCurrentDuration] = useState(duration);
   const [ref, { width, height }] = useMeasure();
-  const translation = useMotionValue(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [key, setKey] = useState(0);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [animDuration, setAnimDuration] = useState(duration);
+
+  const size = direction === 'horizontal' ? width : height;
+  const contentSize = size + gap;
+
+  // Inject a dynamic @keyframes rule
+  const [stylesheetId] = useState(() => `inf-slider-${Math.random().toString(36).slice(2, 8)}`);
 
   useEffect(() => {
-    let controls;
-    const size = direction === 'horizontal' ? width : height;
-    if (size === 0) return; // wait for measurement
+    if (contentSize <= gap) return; // not measured yet
 
-    const contentSize = size + gap;
-    const from = reverse ? -contentSize : 0;
-    const to = reverse ? 0 : -contentSize;
+    const keyframeName = `slide-${stylesheetId}`;
+    const fromVal = reverse ? -contentSize : 0;
+    const toVal = reverse ? 0 : -contentSize;
+    const prop = direction === 'horizontal' ? 'translateX' : 'translateY';
 
-    if (isTransitioning) {
-      controls = animate(translation, [translation.get(), to], {
-        ease: 'linear',
-        duration:
-          currentDuration * Math.abs((translation.get() - to) / contentSize),
-        onComplete: () => {
-          setIsTransitioning(false);
-          setKey((prevKey) => prevKey + 1);
-        },
-      });
-    } else {
-      controls = animate(translation, [from, to], {
-        ease: 'linear',
-        duration: currentDuration,
-        onComplete: () => {
-          translation.set(from);
-          setKey((prevKey) => prevKey + 1);
-        },
-      });
+    const css = `@keyframes ${keyframeName} { from { transform: ${prop}(${fromVal}px); } to { transform: ${prop}(${toVal}px); } }`;
+
+    let style = document.getElementById(stylesheetId) as HTMLStyleElement | null;
+    if (!style) {
+      style = document.createElement('style');
+      style.id = stylesheetId;
+      document.head.appendChild(style);
+    }
+    style.textContent = css;
+
+    if (innerRef.current) {
+      innerRef.current.style.animation = 'none';
+      // Force reflow
+      void innerRef.current.offsetHeight;
+      innerRef.current.style.animation = `${keyframeName} ${animDuration}s linear infinite`;
     }
 
-    return controls?.stop;
-  }, [
-    key,
-    translation,
-    currentDuration,
-    width,
-    height,
-    gap,
-    isTransitioning,
-    direction,
-    reverse,
-  ]);
+    return () => {
+      // Don't remove stylesheet on cleanup to avoid flicker during re-renders
+    };
+  }, [contentSize, gap, reverse, direction, stylesheetId, animDuration]);
 
-  const hoverProps = durationOnHover
-    ? {
-        onHoverStart: () => {
-          setIsTransitioning(true);
-          setCurrentDuration(durationOnHover);
-        },
-        onHoverEnd: () => {
-          setIsTransitioning(true);
-          setCurrentDuration(duration);
-        },
-      }
-    : {};
+  // Cleanup stylesheet on unmount
+  useEffect(() => {
+    return () => {
+      const style = document.getElementById(stylesheetId);
+      if (style) style.remove();
+    };
+  }, [stylesheetId]);
+
+  const handleMouseEnter = useCallback(() => {
+    if (durationOnHover) setAnimDuration(durationOnHover);
+  }, [durationOnHover]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (durationOnHover) setAnimDuration(duration);
+  }, [durationOnHover, duration]);
+
+  const gapStyle = { gap: `${gap}px` };
+  const childContainerClass = 'flex shrink-0';
+  const childContainerStyle = direction === 'horizontal'
+    ? gapStyle
+    : { ...gapStyle, flexDirection: 'column' as const };
 
   return (
-    <motion.div className={cn('overflow-hidden', className)} {...hoverProps}>
-      <motion.div
+    <div
+      className={cn('overflow-hidden', className)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        ref={innerRef}
         className="flex w-max"
-        style={{
-          ...(direction === 'horizontal'
-            ? { x: translation, gap: `${gap}px` }
-            : { y: translation, flexDirection: 'column', gap: `${gap}px` }),
-        }}
+        style={direction === 'horizontal' ? gapStyle : { ...gapStyle, flexDirection: 'column' }}
       >
-        <div
-          ref={ref}
-          className="flex shrink-0"
-          style={{
-            ...(direction === 'horizontal'
-              ? { gap: `${gap}px` }
-              : { flexDirection: 'column', gap: `${gap}px` }),
-          }}
-        >
+        <div ref={ref} className={childContainerClass} style={childContainerStyle}>
           {children}
         </div>
-        <div
-          className="flex shrink-0"
-          style={{
-            ...(direction === 'horizontal'
-              ? { gap: `${gap}px` }
-              : { flexDirection: 'column', gap: `${gap}px` }),
-          }}
-        >
+        <div className={childContainerClass} style={childContainerStyle}>
           {children}
         </div>
-        <div
-          className="flex shrink-0"
-          style={{
-            ...(direction === 'horizontal'
-              ? { gap: `${gap}px` }
-              : { flexDirection: 'column', gap: `${gap}px` }),
-          }}
-        >
+        <div className={childContainerClass} style={childContainerStyle}>
           {children}
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

@@ -1,46 +1,41 @@
 
 
-# Fix InfiniteSlider for Seamless Looping
+# Fix InfiniteSlider Disappearing/Flickering Issue
 
-## Overview
-Update the `InfiniteSlider` component to use 3 copies of children and correct translation math, ensuring a perfectly seamless loop with no gaps.
+## Problem
+Two issues cause the logos to disappear and reappear:
 
-## Technical Changes
+1. **No guard for zero width**: When the component first mounts, `useMeasure` reports `width = 0`. The animation starts with `contentSize = 0 + gap`, producing nonsensical motion. When the real width arrives, the effect re-runs and causes a visual jump.
+
+2. **`repeatType: 'loop'` behavior**: Framer Motion's `repeatType: 'loop'` can cause brief visual glitches at the reset point. The `onRepeat` callback fires but the visual transition isn't always frame-perfect.
+
+## Solution
 
 ### `src/components/ui/infinite-slider.tsx`
 
-**1. Measure a single set of children**
-- Wrap the first copy of children in a measured div (with the `ref` from `useMeasure`)
-- The other two copies are identical but unmeasured
+1. **Add early return when size is 0**: Skip animation until `useMeasure` reports actual dimensions.
 
-**2. Triple the children**
-- Render `{children}` three times, each inside its own flex container with the correct gap
+2. **Remove `repeatType` and manually loop**: Instead of relying on framer-motion's repeat, animate once from `from` to `to`, then on `onComplete` instantly set position back to `from` and increment a `key` to restart. This guarantees a frame-perfect snap.
 
-**3. Fix translation math**
-- `contentSize = measuredWidth + gap` (width of one set + one gap)
-- If `reverse` is false: animate from `0` to `-contentSize`
-- If `reverse` is true: animate from `-contentSize` to `0`
-- On repeat, snap instantly back to `from`
+Updated `useEffect` logic:
+```
+if (size === 0) return; // wait for measurement
 
-**4. Updated JSX structure:**
-```text
-<motion.div overflow-hidden>
-  <motion.div flex w-max style={{ x: translation, gap }}>
-    <div ref={ref} flex shrink-0 style={{ gap }}>
-      {children}
-    </div>
-    <div flex shrink-0 style={{ gap }}>
-      {children}
-    </div>
-    <div flex shrink-0 style={{ gap }}>
-      {children}
-    </div>
-  </motion.div>
-</motion.div>
+const contentSize = size + gap;
+const from = reverse ? -contentSize : 0;
+const to = reverse ? 0 : -contentSize;
+
+controls = animate(translation, [from, to], {
+  ease: 'linear',
+  duration: currentDuration,
+  onComplete: () => {
+    translation.set(from);   // instant snap
+    setKey(prev => prev + 1); // re-trigger effect to loop
+  },
+});
 ```
 
-The `ref` only measures one set. The animation translates exactly one set's width + gap, then resets instantly. Three copies ensure no visible gap even on ultra-wide screens.
+This removes `repeat: Infinity` and `repeatType: 'loop'` entirely, replacing them with a manual loop via `onComplete` + `setKey`. The snap is truly instant because we just set the motion value directly before re-animating.
 
-### `src/components/ClientsSection.tsx`
-- No changes needed -- already uses `<InfiniteSlider>` correctly.
+The transitioning (hover) logic stays the same but also benefits from the size guard.
 

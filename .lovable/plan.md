@@ -1,20 +1,33 @@
 
 
-# Fix Seamless Logo Marquee Loop
+# Fix Seamless Logo Marquee
 
 ## Problem
-The marquee animation translates by `-50%` of the total track width, but the logos are tripled (3 copies). This means it scrolls past one-and-a-half sets of logos before jumping back, creating a visible empty gap.
+The marquee is inside `container-narrow`, which constrains its width. The single `w-max` div with doubled logos doesn't fill the screen edge-to-edge, so when the animation reaches the end, there's a visible gap before the loop resets.
 
 ## Solution
-Use **two copies** of the logos (not three) and keep the animation at `-50%`. This way, when the first set scrolls fully off-screen, the second set is exactly where the first one started -- creating a perfectly seamless loop with no gaps.
+Use **two separate identical flex rows** placed side-by-side inside an animation wrapper. Each row contains all 8 logos. The animation translates the wrapper by exactly `-50%`, so when the first row scrolls off, the second row takes its place seamlessly. Also break the marquee out of the narrow container so it spans the full viewport.
 
 ## Technical Changes
 
-### 1. `src/components/ClientsSection.tsx`
-- Change `[...logos, ...logos, ...logos]` back to `[...logos, ...logos]` (two copies only)
-- The `-50%` translation in the animation will now correctly scroll exactly one full set before resetting
+### `src/components/ClientsSection.tsx`
+- Remove the `container-narrow` wrapper (or keep it only for the watermark) so the marquee spans full width
+- Replace the single `<div className="flex w-max animate-marquee ...">` with a structure like:
 
-### 2. `tailwind.config.ts`
-- Keep the marquee animation as-is: `translateX(0)` to `translateX(-50%)` -- this is correct for a doubled track
+```text
+[outer overflow-hidden]
+  [animation wrapper: flex, animate-marquee]
+    [row 1: flex, min-w-full, justify-around, gap-20]
+      ...8 logos
+    [row 2: flex, min-w-full, justify-around, gap-20]  (identical copy)
+      ...8 logos
+```
 
-That's the only change needed. Two copies + 50% translation = seamless loop with no empty space.
+- Each row uses `min-w-full` and `justify-around` so logos spread evenly across the full width
+- The animation wrapper uses `flex` with no gap, so the two rows sit flush
+- `animate-marquee` translates `-50%` which is exactly one row's width
+
+### `tailwind.config.ts`
+- No changes needed -- the existing `marquee` keyframe (`translateX(0)` to `translateX(-50%)`) is correct for this approach
+
+This guarantees zero empty space because each row independently fills the entire viewport width.

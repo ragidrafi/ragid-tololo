@@ -24,23 +24,28 @@ const ClientsSection = () => {
   return (
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text="לקוחות" />
-      <div className="container-narrow relative z-10">
-        <div className="relative overflow-hidden py-8">
-          {/* Fade edges */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+      <div className="relative overflow-hidden py-8">
+        {/* Fade edges */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
 
-          {/* Marquee track – doubled for seamless loop */}
-          <div className="flex w-max animate-marquee items-center gap-20">
-            {[...logos, ...logos].map((logo, i) => (
-              <img
-                key={i}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-20 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
-              />
-            ))}
-          </div>
+        {/* Marquee: two identical rows side-by-side */}
+        <div className="flex animate-marquee">
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              className="flex min-w-full shrink-0 items-center justify-around gap-20"
+            >
+              {logos.map((logo, i) => (
+                <img
+                  key={i}
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-20 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                />
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>

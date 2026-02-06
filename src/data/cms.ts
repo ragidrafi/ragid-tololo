@@ -7,7 +7,7 @@ export const siteData = {
       { label: "שירותים", href: "#services" },
       { label: "פרויקטים", href: "#projects" },
       { label: "אודות", href: "#about" },
-      { label: "צור קשר", href: "#contact" },
+      { label: "יצירת קשר", href: "#contact" },
     ],
   },
 
@@ -153,8 +153,8 @@ export const siteData = {
   },
 
   contact: {
-    title: "צור קשר",
-    buttonText: "שלח הודעה",
+    title: "יצירת קשר",
+    buttonText: "שליחת הודעה",
   },
 
   footer: {

@@ -18,7 +18,7 @@ const AboutSection = () => {
   return (
     <section id="about" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="אודות" />
-      <div className="container-narrow max-w-4xl space-y-16 relative z-10">
+      <div className="container-narrow max-w-4xl space-y-16 relative z-10 pt-8">
         {rows.map((row, i) => (
           <div
             key={i}

@@ -1,41 +1,30 @@
 
 
-# Fix InfiniteSlider Disappearing/Flickering Issue
+# Use Video as Hero Background
 
 ## Problem
-Two issues cause the logos to disappear and reappear:
-
-1. **No guard for zero width**: When the component first mounts, `useMeasure` reports `width = 0`. The animation starts with `contentSize = 0 + gap`, producing nonsensical motion. When the real width arrives, the effect re-runs and causes a visual jump.
-
-2. **`repeatType: 'loop'` behavior**: Framer Motion's `repeatType: 'loop'` can cause brief visual glitches at the reset point. The `onRepeat` callback fires but the visual transition isn't always frame-perfect.
+The animated `.webp` file appears as a still image. The user has provided an `.mp4` video to use instead.
 
 ## Solution
 
-### `src/components/ui/infinite-slider.tsx`
+### 1. Copy the video to `public/videos/hero-bg.mp4`
+Videos should go in the `public` folder since they are best served as static assets (not bundled by Vite).
 
-1. **Add early return when size is 0**: Skip animation until `useMeasure` reports actual dimensions.
+### 2. Update `src/components/HeroSection.tsx`
+- Replace the `<img>` tag with a `<video>` tag
+- Configure the video for background use: `autoPlay`, `muted`, `loop`, `playsInline`
+- Remove the old `heroBg` import since the video is referenced from `public/`
 
-2. **Remove `repeatType` and manually loop**: Instead of relying on framer-motion's repeat, animate once from `from` to `to`, then on `onComplete` instantly set position back to `from` and increment a `key` to restart. This guarantees a frame-perfect snap.
-
-Updated `useEffect` logic:
-```
-if (size === 0) return; // wait for measurement
-
-const contentSize = size + gap;
-const from = reverse ? -contentSize : 0;
-const to = reverse ? 0 : -contentSize;
-
-controls = animate(translation, [from, to], {
-  ease: 'linear',
-  duration: currentDuration,
-  onComplete: () => {
-    translation.set(from);   // instant snap
-    setKey(prev => prev + 1); // re-trigger effect to loop
-  },
-});
+```tsx
+<video
+  src="/videos/hero-bg.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full h-full object-cover"
+/>
 ```
 
-This removes `repeat: Infinity` and `repeatType: 'loop'` entirely, replacing them with a manual loop via `onComplete` + `setKey`. The snap is truly instant because we just set the motion value directly before re-animating.
-
-The transitioning (hover) logic stays the same but also benefits from the size guard.
+The dark overlay (`bg-background/80`) stays the same to keep white text readable.
 

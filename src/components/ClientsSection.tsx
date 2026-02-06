@@ -1,4 +1,5 @@
 import SectionWatermark from "@/components/SectionWatermark";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 import siemensLogo from "@/assets/clients/siemens.svg";
 import poeocLogo from "@/assets/clients/poeoc.svg";
@@ -24,29 +25,21 @@ const ClientsSection = () => {
   return (
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text="לקוחות" />
-      <div className="relative overflow-hidden py-8">
+      <div className="relative py-8">
         {/* Fade edges */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
 
-        {/* Marquee: two identical rows side-by-side */}
-        <div className="flex animate-marquee">
-          {[0, 1].map((copy) => (
-            <div
-              key={copy}
-              className="flex min-w-full shrink-0 items-center justify-around gap-20"
-            >
-              {logos.map((logo, i) => (
-                <img
-                  key={i}
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-20 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
-                />
-              ))}
-            </div>
+        <InfiniteSlider gap={40} duration={25} reverse>
+          {logos.map((logo, i) => (
+            <img
+              key={i}
+              src={logo.src}
+              alt={logo.alt}
+              className="h-20 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+            />
           ))}
-        </div>
+        </InfiniteSlider>
       </div>
     </section>
   );

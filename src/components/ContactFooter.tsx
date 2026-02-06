@@ -13,7 +13,7 @@ const ContactFooter = () => {
     <>
       {/* Contact */}
       <section id="contact" className="section-spacing relative overflow-hidden">
-        <SectionWatermark text="צור קשר" />
+        <SectionWatermark text="יצירת קשר" />
         <div className="container-narrow relative z-10">
           <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-stretch">
             {/* Watermark title - left side */}

@@ -1,41 +1,20 @@
 
 
-# Morphing Card Stack for Projects Section
+# Fix Seamless Logo Marquee Loop
 
-## What Changes
+## Problem
+The marquee animation translates by `-50%` of the total track width, but the logos are tripled (3 copies). This means it scrolls past one-and-a-half sets of logos before jumping back, creating a visible empty gap.
 
-Replace the current flat grid of project cards with an interactive **morphing card stack** component that supports three layout modes (stack, grid, list). The project data stays CMS-driven from `src/data/cms.ts`. Cards will be slightly larger than the reference component.
+## Solution
+Use **two copies** of the logos (not three) and keep the animation at `-50%`. This way, when the first set scrolls fully off-screen, the second set is exactly where the first one started -- creating a perfectly seamless loop with no gaps.
 
-## New Dependency
+## Technical Changes
 
-- **framer-motion** -- required for the animation/layout transitions and drag gestures
+### 1. `src/components/ClientsSection.tsx`
+- Change `[...logos, ...logos, ...logos]` back to `[...logos, ...logos]` (two copies only)
+- The `-50%` translation in the animation will now correctly scroll exactly one full set before resetting
 
-## Technical Details
+### 2. `tailwind.config.ts`
+- Keep the marquee animation as-is: `translateX(0)` to `translateX(-50%)` -- this is correct for a doubled track
 
-### 1. Install `framer-motion`
-Add `framer-motion` as a dependency.
-
-### 2. Create `src/components/ui/morphing-card-stack.tsx`
-Adapted from the provided component with these adjustments:
-- Keep all the core logic: `LayoutMode` ("stack" | "grid" | "list"), drag-to-swipe in stack mode, layout toggle buttons, dot indicators
-- **RTL support**: Reverse the swipe direction logic (drag left = previous, drag right = next) since the page is RTL
-- **Larger sizing**: Increase card dimensions from `w-56 h-48` to `w-72 h-56` in stack mode; increase the stack container from `h-64 w-64` to `h-72 w-72`
-- Style cards with dark theme colors consistent with the site (`bg-card` maps to the dark background, `border-border` for subtle borders, `text-primary` for accent)
-
-### 3. Update `src/components/ProjectsSection.tsx`
-- Import and use the new `MorphingCardStack` component (named export `Component`)
-- Map `siteData.projects` into the `CardData[]` format:
-  - `id`: index-based string
-  - `title`: project title
-  - `description`: combine stat + statLabel + description (e.g., "800 MW -- צוות קבלה והרצה")
-  - `icon`: render the corresponding Lucide icon from `iconMap`
-- Pass the mapped cards array to the component with `defaultLayout="grid"` (so all 7 projects are visible by default)
-- Keep the `SectionWatermark` and section wrapper as-is
-- Remove the old `Feature` sub-component
-
-### 4. Grid layout adjustment
-In grid mode, change from `grid-cols-2` to `grid-cols-2 md:grid-cols-3 lg:grid-cols-4` so the 7 projects spread nicely on larger screens. Cards in grid mode will have `aspect-auto` instead of `aspect-square` for better content fit.
-
-### 5. Layout toggle styling
-Position the layout toggle buttons in the top-left of the section (RTL = visually top-right) with the site's primary green as the active indicator color.
-
+That's the only change needed. Two copies + 50% translation = seamless loop with no empty space.

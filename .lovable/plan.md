@@ -1,33 +1,21 @@
 
 
-# Fix Seamless Logo Marquee
+# Use InfiniteSlider Component for Clients Marquee
 
-## Problem
-The marquee is inside `container-narrow`, which constrains its width. The single `w-max` div with doubled logos doesn't fill the screen edge-to-edge, so when the animation reaches the end, there's a visible gap before the loop resets.
+## Overview
+Replace the broken CSS-based marquee with the `InfiniteSlider` component from motion-primitives, which handles seamless infinite looping properly using framer-motion.
 
-## Solution
-Use **two separate identical flex rows** placed side-by-side inside an animation wrapper. Each row contains all 8 logos. The animation translates the wrapper by exactly `-50%`, so when the first row scrolls off, the second row takes its place seamlessly. Also break the marquee out of the narrow container so it spans the full viewport.
+## Changes
 
-## Technical Changes
+### 1. Install `react-use-measure`
+- `framer-motion` is already installed; only `react-use-measure` needs to be added.
 
-### `src/components/ClientsSection.tsx`
-- Remove the `container-narrow` wrapper (or keep it only for the watermark) so the marquee spans full width
-- Replace the single `<div className="flex w-max animate-marquee ...">` with a structure like:
+### 2. Create `src/components/ui/infinite-slider.tsx`
+- Add the `InfiniteSlider` component as provided, with the JSX return fixed (the pasted code had empty tags -- will use the correct `motion.div` wrapper structure).
 
-```text
-[outer overflow-hidden]
-  [animation wrapper: flex, animate-marquee]
-    [row 1: flex, min-w-full, justify-around, gap-20]
-      ...8 logos
-    [row 2: flex, min-w-full, justify-around, gap-20]  (identical copy)
-      ...8 logos
-```
+### 3. Update `src/components/ClientsSection.tsx`
+- Remove the custom CSS marquee div structure.
+- Use `InfiniteSlider` with `gap={40}`, `duration={25}`, and `reverse` (for RTL feel).
+- Render each logo as a child of `InfiniteSlider`.
+- Keep the fade-edge gradients and watermark.
 
-- Each row uses `min-w-full` and `justify-around` so logos spread evenly across the full width
-- The animation wrapper uses `flex` with no gap, so the two rows sit flush
-- `animate-marquee` translates `-50%` which is exactly one row's width
-
-### `tailwind.config.ts`
-- No changes needed -- the existing `marquee` keyframe (`translateX(0)` to `translateX(-50%)`) is correct for this approach
-
-This guarantees zero empty space because each row independently fills the entire viewport width.

@@ -1,75 +1,73 @@
 
 
-# Process Section Redesign: 2x2 Connected Timeline
+# Process Section Redesign: 3-2 Timeline with U-Turn Path
 
 ## Overview
-Redesign the Work Method section from a horizontal 4-column layout into a 2x2 grid with connected arrow paths between cards, following RTL flow.
+Redesign the "שיטת עבודה" section to match the reference image: circular icons connected by a continuous path with a U-turn between two rows. Split the current 4 steps into 5: תכנון, הקמה, הרצה, תפעול, אחזקה.
 
 ## Layout (Desktop)
 
 ```text
-+------------------+     <----     +------------------+
-|     Step 2       |               |     Step 1       |
-|   (top-left)     |               |   (top-right)    |
-+------------------+               +------------------+
-        |
-        | (U-turn curve down)
-        v
-+------------------+               +------------------+
-|     Step 3       |     ---->     |     Step 4       |
-|  (bottom-left)   |               |  (bottom-right)  |
-+------------------+               +------------------+
+Row 1 (RTL):  [Step 1: תכנון] ———— [Step 2: הקמה] ———— [Step 3: הרצה]
+                                                              |
+                                              U-turn curve down |
+                                                              |
+Row 2 (LTR):              [Step 4: תפעול] ———————— [Step 5: אחזקה]
 ```
 
-Flow: Step 1 (top-right) -> Step 2 (top-left) -> Step 3 (bottom-left) -> Step 4 (bottom-right)
+- Top row: 3 items, connected by horizontal lines, flowing right-to-left
+- U-turn: A curved path from Step 3 (bottom-left of row 1) down and around to Step 4 (bottom-right of row 2)
+- Bottom row: 2 items, connected by a horizontal line, flowing left-to-right
 
-## Card Design
-- Rounded corners: `rounded-3xl` (24px, matches site `--radius`)
-- Border: `border border-secondary/40` (#0184C4 at 40% opacity)
-- Background: `bg-background/80 backdrop-blur-sm` (semi-transparent navy)
-- Shadow: `shadow-floating` (existing floating shadow style)
-- Padding: generous `p-8`
-- Content order inside each card:
-  - Green icon (larger, `w-12 h-12` or `size={40}`)
-  - Step number badge (top-right corner of card)
-  - Title in green (`text-xl font-bold text-primary`)
-  - Subtitle in muted (`text-sm text-muted-foreground`)
-  - Description in white (`text-base text-foreground/75`)
+## 5 Steps Data
+| Step | Title | Icon | Subtitle |
+|------|-------|------|----------|
+| 1 | תכנון | Compass | Design & Engineering |
+| 2 | הקמה | HardHat | Construction Management |
+| 3 | הרצה | FlaskConical | Commissioning |
+| 4 | תפעול | Settings | Operations |
+| 5 | אחזקה | Wrench | Maintenance |
 
-## Connected Path (SVG Arrows)
-- Use an inline SVG overlay positioned absolutely over the grid
-- Draw paths in `#52AC42` (primary green), `stroke-width: 2`, with optional dashed style
+## Step Design (matching reference)
+- Large circular icon container (`w-20 h-20`) with `border-2 border-secondary/40` and `bg-background`
+- Icon inside in green (`text-primary`, `size={36}`)
+- Title below in bold (`text-lg font-bold text-foreground`)
+- Subtitle in green (`text-xs text-primary`)
+- Description text in muted white (`text-sm text-foreground/65`)
+- Hover: border brightens, subtle glow shadow
+
+## Connected Path (SVG)
+- An absolutely positioned SVG overlay spanning the full grid area
+- Solid line in `#52AC42` (primary green), `stroke-width: 2-3`
 - Path segments:
-  1. Horizontal arrow from Card 1 (left edge) to Card 2 (right edge) across the top row
-  2. Vertical U-turn: from Card 2 downward, curving to Card 3 (left column)
-  3. Horizontal arrow from Card 3 (right edge) to Card 4 (left edge) across the bottom row
-- Small arrowhead markers at each endpoint
+  1. Horizontal line connecting Step 1 -> Step 2 -> Step 3 across the top row (through circle centers)
+  2. U-turn curve from Step 3 downward, curving around to Step 4 (similar to the blue curve in the reference)
+  3. Horizontal line from Step 4 -> Step 5 across the bottom row
 - Hidden on mobile (`hidden md:block`)
 
-## Grid Arrangement
-- Desktop: `grid-cols-2` with gap
-- The grid renders 4 cards; order is adjusted so RTL flow places Step 1 top-right, Step 2 top-left, Step 3 bottom-left (using `md:col-start-1`), Step 4 bottom-right
-- Since the page is RTL, `grid-cols-2` naturally places the first item on the right. So render order: [Step1, Step2, Step3, Step4] -- but Step 3 and Step 4 need to swap for the U-turn pattern. Actual render: [Step1, Step2, Step4, Step3] with Step3 using `md:order-4` and Step4 using `md:order-3`, OR render [Step1, Step2, Step3, Step4] and use CSS order to swap bottom row in RTL context.
+## Mobile Layout
+- Single column, steps stacked vertically (1 through 5)
+- Simple vertical dashed line connectors between each step
+- SVG path hidden
 
 ## Watermark
-- Keep `SectionWatermark` with reduced opacity (already at 8%, close enough to requested 3% -- will adjust to `text-foreground/[0.03]` in the watermark or via a prop)
-
-## Mobile
-- Single column: `grid-cols-1`
-- Cards stack vertically: Step 1 -> 2 -> 3 -> 4
-- Straight vertical dashed line between cards (simple `div` connectors with green color)
-- SVG path hidden on mobile
+- Keep `SectionWatermark` component with "שיטת עבודה" text
 
 ## Technical Changes
 
 ### File: `src/components/ProcessSection.tsx`
-- Replace the current 4-column grid with a 2-column grid
-- Add an SVG overlay for the connected path with arrow markers
-- Enlarge icons and text sizes
-- Restyle each step as a floating card with border, shadow, and rounded corners
-- Add mobile vertical connectors between cards
-- Adjust grid item order for the RTL U-turn flow (bottom row: Step3 left, Step4 right)
+- Add `Wrench` to lucide-react imports
+- Split step 4 ("תפעול ואחזקה") into two separate steps: "תפעול" (Operations) and "אחזקה" (Maintenance)
+- Replace the 4-column grid with a custom layout:
+  - Desktop: First row with 3 items (`grid-cols-3`), second row with 2 items centered
+  - Use `useRef` + `useEffect` or hardcoded relative positions for the SVG path
+- Add an SVG overlay with:
+  - Horizontal lines through row 1 icons
+  - A curved U-turn path (using SVG `path` with bezier curves) from the last icon in row 1 down to the first icon in row 2
+  - Horizontal line through row 2 icons
+- Style each step as a vertical stack: circle icon, title, subtitle, description
+- Mobile: single column with vertical connectors between steps
 
-### File: `src/components/SectionWatermark.tsx`
-- Add optional `opacity` prop to allow customizing watermark opacity (default stays at 8%, pass 3% from ProcessSection)
+### File: `src/data/cms.ts`
+- Update `process` array to have 5 items instead of 4, splitting the last step
 

@@ -32,6 +32,8 @@ export function InfiniteSlider({
   useEffect(() => {
     let controls;
     const size = direction === 'horizontal' ? width : height;
+    if (size === 0) return; // wait for measurement
+
     const contentSize = size + gap;
     const from = reverse ? -contentSize : 0;
     const to = reverse ? 0 : -contentSize;
@@ -50,11 +52,9 @@ export function InfiniteSlider({
       controls = animate(translation, [from, to], {
         ease: 'linear',
         duration: currentDuration,
-        repeat: Infinity,
-        repeatType: 'loop',
-        repeatDelay: 0,
-        onRepeat: () => {
+        onComplete: () => {
           translation.set(from);
+          setKey((prevKey) => prevKey + 1);
         },
       });
     }

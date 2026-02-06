@@ -10,8 +10,8 @@ const AboutSection = () => {
       <div className="container-narrow max-w-3xl space-y-12 relative z-10">
         {sections.map((s, i) => (
           <div key={i}>
-            <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-2">{s.title}</h2>
-            <div className="green-line mb-6" />
+            <h2 className="md:hidden text-2xl font-bold text-secondary mb-2">{s.title}</h2>
+            <div className="md:hidden green-line mb-6" />
             {s.paragraphs.map((p, j) => (
               <p key={j} className="text-foreground/80 text-[16px] leading-[1.9] mb-4">{p}</p>
             ))}

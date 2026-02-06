@@ -11,8 +11,6 @@ const ProjectsSection = () => {
     <section id="projects" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="פרויקטים" />
       <div className="container-narrow relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">פרויקטים נבחרים</h2>
-        <div className="green-line mb-16" />
 
         <div className="flex flex-col gap-24">
           {siteData.projects.map((p, i) => {

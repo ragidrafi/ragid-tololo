@@ -47,8 +47,6 @@ const ProcessSection = () => {
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שיטת עבודה" />
       <div className="container-narrow relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">שיטת עבודה</h2>
-        <div className="green-line mb-16" />
 
         {/* Lifecycle ring */}
         <div className="relative">

@@ -1,5 +1,9 @@
 import { siteData } from "@/data/cms";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Linkedin, Globe } from "lucide-react";
+import logo from "@/assets/logo-ragid.png";
+
+const inputClass =
+  "w-full rounded-2xl bg-card border border-white/10 px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50";
 
 const ContactFooter = () => {
   const { contact, footer, header } = siteData;
@@ -12,25 +16,24 @@ const ContactFooter = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">{contact.title}</h2>
           <div className="green-line mb-10" />
 
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="space-y-5"
-          >
-            <input
-              type="text"
-              placeholder="שם מלא"
-              className="w-full rounded-2xl bg-card border border-white/10 px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-            />
-            <input
-              type="email"
-              placeholder="אימייל"
-              className="w-full rounded-2xl bg-card border border-white/10 px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-            />
-            <textarea
-              rows={4}
-              placeholder="הודעה"
-              className="w-full rounded-2xl bg-card border border-white/10 px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
-            />
+          <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+            <div className="grid md:grid-cols-2 gap-5">
+              <input type="text" placeholder="שם מלא" className={inputClass} />
+              <input type="text" placeholder="תפקיד" className={inputClass} />
+            </div>
+            <div className="grid md:grid-cols-2 gap-5">
+              <input type="email" placeholder="אימייל" className={inputClass} />
+              <input type="tel" placeholder="נייד" className={inputClass} />
+            </div>
+            <input type="text" placeholder="פרטי פניה" className={inputClass} />
+            <select className={`${inputClass} appearance-none`} defaultValue="">
+              <option value="" disabled>סוג פרויקט</option>
+              <option>אנרגיה ותחנות כוח</option>
+              <option>מרכזי נתונים</option>
+              <option>תשתיות מורכבות ומים</option>
+              <option>אחר</option>
+            </select>
+            <textarea rows={4} placeholder="הודעה" className={`${inputClass} resize-none`} />
             <button
               type="submit"
               className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110 transition-all"
@@ -46,13 +49,11 @@ const ContactFooter = () => {
         <div className="container-narrow">
           <div className="grid md:grid-cols-3 gap-10 text-secondary-foreground">
             <div>
-              <h4 className="font-bold text-lg mb-4">{footer.col1Title}</h4>
+              <img src={logo} alt="Ragid" className="h-10 mb-4 brightness-0 invert" />
               <ul className="space-y-2 text-sm">
                 {header.links.map((l) => (
                   <li key={l.href}>
-                    <a href={l.href} className="opacity-80 hover:opacity-100 transition-opacity">
-                      {l.label}
-                    </a>
+                    <a href={l.href} className="opacity-80 hover:opacity-100 transition-opacity">{l.label}</a>
                   </li>
                 ))}
               </ul>
@@ -80,6 +81,24 @@ const ContactFooter = () => {
                   <MapPin size={16} /> {footer.address}
                 </li>
               </ul>
+              <div className="flex gap-3 mt-5">
+                <a
+                  href={footer.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-secondary-foreground/10 flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
+                >
+                  <Linkedin size={16} />
+                </a>
+                <a
+                  href={footer.pharmaWebsite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-secondary-foreground/10 flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
+                >
+                  <Globe size={16} />
+                </a>
+              </div>
             </div>
           </div>
 

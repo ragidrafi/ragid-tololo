@@ -6,8 +6,6 @@ const ClientsSection = () => {
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text="לקוחות" />
       <div className="container-narrow relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">לקוחות</h2>
-        <div className="green-line mb-12" />
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {siteData.clients.map((name, i) => (

@@ -15,8 +15,6 @@ const ContactFooter = () => {
       <section id="contact" className="section-spacing relative overflow-hidden">
         <SectionWatermark text="צור קשר" />
         <div className="container-narrow max-w-2xl relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">{contact.title}</h2>
-          <div className="green-line mb-10" />
 
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             <div className="grid md:grid-cols-2 gap-5">

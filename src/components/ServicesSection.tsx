@@ -14,8 +14,6 @@ const ServicesSection = () => {
     <section id="services" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שירותים" />
       <div className="container-narrow relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">השירותים שלנו</h2>
-        <div className="green-line mb-10" />
 
         {/* Tabs row */}
         <div className="flex items-center justify-center gap-2 mb-10">

@@ -12,7 +12,7 @@ const ServicesSection = () => {
   const toggle = (i: number) => setActiveIndex(prev => (prev === i ? null : i));
 
   return (
-    <section id="services" className="section-spacing relative overflow-hidden">
+    <section id="services" className="section-spacing pt-32 relative overflow-hidden">
       <SectionWatermark text="שירותים" />
       <div className="container-narrow relative z-10">
         <div className="flex flex-col items-center gap-0">

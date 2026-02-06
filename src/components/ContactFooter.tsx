@@ -13,12 +13,11 @@ const ContactFooter = () => {
     <>
       {/* Contact */}
       <section id="contact" className="section-spacing relative overflow-hidden">
-        <SectionWatermark text="צור קשר" />
         <div className="container-narrow relative z-10">
           <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-stretch">
             {/* Watermark title - left side */}
             <div className="hidden md:flex flex-1 items-center justify-center">
-              <h2 className="text-6xl lg:text-7xl xl:text-8xl font-black text-foreground/[0.08] leading-[1.1] text-right whitespace-pre-line select-none">
+              <h2 className="text-7xl lg:text-8xl xl:text-9xl font-black text-foreground/[0.08] leading-[1.1] text-right whitespace-pre-line select-none">
                 {"יש לכם מתקן\nשחייב לעבוד\nבלי הפסקה?\nדברו איתנו"}
               </h2>
             </div>

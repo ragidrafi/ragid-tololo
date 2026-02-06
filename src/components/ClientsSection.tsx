@@ -23,7 +23,7 @@ const logos = [
 
 const ClientsSection = () => {
   return (
-    <section className="section-spacing pt-32 relative overflow-hidden">
+    <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text="לקוחות" />
       <div className="relative py-8">
         {/* Fade edges */}

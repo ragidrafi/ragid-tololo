@@ -51,28 +51,53 @@ export const siteData = {
 
   projects: [
     {
-      title: "גשר נחל הירדן",
-      stat: "340",
-      statLabel: "מטר אורך",
-      description:
-        "גשר תלוי מודרני המשלב עיצוב ארכיטקטוני ייחודי עם הנדסת ביצוע מדויקת.",
-      icon: "Construction",
+      title: "תחנת כוח דוראד",
+      stat: "800",
+      statLabel: "MW",
+      description: "צוות קבלה והרצה – תחנת כוח במחזור משולב",
+      icon: "Zap",
     },
     {
-      title: "מגדל אופיס סנטר",
-      stat: "52",
-      statLabel: "קומות",
-      description:
-        "מגדל משרדים בתל אביב עם מערכות חכמות ותקן בנייה ירוקה ברמה הגבוהה ביותר.",
-      icon: "Building2",
+      title: "תחנת כוח רותם (OPC)",
+      stat: "440",
+      statLabel: "MW",
+      description: "ניהול פרויקט עבור הקבלן (GC) – ניהול הקמה מול חברת POSCO",
+      icon: "Zap",
     },
     {
-      title: "מתקן טיהור מים מרכזי",
-      stat: "120K",
-      statLabel: "מ״ק ליום",
-      description:
-        "מתקן מתקדם לטיפול במים ושפכים המשרת אוכלוסייה של למעלה מחצי מיליון תושבים.",
+      title: "תחנת כוח ים המלח",
+      stat: "330",
+      statLabel: "MW",
+      description: "ניהול הרצה והפעלה – טורבינת גז 220MW + תחנת קיטור 110MW",
+      icon: "Zap",
+    },
+    {
+      title: "מתקן התפלה שורק 2",
+      stat: "",
+      statLabel: "",
+      description: "הרצת מערכות אנרגיה – אינטגרציה של בלוק האנרגיה במתקן ההתפלה",
       icon: "Droplets",
+    },
+    {
+      title: "תחנות כוח MRC וסוגות",
+      stat: "",
+      statLabel: "",
+      description: "תפעול שוטף – ניהול צוותי הפעלה למערכות Siemens",
+      icon: "Settings",
+    },
+    {
+      title: "פרויקטים נוספים",
+      stat: "4",
+      statLabel: "פרויקטים",
+      description: "ליווי הנדסי והרצה – אדלטק אשדוד (60MW), רמת נגב (120MW), שורק 1 (140MW), אשלים Plot B",
+      icon: "Briefcase",
+    },
+    {
+      title: "מפעלי ים המלח",
+      stat: "50",
+      statLabel: "פרויקטים",
+      description: "ניהול פרויקטים שוטף – ביצוע כ-50 פרויקטים הנדסיים לאורך 30 שנה",
+      icon: "Factory",
     },
   ],
 

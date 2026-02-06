@@ -104,10 +104,11 @@ export const siteData = {
   ],
 
   process: [
-    { step: 1, title: "ייעוץ ראשוני", icon: "MessageSquare" },
-    { step: 2, title: "תכנון ועיצוב", icon: "PenTool" },
-    { step: 3, title: "ביצוע ופיקוח", icon: "HardHat" },
-    { step: 4, title: "מסירה ותחזוקה", icon: "CheckCircle" },
+    { step: 1, title: "תכנון", icon: "Compass" },
+    { step: 2, title: "הקמה", icon: "HardHat" },
+    { step: 3, title: "הרצה", icon: "FlaskConical" },
+    { step: 4, title: "תפעול", icon: "Settings" },
+    { step: 5, title: "אחזקה", icon: "Wrench" },
   ],
 
   clients: [

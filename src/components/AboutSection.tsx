@@ -44,16 +44,16 @@ const AboutSection = () => {
             }`}
           >
             {/* Image */}
-            <div className="w-full md:w-5/12 shrink-0">
+            <div className="w-full md:w-1/2 shrink-0">
               <img
                 src={row.image}
                 alt=""
-                className="w-full h-auto rounded-lg object-cover"
+                className="w-full h-auto rounded-xl object-cover shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-1"
               />
             </div>
 
             {/* Text */}
-            <div className="w-full md:w-7/12">
+            <div className="w-full md:w-1/2">
               {row.paragraphs.map((p, j) => (
                 <p
                   key={j}

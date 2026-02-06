@@ -1,37 +1,44 @@
 
 
-# Watermark as Section Title
+# Replace Project Images with Hover-Effect Feature Cards
 
-The watermark text currently sits behind each section as a decorative element, while a separate `h2` title is displayed in the foreground. The goal is to **replace** the foreground `h2` title with the watermark itself, making the watermark darker and positioned at the top of each section so it **acts as the section title**.
+## What Changes
 
-## Changes
+The current Projects section displays each project as an image + text side-by-side layout. This will be replaced with a **grid of hover-effect cards** (inspired by the provided component), using the existing project data from the CMS. No images will be used -- instead, each project will be a card with an icon, title, stat, and description, with a subtle hover gradient effect.
 
-### 1. Update `SectionWatermark` component
-- Move the watermark from centered (vertically + horizontally) to **top-aligned** (near the top of the section)
-- Increase opacity from 3% to around **8-10%** so it reads as a faded title
-- Keep `pointer-events-none` and `hidden md:flex` behavior
-- On mobile, show a regular visible title as fallback since the watermark is hidden
+## Layout
 
-### 2. Remove duplicate `h2` titles from all sections
-Remove the explicit `<h2>` title and `<div className="green-line">` from:
-- **ServicesSection** -- remove "השירותים שלנו" h2 + green line
-- **ProjectsSection** -- remove "פרויקטים נבחרים" h2 + green line
-- **ProcessSection** -- remove "שיטת עבודה" h2 + green line
-- **ClientsSection** -- remove "לקוחות" h2 + green line
-- **AboutSection** -- remove each sub-section h2 + green line (keep them only on mobile)
-- **ContactFooter** -- remove "צור קשר" h2 + green line
-
-### 3. Mobile fallback
-Since the watermark is hidden on mobile (`hidden md:flex`), add a mobile-only `h2` title (`md:hidden`) in each section so mobile users still see the section name.
+- A grid of cards (responsive: 1 column on mobile, 3 columns on desktop) replacing the current alternating image layout
+- Each card shows: a Lucide icon, project title, stat + stat label, and description
+- Cards have a top/bottom border gradient on hover (using the site's primary green color)
+- Full RTL support (already set globally via `html { direction: rtl }`)
 
 ## Technical Details
 
-**SectionWatermark.tsx changes:**
-- Change vertical alignment from `items-center` to `items-start pt-8`
-- Change opacity from `text-foreground/[0.03]` to `text-foreground/[0.08]`
-- Keep `pointer-events-none`, `select-none`, `overflow-hidden`, `z-0`
+### 1. Rewrite `src/components/ProjectsSection.tsx`
+- Remove all image imports (`project-1.jpg`, `project-2.jpg`, `project-3.jpg`) and the `images` map
+- Create a `Feature` sub-component adapted from the provided pattern:
+  - Grid layout with border lines between cards (top border for top row, bottom border for bottom row)
+  - Hover effect: gradient overlay from primary color fading to transparent
+  - Display icon, title, stat/statLabel, and description
+- Use **Lucide icons** instead of `@tabler/icons-react` (no new dependency needed):
+  - Project 1 (bridge): `Construction` icon
+  - Project 2 (office tower): `Building2` icon
+  - Project 3 (water facility): `Droplets` icon
+- Add an `icon` field to each project in `cms.ts` (e.g., `"Construction"`, `"Building2"`, `"Droplets"`)
 
-**Each section component:**
-- Replace the current `h2` + `green-line` block with a mobile-only fallback title
-- Keep the watermark `SectionWatermark` component call as-is (already present)
-- Adjust top padding/margin as needed so content doesn't overlap the watermark area
+### 2. Update `src/data/cms.ts`
+- Add an `icon` string field to each project entry (replacing `imageKey`)
+- Optionally keep `imageKey` for backward compatibility but it won't be used
+
+### 3. Card Styling
+- Background: transparent with subtle border (`border-white/10`)
+- Hover gradient: primary green color at ~10% opacity fading downward
+- Text colors: title in `text-secondary`, stat in `text-primary`, description in `text-foreground/80`
+- Border decorations between cards using absolute-positioned gradient divs
+- `pointer-events` and `group-hover` for smooth transitions
+
+### 4. No New Dependencies
+- Using `lucide-react` (already installed) instead of `@tabler/icons-react`
+- All styling via existing Tailwind classes
+

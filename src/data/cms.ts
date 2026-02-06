@@ -56,7 +56,7 @@ export const siteData = {
       statLabel: "מטר אורך",
       description:
         "גשר תלוי מודרני המשלב עיצוב ארכיטקטוני ייחודי עם הנדסת ביצוע מדויקת.",
-      imageKey: "project1",
+      icon: "Construction",
     },
     {
       title: "מגדל אופיס סנטר",
@@ -64,7 +64,7 @@ export const siteData = {
       statLabel: "קומות",
       description:
         "מגדל משרדים בתל אביב עם מערכות חכמות ותקן בנייה ירוקה ברמה הגבוהה ביותר.",
-      imageKey: "project2",
+      icon: "Building2",
     },
     {
       title: "מתקן טיהור מים מרכזי",
@@ -72,7 +72,7 @@ export const siteData = {
       statLabel: "מ״ק ליום",
       description:
         "מתקן מתקדם לטיפול במים ושפכים המשרת אוכלוסייה של למעלה מחצי מיליון תושבים.",
-      imageKey: "project3",
+      icon: "Droplets",
     },
   ],
 

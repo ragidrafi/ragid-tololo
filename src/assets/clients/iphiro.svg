@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <g fill="#1b4d3e">
+    <path d="M10 10h8v40h-8z"/>
+    <path d="M22 10h20c8 0 14 6 14 14s-6 14-14 14h-12v12h-8V10zm8 20h10c4 0 6-3 6-6s-2-6-6-6h-10v12z"/>
+    <path d="M60 10h8v14h16V10h8v40h-8V32h-16v18h-8z"/>
+    <path d="M98 10h8v40h-8z"/>
+    <path d="M112 10h20c8 0 14 6 14 14 0 5-3 10-8 12l10 14h-10l-8-12h-10v12h-8V10zm8 20h10c4 0 6-3 6-6s-2-6-6-6h-10v12z"/>
+    <path d="M150 30c0-12 10-22 22-22s22 10 22 22-10 22-22 22-22-10-22-22zm8 0c0 8 6 14 14 14s14-6 14-14-6-14-14-14-14 6-14 14z"/>
+  </g>
+  <text x="10" y="55" font-family="Arial" font-size="8" fill="#1b4d3e">ANIMAL HEALTH CORPORATION</text>
+</svg>

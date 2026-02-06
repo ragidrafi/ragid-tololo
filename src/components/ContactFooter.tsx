@@ -62,7 +62,7 @@ const ContactFooter = () => {
         <div className="container-narrow">
           <div className="grid md:grid-cols-3 gap-10 text-secondary-foreground">
             <div>
-              <img src={logo} alt="Ragid" className="h-10 mb-4 brightness-0 invert" />
+              <img src={logo} alt="Ragid" className="h-16 mb-4 brightness-0 invert" />
               <ul className="space-y-2 text-sm">
                 {header.links.map((l) => (
                   <li key={l.href}>

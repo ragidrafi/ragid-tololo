@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const iconMap: Record<string, LucideIcon> = { Zap, Server, Network };
 
 const ServicesSection = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   const toggle = (i: number) => setActiveIndex(prev => (prev === i ? null : i));
 
@@ -41,16 +41,10 @@ const ServicesSection = () => {
                           exit={{ opacity: 0, scaleX: 0 }}
                           transition={{ duration: 0.3, ease: "easeOut" }}
                           style={{ transformOrigin: "right center" }}
-                          className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm p-6 max-w-sm w-full"
+                          className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm p-6 max-w-md w-full"
                         >
-                          <ul className="space-y-3">
-                            {s.details.map((d, j) => (
-                              <li key={j} className="text-foreground/70 text-sm leading-relaxed flex items-start gap-2">
-                                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                                {d}
-                              </li>
-                            ))}
-                          </ul>
+                          <h3 className="text-xl font-bold text-foreground mb-2">{s.title}</h3>
+                          <p className="text-foreground/70 text-[15px] leading-relaxed">{s.description}</p>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -59,29 +53,35 @@ const ServicesSection = () => {
                   {/* Center icon */}
                   <button
                     onClick={() => toggle(i)}
-                    className={`shrink-0 mx-6 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                    className={`shrink-0 mx-8 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer ${
                       isActive
                         ? "bg-primary text-primary-foreground shadow-floating"
                         : "bg-card/60 border border-white/10 text-muted-foreground hover:text-foreground hover:border-white/20"
                     }`}
                   >
-                    <Icon size={22} />
+                    <Icon size={30} />
                   </button>
 
-                  {/* Right card – title & description */}
+                  {/* Right card – details */}
                   <div className="flex-1 flex justify-start">
                     <AnimatePresence>
-                      {isActive && (
+                      {isActive && s.details && (
                         <motion.div
                           initial={{ opacity: 0, scaleX: 0 }}
                           animate={{ opacity: 1, scaleX: 1 }}
                           exit={{ opacity: 0, scaleX: 0 }}
                           transition={{ duration: 0.3, ease: "easeOut" }}
                           style={{ transformOrigin: "left center" }}
-                          className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm p-6 max-w-sm w-full"
+                          className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm p-6 max-w-md w-full"
                         >
-                          <h3 className="text-lg font-bold text-foreground mb-2">{s.title}</h3>
-                          <p className="text-foreground/70 text-sm leading-relaxed">{s.description}</p>
+                          <ul className="space-y-3">
+                            {s.details.map((d, j) => (
+                              <li key={j} className="text-foreground/70 text-[15px] leading-relaxed flex items-start gap-2">
+                                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                                {d}
+                              </li>
+                            ))}
+                          </ul>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -92,13 +92,13 @@ const ServicesSection = () => {
                 <div className="md:hidden flex flex-col items-center">
                   <button
                     onClick={() => toggle(i)}
-                    className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                    className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer ${
                       isActive
                         ? "bg-primary text-primary-foreground shadow-floating"
                         : "bg-card/60 border border-white/10 text-muted-foreground hover:text-foreground hover:border-white/20"
                     }`}
                   >
-                    <Icon size={22} />
+                    <Icon size={30} />
                   </button>
                   <AnimatePresence>
                     {isActive && (

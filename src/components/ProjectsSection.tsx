@@ -1,13 +1,15 @@
 import { siteData } from "@/data/cms";
 import SectionWatermark from "@/components/SectionWatermark";
-import { Construction, Building2, Droplets } from "lucide-react";
+import { Zap, Droplets, Settings, Briefcase, Factory } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
-  Construction,
-  Building2,
+  Zap,
   Droplets,
+  Settings,
+  Briefcase,
+  Factory,
 };
 
 const ProjectsSection = () => {
@@ -54,10 +56,9 @@ const Feature = ({
   return (
     <div
       className={cn(
-        "flex flex-col py-10 px-5 relative group/feature border-b border-white/10",
-        "md:border-b-0",
-        index < Math.ceil(total / 2) && "md:border-b border-white/10",
-        index !== 0 && "md:border-r border-white/10"
+        "flex flex-col py-10 px-5 relative group/feature border-b border-white/20",
+        index >= total - (total % 3 || 3) && "md:border-b-0",
+        index % 3 !== 0 && "md:border-r border-white/20"
       )}
     >
       {/* Top gradient on hover */}

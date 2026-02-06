@@ -12,7 +12,7 @@ const Header = () => {
       <div className="container-narrow flex items-center justify-between h-16">
         <nav className="hidden md:flex gap-8 flex-1 justify-center">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-base font-medium text-foreground/80 hover:text-primary transition-colors">
+            <a key={l.href} href={l.href} className="text-lg font-medium text-foreground/80 hover:text-primary transition-colors">
               {l.label}
             </a>
           ))}

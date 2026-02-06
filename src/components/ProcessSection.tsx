@@ -71,9 +71,9 @@ const StepCard = ({
           {step.step}
         </span>
       </div>
-      <h4 className="text-xl font-bold text-foreground mb-1">{step.title}</h4>
-      <span className="text-xs text-primary font-semibold mb-3 tracking-wide">{step.subtitle}</span>
-      <p className="text-foreground/65 text-sm leading-[1.7] max-w-[220px]">{step.description}</p>
+      <h4 className="text-2xl font-bold text-foreground mb-1">{step.title}</h4>
+      <span className="text-sm text-primary font-semibold mb-3 tracking-wide">{step.subtitle}</span>
+      <p className="text-foreground/65 text-base leading-[1.7] max-w-[260px]">{step.description}</p>
     </div>
   );
 };

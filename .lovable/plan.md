@@ -1,21 +1,46 @@
 
 
-# Use InfiniteSlider Component for Clients Marquee
+# Fix InfiniteSlider for Seamless Looping
 
 ## Overview
-Replace the broken CSS-based marquee with the `InfiniteSlider` component from motion-primitives, which handles seamless infinite looping properly using framer-motion.
+Update the `InfiniteSlider` component to use 3 copies of children and correct translation math, ensuring a perfectly seamless loop with no gaps.
 
-## Changes
+## Technical Changes
 
-### 1. Install `react-use-measure`
-- `framer-motion` is already installed; only `react-use-measure` needs to be added.
+### `src/components/ui/infinite-slider.tsx`
 
-### 2. Create `src/components/ui/infinite-slider.tsx`
-- Add the `InfiniteSlider` component as provided, with the JSX return fixed (the pasted code had empty tags -- will use the correct `motion.div` wrapper structure).
+**1. Measure a single set of children**
+- Wrap the first copy of children in a measured div (with the `ref` from `useMeasure`)
+- The other two copies are identical but unmeasured
 
-### 3. Update `src/components/ClientsSection.tsx`
-- Remove the custom CSS marquee div structure.
-- Use `InfiniteSlider` with `gap={40}`, `duration={25}`, and `reverse` (for RTL feel).
-- Render each logo as a child of `InfiniteSlider`.
-- Keep the fade-edge gradients and watermark.
+**2. Triple the children**
+- Render `{children}` three times, each inside its own flex container with the correct gap
+
+**3. Fix translation math**
+- `contentSize = measuredWidth + gap` (width of one set + one gap)
+- If `reverse` is false: animate from `0` to `-contentSize`
+- If `reverse` is true: animate from `-contentSize` to `0`
+- On repeat, snap instantly back to `from`
+
+**4. Updated JSX structure:**
+```text
+<motion.div overflow-hidden>
+  <motion.div flex w-max style={{ x: translation, gap }}>
+    <div ref={ref} flex shrink-0 style={{ gap }}>
+      {children}
+    </div>
+    <div flex shrink-0 style={{ gap }}>
+      {children}
+    </div>
+    <div flex shrink-0 style={{ gap }}>
+      {children}
+    </div>
+  </motion.div>
+</motion.div>
+```
+
+The `ref` only measures one set. The animation translates exactly one set's width + gap, then resets instantly. Three copies ensure no visible gap even on ultra-wide screens.
+
+### `src/components/ClientsSection.tsx`
+- No changes needed -- already uses `<InfiniteSlider>` correctly.
 

@@ -12,8 +12,10 @@ export const siteData = {
   },
 
   hero: {
-    titleEn: "Critical Infrastructure Management & Engineering",
-    titleHe: "תכנון, הקמה והפעלה של מתקני אנרגיה, דאטה סנטרים ותשתיות לאומיות.",
+    titleEn1: "Critical Infrastructure",
+    titleEn2: "Management & Engineering",
+    titleHe1: "תכנון, הקמה והפעלה של מתקני אנרגיה,",
+    titleHe2: "דאטה סנטרים ותשתיות לאומיות.",
     body: "חברת רגיד (Ragid) עוסקת מזה 30 שנה בניהול פרויקטים בתחום התשתיות הקריטיות (Mission Critical). החברה מתמחה במתקנים המחייבים רציפות תפעולית מלאה, תוך ליווי יזמים (IPP) וקבלני ביצוע בינלאומיים (EPC) משלב התכנון ועד למסירה ותפעול שוטף.",
   },
 

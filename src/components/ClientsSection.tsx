@@ -1,9 +1,11 @@
 import { siteData } from "@/data/cms";
+import SectionWatermark from "@/components/SectionWatermark";
 
 const ClientsSection = () => {
   return (
-    <section className="section-spacing">
-      <div className="container-narrow">
+    <section className="section-spacing relative overflow-hidden">
+      <SectionWatermark text="לקוחות" />
+      <div className="container-narrow relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">לקוחות</h2>
         <div className="green-line mb-12" />
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { siteData } from "@/data/cms";
+import SectionWatermark from "@/components/SectionWatermark";
 import { Zap, Server, Network, type LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = { Zap, Server, Network };
@@ -10,8 +11,9 @@ const ServicesSection = () => {
   const ActiveIcon = iconMap[active.icon] || Zap;
 
   return (
-    <section id="services" className="section-spacing">
-      <div className="container-narrow">
+    <section id="services" className="section-spacing relative overflow-hidden">
+      <SectionWatermark text="שירותים" />
+      <div className="container-narrow relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">השירותים שלנו</h2>
         <div className="green-line mb-10" />
 

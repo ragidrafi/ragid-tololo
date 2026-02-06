@@ -1,5 +1,6 @@
 import { siteData } from "@/data/cms";
 import { Phone, Mail, MapPin, Linkedin, Globe } from "lucide-react";
+import SectionWatermark from "@/components/SectionWatermark";
 import logo from "@/assets/logo-ragid.png";
 
 const inputClass =
@@ -11,8 +12,9 @@ const ContactFooter = () => {
   return (
     <>
       {/* Contact */}
-      <section id="contact" className="section-spacing">
-        <div className="container-narrow max-w-2xl">
+      <section id="contact" className="section-spacing relative overflow-hidden">
+        <SectionWatermark text="צור קשר" />
+        <div className="container-narrow max-w-2xl relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">{contact.title}</h2>
           <div className="green-line mb-10" />
 

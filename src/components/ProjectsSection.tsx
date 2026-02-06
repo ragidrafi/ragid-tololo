@@ -1,4 +1,5 @@
 import { siteData } from "@/data/cms";
+import SectionWatermark from "@/components/SectionWatermark";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
@@ -7,8 +8,9 @@ const images: Record<string, string> = { project1, project2, project3 };
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="section-spacing">
-      <div className="container-narrow">
+    <section id="projects" className="section-spacing relative overflow-hidden">
+      <SectionWatermark text="פרויקטים" />
+      <div className="container-narrow relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-2">פרויקטים נבחרים</h2>
         <div className="green-line mb-16" />
 

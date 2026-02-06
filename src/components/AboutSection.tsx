@@ -1,11 +1,13 @@
 import { siteData } from "@/data/cms";
+import SectionWatermark from "@/components/SectionWatermark";
 
 const AboutSection = () => {
   const { sections } = siteData.about;
 
   return (
-    <section id="about" className="section-spacing">
-      <div className="container-narrow max-w-3xl space-y-12">
+    <section id="about" className="section-spacing relative overflow-hidden">
+      <SectionWatermark text="אודות" />
+      <div className="container-narrow max-w-3xl space-y-12 relative z-10">
         {sections.map((s, i) => (
           <div key={i}>
             <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-2">{s.title}</h2>

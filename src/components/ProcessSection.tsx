@@ -51,6 +51,8 @@ const steps: {
   },
 ];
 
+const CIRCLE_RADIUS = 48; // half of w-24 (96px)
+
 const StepCard = ({
   step,
   circleRef,
@@ -96,7 +98,6 @@ const ProcessSection = () => {
       const rect = container.getBoundingClientRect();
       setSvgSize({ w: rect.width, h: rect.height });
 
-      // Get circle centers relative to container
       const centers = circleRefs.current.map((el) => {
         if (!el) return { x: 0, y: 0 };
         const r = el.getBoundingClientRect();
@@ -108,23 +109,27 @@ const ProcessSection = () => {
 
       if (centers.length < 5 || centers.some(c => c.x === 0 && c.y === 0)) return;
 
-      // Build path: 1 -> 2 -> 3, U-turn, 4 -> 5
       const [c1, c2, c3, c4, c5] = centers;
+      const R = CIRCLE_RADIUS;
 
-      // Midpoint between row1 bottom and row2 top for the U-turn
-      const uturnBottom = c3.y + (c4.y - c3.y) / 2;
-      const uturnX = Math.min(c3.x, c4.x) - 40; // curve out to the left
+      // Connect at circle edges, not centers
+      // Row 1 (RTL): c1 left-edge -> c2 right-edge, c2 left-edge -> c3 right-edge
+      // U-turn: c3 bottom -> c4 bottom (going down and around)
+      // Row 2: c4 left-edge -> c5 right-edge (LTR in visual)
 
       const d = [
-        // Start at step 1, go to step 2, then step 3
-        `M ${c1.x} ${c1.y}`,
-        `L ${c2.x} ${c2.y}`,
-        `L ${c3.x} ${c3.y}`,
-        // U-turn curve from step 3 down to step 4
-        `C ${c3.x} ${uturnBottom}, ${uturnX} ${uturnBottom}, ${uturnX} ${(c3.y + c4.y) / 2}`,
-        `C ${uturnX} ${c4.y}, ${c4.x} ${c4.y}, ${c4.x} ${c4.y}`,
-        // Step 4 to step 5
-        `L ${c5.x} ${c5.y}`,
+        // Row 1: Step 1 left edge to Step 2 right edge
+        `M ${c1.x - R} ${c1.y}`,
+        `L ${c2.x + R} ${c2.y}`,
+        // Gap for circle 2, then continue
+        `M ${c2.x - R} ${c2.y}`,
+        `L ${c3.x + R} ${c3.y}`,
+        // U-turn from Step 3 bottom down to Step 4 bottom
+        `M ${c3.x} ${c3.y + R}`,
+        `C ${c3.x} ${c3.y + R + 60}, ${c4.x} ${c4.y - R - 60}, ${c4.x} ${c4.y - R}`,
+        // Row 2: Step 4 to Step 5
+        `M ${c4.x - R} ${c4.y}`,
+        `L ${c5.x + R} ${c5.y}`,
       ].join(" ");
 
       setPathD(d);
@@ -132,7 +137,6 @@ const ProcessSection = () => {
 
     compute();
     window.addEventListener("resize", compute);
-    // Recompute after fonts/images load
     const timer = setTimeout(compute, 300);
     return () => {
       window.removeEventListener("resize", compute);
@@ -178,15 +182,6 @@ const ProcessSection = () => {
             {row2.map((s, i) => (
               <StepCard key={s.step} step={s} circleRef={setCircleRef(i + 3)} />
             ))}
-          </div>
-
-          {/* Lifecycle label */}
-          <div className="flex justify-center mt-12">
-            <div className="flex items-center gap-3 text-xs text-muted-foreground">
-              <div className="h-px w-12 bg-primary/30" />
-              <span className="text-primary font-semibold">מחזור חיים מלא</span>
-              <div className="h-px w-12 bg-primary/30" />
-            </div>
           </div>
         </div>
 

@@ -30,7 +30,7 @@ const ClientsSection = () => {
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
 
-        <InfiniteSlider gap={40} duration={25} reverse>
+        <InfiniteSlider gap={60} duration={25} reverse>
           {logos.map((logo, i) => (
             <img
               key={i}

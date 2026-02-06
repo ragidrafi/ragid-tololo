@@ -33,8 +33,8 @@ export function InfiniteSlider({
     let controls;
     const size = direction === 'horizontal' ? width : height;
     const contentSize = size + gap;
-    const from = reverse ? -contentSize / 2 : 0;
-    const to = reverse ? 0 : -contentSize / 2;
+    const from = reverse ? -contentSize : 0;
+    const to = reverse ? 0 : -contentSize;
 
     if (isTransitioning) {
       controls = animate(translation, [translation.get(), to], {
@@ -94,10 +94,38 @@ export function InfiniteSlider({
             ? { x: translation, gap: `${gap}px` }
             : { y: translation, flexDirection: 'column', gap: `${gap}px` }),
         }}
-        ref={ref}
       >
-        {children}
-        {children}
+        <div
+          ref={ref}
+          className="flex shrink-0"
+          style={{
+            ...(direction === 'horizontal'
+              ? { gap: `${gap}px` }
+              : { flexDirection: 'column', gap: `${gap}px` }),
+          }}
+        >
+          {children}
+        </div>
+        <div
+          className="flex shrink-0"
+          style={{
+            ...(direction === 'horizontal'
+              ? { gap: `${gap}px` }
+              : { flexDirection: 'column', gap: `${gap}px` }),
+          }}
+        >
+          {children}
+        </div>
+        <div
+          className="flex shrink-0"
+          style={{
+            ...(direction === 'horizontal'
+              ? { gap: `${gap}px` }
+              : { flexDirection: 'column', gap: `${gap}px` }),
+          }}
+        >
+          {children}
+        </div>
       </motion.div>
     </motion.div>
   );

@@ -14,33 +14,46 @@ const ContactFooter = () => {
       {/* Contact */}
       <section id="contact" className="section-spacing relative overflow-hidden">
         <SectionWatermark text="צור קשר" />
-        <div className="container-narrow max-w-2xl relative z-10">
+        <div className="container-narrow relative z-10">
+          <div className="flex flex-col md:flex-row-reverse gap-10 md:gap-16 items-start">
+            {/* Watermark title - right side (RTL) */}
+            <div className="hidden md:flex flex-1 items-center justify-center">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black text-foreground/[0.08] leading-tight text-right whitespace-pre-line select-none">
+                {"יש לכם מתקן\nשחייב לעבוד\nבלי הפסקה?\nדברו איתנו"}
+              </h2>
+            </div>
 
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
-            <div className="grid md:grid-cols-2 gap-5">
-              <input type="text" placeholder="שם מלא" className={inputClass} />
-              <input type="text" placeholder="תפקיד" className={inputClass} />
+            {/* Form - left side */}
+            <div className="w-full md:max-w-md">
+              <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+                <div className="grid grid-cols-2 gap-5">
+                  <input type="text" placeholder="שם מלא" className={inputClass} />
+                  <input type="text" placeholder="תפקיד" className={inputClass} />
+                </div>
+                <div className="grid grid-cols-2 gap-5">
+                  <input type="email" placeholder="אימייל" className={inputClass} />
+                  <input type="tel" placeholder="נייד" className={inputClass} />
+                </div>
+                <input type="text" placeholder="פרטי פניה" className={inputClass} />
+                <select className={`${inputClass} appearance-none`} defaultValue="">
+                  <option value="" disabled>סוג פרויקט</option>
+                  <option>תחנת כח</option>
+                  <option>מרכז נתונים</option>
+                  <option>פארמה/מעבדות</option>
+                  <option>בית חולים</option>
+                  <option>מתקן תעשייתי</option>
+                  <option>אחר</option>
+                </select>
+                <textarea rows={4} placeholder="הודעה" className={`${inputClass} resize-none`} />
+                <button
+                  type="submit"
+                  className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110 transition-all"
+                >
+                  {contact.buttonText}
+                </button>
+              </form>
             </div>
-            <div className="grid md:grid-cols-2 gap-5">
-              <input type="email" placeholder="אימייל" className={inputClass} />
-              <input type="tel" placeholder="נייד" className={inputClass} />
-            </div>
-            <input type="text" placeholder="פרטי פניה" className={inputClass} />
-            <select className={`${inputClass} appearance-none`} defaultValue="">
-              <option value="" disabled>סוג פרויקט</option>
-              <option>אנרגיה ותחנות כוח</option>
-              <option>מרכזי נתונים</option>
-              <option>תשתיות מורכבות ומים</option>
-              <option>אחר</option>
-            </select>
-            <textarea rows={4} placeholder="הודעה" className={`${inputClass} resize-none`} />
-            <button
-              type="submit"
-              className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110 transition-all"
-            >
-              {contact.buttonText}
-            </button>
-          </form>
+          </div>
         </div>
       </section>
 

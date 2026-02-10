@@ -120,7 +120,7 @@ const ContactFooter = () => {
             </div>
           </div>
 
-          <div className="mt-10 pt-6 border-t border-white/20 text-center text-sm text-secondary-foreground/70">
+          <div className="mt-10 pt-6 border-t border-white/10 text-center text-sm text-secondary-foreground/70">
             {footer.copyright}
           </div>
         </div>

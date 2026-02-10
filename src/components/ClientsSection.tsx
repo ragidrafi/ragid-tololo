@@ -25,7 +25,9 @@ const ClientsSection = () => {
   return (
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text="לקוחות" />
-      <div className="relative py-8">
+      <div className="relative py-8 mt-10">
+        {/* Light strip background */}
+        <div className="absolute inset-0 bg-white/[0.04] rounded-2xl" />
         {/* Fade edges */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />

@@ -2,7 +2,7 @@ import { siteData } from "@/data/cms";
 import { Phone, Mail, MapPin, Linkedin, Globe } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
 import logo from "@/assets/logo-ragid.png";
-import footerLogo from "@/assets/logo-ragid-new.jpg";
+import footerLogo from "@/assets/logo-ragid-footer.png";
 
 const inputClass =
   "w-full rounded-2xl bg-card border border-white/10 px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50";

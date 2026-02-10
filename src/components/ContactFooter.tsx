@@ -2,6 +2,7 @@ import { siteData } from "@/data/cms";
 import { Phone, Mail, MapPin, Linkedin, Globe } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
 import logo from "@/assets/logo-ragid.png";
+import footerLogo from "@/assets/logo-ragid-new.jpg";
 
 const inputClass =
   "w-full rounded-2xl bg-card border border-white/10 px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50";
@@ -67,7 +68,7 @@ const ContactFooter = () => {
         <div className="container-narrow">
           <div className="grid md:grid-cols-3 gap-10 text-secondary-foreground">
             <div>
-              <img src={logo} alt="Ragid" className="h-10 mb-4 brightness-0 invert" />
+              <img src={footerLogo} alt="Ragid" className="h-20 mb-4" />
               <ul className="space-y-2 text-sm">
                 {header.links.map((l) => (
                   <li key={l.href}>

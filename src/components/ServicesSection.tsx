@@ -31,10 +31,10 @@ const ServicesSection = () => {
 
                 {/* Desktop: horizontal row */}
                 <div className="hidden md:flex items-center w-full">
-                  {/* Left card – details */}
+                  {/* Left card – description */}
                   <div className="flex-1 flex justify-end">
                     <AnimatePresence>
-                      {isActive && s.details && (
+                      {isActive && (
                         <motion.div
                           initial={{ opacity: 0, scaleX: 0 }}
                           animate={{ opacity: 1, scaleX: 1 }}
@@ -43,24 +43,26 @@ const ServicesSection = () => {
                           style={{ transformOrigin: "right center" }}
                           className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm p-6 max-w-md w-full"
                         >
-                          <h3 className="text-xl font-bold text-foreground mb-2">{s.title}</h3>
                           <p className="text-foreground/70 text-[15px] leading-relaxed">{s.description}</p>
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
 
-                  {/* Center icon */}
-                  <button
-                    onClick={() => toggle(i)}
-                    className={`shrink-0 mx-8 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer ${
-                      isActive
-                        ? "bg-primary text-primary-foreground shadow-floating"
-                        : "bg-card/60 border border-white/10 text-muted-foreground hover:text-foreground hover:border-white/20"
-                    }`}
-                  >
-                    <Icon size={30} />
-                  </button>
+                  {/* Center: title + icon */}
+                  <div className="shrink-0 mx-8 flex flex-col items-center gap-2">
+                    <span className="text-sm font-bold text-foreground/90 whitespace-nowrap">{s.title}</span>
+                    <button
+                      onClick={() => toggle(i)}
+                      className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                        isActive
+                          ? "bg-primary text-primary-foreground shadow-floating"
+                          : "bg-card/60 border border-white/10 text-muted-foreground hover:text-foreground hover:border-white/20"
+                      }`}
+                    >
+                      <Icon size={30} />
+                    </button>
+                  </div>
 
                   {/* Right card – details */}
                   <div className="flex-1 flex justify-start">
@@ -90,6 +92,7 @@ const ServicesSection = () => {
 
                 {/* Mobile: vertical accordion */}
                 <div className="md:hidden flex flex-col items-center">
+                  <span className="text-sm font-bold text-foreground/90 mb-2">{s.title}</span>
                   <button
                     onClick={() => toggle(i)}
                     className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer ${
@@ -110,7 +113,6 @@ const ServicesSection = () => {
                         className="overflow-hidden w-full mt-4 space-y-3"
                       >
                         <div className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-sm p-5">
-                          <h3 className="text-lg font-bold text-foreground mb-2">{s.title}</h3>
                           <p className="text-foreground/70 text-sm leading-relaxed">{s.description}</p>
                         </div>
                         {s.details && (

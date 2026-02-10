@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useCallback } from "react";
 import { Compass, HardHat, FlaskConical, Settings, Wrench, type LucideIcon } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
 
@@ -82,67 +82,7 @@ const ProcessSection = () => {
   const row1 = steps.slice(0, 3);
   const row2 = steps.slice(3, 5);
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const circleRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [pathD, setPathD] = useState("");
-  const [svgSize, setSvgSize] = useState({ w: 0, h: 0 });
-
-  const setCircleRef = useCallback((index: number) => (el: HTMLDivElement | null) => {
-    circleRefs.current[index] = el;
-  }, []);
-
-  useEffect(() => {
-    const compute = () => {
-      const container = containerRef.current;
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
-      setSvgSize({ w: rect.width, h: rect.height });
-
-      const centers = circleRefs.current.map((el) => {
-        if (!el) return { x: 0, y: 0 };
-        const r = el.getBoundingClientRect();
-        return {
-          x: r.left + r.width / 2 - rect.left,
-          y: r.top + r.height / 2 - rect.top,
-        };
-      });
-
-      if (centers.length < 5 || centers.some(c => c.x === 0 && c.y === 0)) return;
-
-      const [c1, c2, c3, c4, c5] = centers;
-      const R = CIRCLE_RADIUS;
-
-      // Connect at circle edges, not centers
-      // Row 1 (RTL): c1 left-edge -> c2 right-edge, c2 left-edge -> c3 right-edge
-      // U-turn: c3 bottom -> c4 bottom (going down and around)
-      // Row 2: c4 left-edge -> c5 right-edge (LTR in visual)
-
-      const d = [
-        // Row 1: Step 1 left edge to Step 2 right edge
-        `M ${c1.x - R} ${c1.y}`,
-        `L ${c2.x + R} ${c2.y}`,
-        // Gap for circle 2, then continue
-        `M ${c2.x - R} ${c2.y}`,
-        `L ${c3.x + R} ${c3.y}`,
-        // U-turn from Step 3 bottom down to Step 4 bottom
-        `M ${c3.x} ${c3.y + R}`,
-        `C ${c3.x} ${c3.y + R + 60}, ${c4.x} ${c4.y - R - 60}, ${c4.x} ${c4.y - R}`,
-        // Row 2: Step 4 to Step 5
-        `M ${c4.x - R} ${c4.y}`,
-        `L ${c5.x + R} ${c5.y}`,
-      ].join(" ");
-
-      setPathD(d);
-    };
-
-    compute();
-    window.addEventListener("resize", compute);
-    const timer = setTimeout(compute, 300);
-    return () => {
-      window.removeEventListener("resize", compute);
-      clearTimeout(timer);
-    };
-  }, []);
+  const setCircleRef = useCallback((_index: number) => (_el: HTMLDivElement | null) => {}, []);
 
   return (
     <section className="section-spacing relative overflow-hidden">
@@ -150,26 +90,7 @@ const ProcessSection = () => {
       <div className="container-narrow relative z-10">
 
         {/* Desktop layout */}
-        <div className="hidden md:block relative" ref={containerRef}>
-          {/* SVG connecting path */}
-          {pathD && (
-            <svg
-              className="absolute inset-0 pointer-events-none z-0"
-              width={svgSize.w}
-              height={svgSize.h}
-              style={{ overflow: "visible" }}
-            >
-              <path
-                d={pathD}
-                fill="none"
-                stroke="hsl(var(--primary))"
-                strokeWidth="2"
-                strokeOpacity="0.4"
-                strokeDasharray="8 4"
-              />
-            </svg>
-          )}
-
+        <div className="hidden md:block relative">
           {/* Row 1: 3 items */}
           <div className="grid grid-cols-3 gap-8 mb-20 relative z-10">
             {row1.map((s, i) => (

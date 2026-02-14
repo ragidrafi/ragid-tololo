@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Compass, HardHat, FlaskConical, Settings, Wrench, type LucideIcon } from "lucide-react";
+import { Compass, HardHat, FlaskConical, Settings, type LucideIcon } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
 
 const steps: {
@@ -36,34 +36,22 @@ const steps: {
   {
     icon: Settings,
     step: 4,
-    title: "תפעול",
-    subtitle: "Operations",
+    title: "תפעול ואחזקה",
+    subtitle: "Operations & Maintenance",
     description:
-      "ניהול מערך התפעול השוטף, גיוס והשמת מפעילים (Expat & Local) וניהול צוותי הפעלה.",
-  },
-  {
-    icon: Wrench,
-    step: 5,
-    title: "אחזקה",
-    subtitle: "Maintenance",
-    description:
-      "ניהול תחזוקה מונעת למערכות קריטיות, תכנון חלפים ותיקונים שוטפים.",
+      "ניהול מערך התפעול השוטף, גיוס והשמת מפעילים (Expat & Local), וניהול תחזוקה מונעת למערכות קריטיות.",
   },
 ];
 
-const CIRCLE_RADIUS = 48; // half of w-24 (96px)
-
 const StepCard = ({
   step,
-  circleRef,
 }: {
   step: (typeof steps)[0];
-  circleRef: (el: HTMLDivElement | null) => void;
 }) => {
   const Icon = step.icon;
   return (
     <div className="flex flex-col items-center text-center group">
-      <div className="relative z-10 mb-5" ref={circleRef}>
+      <div className="relative z-10 mb-5">
         <div className="w-24 h-24 rounded-full border-2 border-secondary/40 bg-background flex items-center justify-center group-hover:border-primary group-hover:shadow-[0_0_30px_rgba(82,172,66,0.25)] transition-all duration-300">
           <Icon className="text-primary" size={36} />
         </div>
@@ -73,44 +61,29 @@ const StepCard = ({
       </div>
       <h4 className="text-2xl font-bold text-foreground mb-1">{step.title}</h4>
       <span className="text-sm text-primary font-semibold mb-3 tracking-wide">{step.subtitle}</span>
-      <p className="text-foreground/65 text-base leading-[1.7] max-w-[260px]">{step.description}</p>
+      <p className="text-lg text-foreground/65 leading-[1.8] max-w-[280px]">{step.description}</p>
     </div>
   );
 };
 
 const ProcessSection = () => {
-  const row1 = steps.slice(0, 3);
-  const row2 = steps.slice(3, 5);
-
-  const setCircleRef = useCallback((_index: number) => (_el: HTMLDivElement | null) => {}, []);
-
   return (
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שיטת עבודה" />
       <div className="container-narrow relative z-10">
 
-        {/* Desktop layout */}
-        <div className="hidden md:block relative">
-          {/* Row 1: 3 items */}
-          <div className="grid grid-cols-3 gap-8 mb-20 relative z-10">
-            {row1.map((s, i) => (
-              <StepCard key={s.step} step={s} circleRef={setCircleRef(i)} />
-            ))}
-          </div>
-
-          {/* Row 2: 2 items centered */}
-          <div className="grid grid-cols-2 gap-8 max-w-[60%] mx-auto relative z-10">
-            {row2.map((s, i) => (
-              <StepCard key={s.step} step={s} circleRef={setCircleRef(i + 3)} />
-            ))}
-          </div>
+        {/* Desktop layout: single row of 4 */}
+        <div className="hidden md:grid grid-cols-4 gap-8">
+          {steps.map((s) => (
+            <StepCard key={s.step} step={s} />
+          ))}
         </div>
 
         {/* Mobile layout: vertical stack */}
         <div className="md:hidden flex flex-col items-center gap-2">
           {steps.map((s, i) => (
             <div key={s.step} className="flex flex-col items-center">
-              <StepCard step={s} circleRef={() => {}} />
+              <StepCard step={s} />
               {i < steps.length - 1 && (
                 <div className="w-px h-10 bg-primary/30 my-2" />
               )}

@@ -1,10 +1,16 @@
+import { useState } from "react";
 import { siteData } from "@/data/cms";
 import SectionWatermark from "@/components/SectionWatermark";
-import { Zap, Server, Network, type LucideIcon } from "lucide-react";
+import { Zap, Server, Network, ChevronDown, type LucideIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const iconMap: Record<string, LucideIcon> = { Zap, Server, Network };
 
 const ServicesSection = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (i: number) => setOpenIndex(prev => (prev === i ? null : i));
+
   return (
     <section id="services" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שירותים" />
@@ -12,6 +18,7 @@ const ServicesSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {siteData.services.map((s, i) => {
             const Icon = iconMap[s.icon] || Zap;
+            const isOpen = openIndex === i;
             return (
               <div
                 key={i}
@@ -24,18 +31,39 @@ const ServicesSection = () => {
                 <p className="text-lg text-foreground/80 leading-[1.8]">{s.description}</p>
                 {s.details && (
                   <>
-                    <div className="w-full h-px bg-white/10 my-5" />
-                    <ul className="space-y-3 flex-1 flex flex-col justify-center">
-                      {s.details.map((d, j) => (
-                        <li
-                          key={j}
-                          className="text-lg text-foreground/70 leading-[1.8] flex items-start gap-2"
+                    <button
+                      onClick={() => toggle(i)}
+                      className="w-full flex items-center justify-center gap-2 mt-5 pt-5 border-t border-white/10 text-primary font-semibold text-sm cursor-pointer hover:text-primary/80 transition-colors"
+                    >
+                      <span>{isOpen ? "הסתר פרטים" : "פרטים נוספים"}</span>
+                      <motion.span
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown size={18} />
+                      </motion.span>
+                    </button>
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.ul
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                          className="space-y-3 overflow-hidden mt-4"
                         >
-                          <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
+                          {s.details.map((d, j) => (
+                            <li
+                              key={j}
+                              className="text-lg text-foreground/70 leading-[1.8] flex items-start gap-2"
+                            >
+                              <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                              {d}
+                            </li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
                   </>
                 )}
               </div>

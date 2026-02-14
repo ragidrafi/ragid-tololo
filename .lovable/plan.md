@@ -1,27 +1,42 @@
 
 
-# Fix CSV Parser for Multi-line Quoted Fields
+# Fix: Footer and Hero Key-Value CSV Parsing
 
 ## Problem
-The Google Sheet CSV for the first service ("אנרגיה ותחנות כוח") has its `description` wrapped in quotes with trailing newlines inside the quotes. The current CSV parser in `src/lib/sheets.ts` splits by newlines first, then parses each line separately. This breaks multi-line quoted fields into extra empty rows, producing 4 service cards instead of 3.
+The `fetchCSV` function in `src/lib/sheets.ts` always treats the first CSV row as headers. This works for tabular tabs (services, projects, process, about) that have proper column headers. But the **hero** and **footer** tabs use a simple two-column key-value format with NO header row:
 
-## Root Cause
-In `src/lib/sheets.ts`, the `fetchCSV` function does:
 ```
-const lines = text.split(/\r?\n/).filter((l) => l.trim() !== "");
+phone,03-1234567
+email,info@ragid.co.il
+...
 ```
-This splits the raw text by newlines before considering whether a newline is inside a quoted field. The quoted description with embedded newlines gets broken across multiple lines, creating a garbage row.
+
+The first row (`phone,03-1234567`) is consumed as column headers, so it never appears in the parsed data. This means `map.phone` is always `undefined`, and the code falls back to the hardcoded value in `cms.ts`.
 
 ## Solution
-Rewrite the line-splitting logic in `fetchCSV` to be quote-aware. Instead of a simple `split(\n)`, iterate through the CSV text character by character, only treating a newline as a row delimiter when it is **not** inside a quoted field.
+Add an optional `hasHeaders` parameter to `fetchCSV`. When `false`, it generates generic column names (`col0`, `col1`) and includes ALL rows as data.
 
 ### File: `src/lib/sheets.ts`
-- Replace the simple `text.split(/\r?\n/)` with a new `splitCSVLines(text)` function that:
-  1. Tracks whether we are inside quotes (`inQuotes` flag)
-  2. Only breaks to a new row on `\n` when `inQuotes` is false
-  3. Handles `""` escaped quotes correctly
-- Filter out empty lines after splitting
-- The existing `parseCSVLine` function stays as-is (it already handles quoted fields within a single line correctly)
+- Change `fetchCSV` signature to `fetchCSV(url: string, hasHeaders = true)`
+- When `hasHeaders` is `false`, use generic keys like `col0`, `col1` for all rows (no row is skipped)
 
-No other files need to change. The services section component and the `useSheetData` hook are already correct -- they just receive the wrong number of rows from the broken parser.
+### File: `src/hooks/useSheetData.ts`
+- Update the hero and footer query calls to pass `hasHeaders: false` (or call `fetchCSV(url, false)`)
+- Update `parseHero` and `parseFooter` to read from `r.col0` and `r.col1` instead of `Object.values(r)[0]` and `Object.values(r)[1]` (or keep using `Object.values` which will still work)
+
+### Technical detail
+The queries config will need a small change so hero/footer calls pass the flag. One clean approach: change the URLS map to include metadata:
+
+```ts
+const SHEETS = {
+  hero:     { url: "...", hasHeaders: false },
+  services: { url: "...", hasHeaders: true },
+  // ...
+  footer:   { url: "...", hasHeaders: false },
+};
+```
+
+Then the query function becomes `fetchCSV(SHEETS[key].url, SHEETS[key].hasHeaders)`.
+
+No other files need to change. The parsers already use `Object.values()` which works regardless of key names.
 

@@ -85,11 +85,12 @@ export const siteData = {
     },
   ],
 
+  processWatermark: "שיטת עבודה",
   process: [
-    { step: 1, title: "תכנון", icon: "Compass" },
-    { step: 2, title: "הקמה", icon: "HardHat" },
-    { step: 3, title: "הרצה", icon: "FlaskConical" },
-    { step: 4, title: "תפעול ואחזקה", icon: "Settings" },
+    { step: 1, title: "תכנון", subtitle: "Design & Engineering", description: "הובלת צוותי תכנון מקומיים ובינלאומיים, סקרי היתכנות ועמידה בתקנים.", icon: "Compass" },
+    { step: 2, title: "הקמה", subtitle: "Construction Management", description: "ניהול קבלני משנה, תיאום מערכות אלקטרו-מכניות ופיקוח על לוחות זמנים.", icon: "HardHat" },
+    { step: 3, title: "הרצה", subtitle: "Commissioning", description: "ביצוע בדיקות קבלה, Cold & Hot Commissioning, והעברה מבוקרת ממצב הקמה למצב הפעלה.", icon: "FlaskConical" },
+    { step: 4, title: "תפעול ואחזקה", subtitle: "Operations & Maintenance", description: "ניהול מערך התפעול השוטף, גיוס והשמת מפעילים (Expat & Local), וניהול תחזוקה מונעת למערכות קריטיות.", icon: "Settings" },
   ],
 
   clients: [

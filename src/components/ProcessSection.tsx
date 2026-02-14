@@ -1,54 +1,11 @@
-import { useCallback } from "react";
 import { Compass, HardHat, FlaskConical, Settings, type LucideIcon } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
+import { siteData } from "@/data/cms";
 
-const steps: {
-  icon: LucideIcon;
-  step: number;
-  title: string;
-  subtitle: string;
-  description: string;
-}[] = [
-  {
-    icon: Compass,
-    step: 1,
-    title: "תכנון",
-    subtitle: "Design & Engineering",
-    description:
-      "הובלת צוותי תכנון מקומיים ובינלאומיים, סקרי היתכנות ועמידה בתקנים.",
-  },
-  {
-    icon: HardHat,
-    step: 2,
-    title: "הקמה",
-    subtitle: "Construction Management",
-    description:
-      "ניהול קבלני משנה, תיאום מערכות אלקטרו-מכניות ופיקוח על לוחות זמנים.",
-  },
-  {
-    icon: FlaskConical,
-    step: 3,
-    title: "הרצה",
-    subtitle: "Commissioning",
-    description:
-      "ביצוע בדיקות קבלה, Cold & Hot Commissioning, והעברה מבוקרת ממצב הקמה למצב הפעלה.",
-  },
-  {
-    icon: Settings,
-    step: 4,
-    title: "תפעול ואחזקה",
-    subtitle: "Operations & Maintenance",
-    description:
-      "ניהול מערך התפעול השוטף, גיוס והשמת מפעילים (Expat & Local), וניהול תחזוקה מונעת למערכות קריטיות.",
-  },
-];
+const iconMap: Record<string, LucideIcon> = { Compass, HardHat, FlaskConical, Settings };
 
-const StepCard = ({
-  step,
-}: {
-  step: (typeof steps)[0];
-}) => {
-  const Icon = step.icon;
+const StepCard = ({ step }: { step: (typeof siteData.process)[0] }) => {
+  const Icon = iconMap[step.icon] ?? Compass;
   return (
     <div className="flex flex-col items-center text-center group">
       <div className="relative z-10 mb-5">
@@ -69,22 +26,20 @@ const StepCard = ({
 const ProcessSection = () => {
   return (
     <section className="section-spacing relative overflow-hidden">
-      <SectionWatermark text="שיטת עבודה" />
+      <SectionWatermark text={siteData.processWatermark} />
       <div className="container-narrow relative z-10">
-
         {/* Desktop layout: single row of 4 */}
         <div className="hidden md:grid grid-cols-4 gap-8">
-          {steps.map((s) => (
+          {siteData.process.map((s) => (
             <StepCard key={s.step} step={s} />
           ))}
         </div>
-
         {/* Mobile layout: vertical stack */}
         <div className="md:hidden flex flex-col items-center gap-2">
-          {steps.map((s, i) => (
+          {siteData.process.map((s, i) => (
             <div key={s.step} className="flex flex-col items-center">
               <StepCard step={s} />
-              {i < steps.length - 1 && (
+              {i < siteData.process.length - 1 && (
                 <div className="w-px h-10 bg-primary/30 my-2" />
               )}
             </div>

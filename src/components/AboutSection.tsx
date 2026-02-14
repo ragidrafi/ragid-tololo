@@ -41,7 +41,7 @@ const AboutSection = () => {
               {row.paragraphs.map((p, j) => (
                 <p
                   key={j}
-                  className="text-foreground/80 text-lg leading-[1.9] mb-4 last:mb-0"
+                  className="text-foreground/80 text-lg md:text-xl leading-[1.8] mb-4 last:mb-0"
                 >
                   {p}
                 </p>

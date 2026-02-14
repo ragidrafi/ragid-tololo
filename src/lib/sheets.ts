@@ -77,21 +77,33 @@ function splitCSVLines(text: string): string[] {
   return lines.filter((l) => l.trim() !== "");
 }
 
-export async function fetchCSV(url: string): Promise<CSVRow[]> {
+export async function fetchCSV(url: string, hasHeaders = true): Promise<CSVRow[]> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`CSV fetch failed: ${res.status}`);
   const text = await res.text();
 
   const lines = splitCSVLines(text);
-  if (lines.length < 2) return [];
+  if (lines.length === 0) return [];
 
-  const headers = parseCSVLine(lines[0]);
-  return lines.slice(1).map((line) => {
-    const values = parseCSVLine(line);
-    const row: CSVRow = {};
-    headers.forEach((h, i) => {
-      row[h] = values[i] ?? "";
+  if (hasHeaders) {
+    if (lines.length < 2) return [];
+    const headers = parseCSVLine(lines[0]);
+    return lines.slice(1).map((line) => {
+      const values = parseCSVLine(line);
+      const row: CSVRow = {};
+      headers.forEach((h, i) => {
+        row[h] = values[i] ?? "";
+      });
+      return row;
     });
-    return row;
-  });
+  } else {
+    return lines.map((line) => {
+      const values = parseCSVLine(line);
+      const row: CSVRow = {};
+      values.forEach((v, i) => {
+        row[`col${i}`] = v;
+      });
+      return row;
+    });
+  }
 }

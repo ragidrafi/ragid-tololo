@@ -2,13 +2,13 @@ import { useQueries } from "@tanstack/react-query";
 import { fetchCSV, type CSVRow } from "@/lib/sheets";
 import { siteData } from "@/data/cms";
 
-const URLS = {
-  hero: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=0&single=true&output=csv",
-  services: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=1532772295&single=true&output=csv",
-  projects: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=938675800&single=true&output=csv",
-  process: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=1375900065&single=true&output=csv",
-  about: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=981619803&single=true&output=csv",
-  footer: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=1248903055&single=true&output=csv",
+const SHEETS = {
+  hero:     { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=0&single=true&output=csv", hasHeaders: false },
+  services: { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=1532772295&single=true&output=csv", hasHeaders: true },
+  projects: { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=938675800&single=true&output=csv", hasHeaders: true },
+  process:  { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=1375900065&single=true&output=csv", hasHeaders: true },
+  about:    { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=981619803&single=true&output=csv", hasHeaders: true },
+  footer:   { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=1248903055&single=true&output=csv", hasHeaders: false },
 };
 
 const STALE_TIME = 5 * 60 * 1000; // 5 minutes
@@ -92,12 +92,12 @@ function parseFooter(rows: CSVRow[]) {
 export type SiteData = typeof siteData;
 
 export function useSheetData(): SiteData {
-  const keys = Object.keys(URLS) as (keyof typeof URLS)[];
+  const keys = Object.keys(SHEETS) as (keyof typeof SHEETS)[];
 
   const results = useQueries({
     queries: keys.map((key) => ({
       queryKey: ["sheet", key],
-      queryFn: () => fetchCSV(URLS[key]),
+      queryFn: () => fetchCSV(SHEETS[key].url, SHEETS[key].hasHeaders),
       staleTime: STALE_TIME,
       retry: 1,
     })),

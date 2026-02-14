@@ -1,5 +1,5 @@
 import SectionWatermark from "@/components/SectionWatermark";
-import { siteData } from "@/data/cms";
+import { useSiteData } from "@/contexts/SiteDataContext";
 import about1 from "@/assets/about-1.png";
 import about2 from "@/assets/about-2.png";
 import about3 from "@/assets/about-3.png";
@@ -7,14 +7,15 @@ import about4 from "@/assets/about-4.png";
 
 const images = [about1, about2, about3, about4];
 
-const rows = siteData.about.sections.map((section, i) => ({
+const AboutSection = () => {
+  const siteData = useSiteData();
+  const rows = siteData.about.sections.map((section, i) => ({
   imageLeft: i % 2 === 1,
   image: images[i],
   title: section.title,
   paragraphs: section.paragraphs,
 }));
 
-const AboutSection = () => {
   return (
     <section id="about" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="אודות" />

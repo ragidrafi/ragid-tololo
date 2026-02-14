@@ -1,4 +1,4 @@
-import { siteData } from "@/data/cms";
+import { useSiteData } from "@/contexts/SiteDataContext";
 import SectionWatermark from "@/components/SectionWatermark";
 import { Zap, Droplets, Settings, Briefcase, Factory } from "lucide-react";
 import { MorphingCardStack, type CardData } from "@/components/ui/morphing-card-stack";
@@ -13,6 +13,7 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const ProjectsSection = () => {
+  const siteData = useSiteData();
   const cards: CardData[] = siteData.projects.map((p, i) => {
     const IconComponent = iconMap[p.icon];
     const statPart = p.stat && p.statLabel ? `${p.stat} ${p.statLabel} — ` : "";

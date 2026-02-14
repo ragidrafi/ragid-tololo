@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { siteData } from "@/data/cms";
+import { useSiteData } from "@/contexts/SiteDataContext";
 import SectionWatermark from "@/components/SectionWatermark";
 import { Zap, Server, Network, ChevronDown, type LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = { Zap, Server, Network };
 
 const ServicesSection = () => {
+  const siteData = useSiteData();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (

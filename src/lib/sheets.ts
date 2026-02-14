@@ -38,12 +38,51 @@ function parseCSVLine(line: string): string[] {
 
 export type CSVRow = Record<string, string>;
 
+function splitCSVLines(text: string): string[] {
+  const lines: string[] = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inQuotes) {
+      if (ch === '"') {
+        if (i + 1 < text.length && text[i + 1] === '"') {
+          current += '""';
+          i++;
+        } else {
+          inQuotes = false;
+          current += ch;
+        }
+      } else {
+        current += ch;
+      }
+    } else {
+      if (ch === '"') {
+        inQuotes = true;
+        current += ch;
+      } else if (ch === "\n") {
+        lines.push(current);
+        current = "";
+      } else if (ch === "\r") {
+        // skip \r, the \n will follow
+      } else {
+        current += ch;
+      }
+    }
+  }
+  if (current.trim() !== "") {
+    lines.push(current);
+  }
+  return lines.filter((l) => l.trim() !== "");
+}
+
 export async function fetchCSV(url: string): Promise<CSVRow[]> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`CSV fetch failed: ${res.status}`);
   const text = await res.text();
 
-  const lines = text.split(/\r?\n/).filter((l) => l.trim() !== "");
+  const lines = splitCSVLines(text);
   if (lines.length < 2) return [];
 
   const headers = parseCSVLine(lines[0]);

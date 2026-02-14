@@ -1,10 +1,18 @@
 import { Compass, HardHat, FlaskConical, Settings, type LucideIcon } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
-import { siteData } from "@/data/cms";
+import { useSiteData } from "@/contexts/SiteDataContext";
 
 const iconMap: Record<string, LucideIcon> = { Compass, HardHat, FlaskConical, Settings };
 
-const StepCard = ({ step }: { step: (typeof siteData.process)[0] }) => {
+interface ProcessStep {
+  step: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: string;
+}
+
+const StepCard = ({ step }: { step: ProcessStep }) => {
   const Icon = iconMap[step.icon] ?? Compass;
   return (
     <div className="flex flex-col items-center text-center group">
@@ -24,6 +32,7 @@ const StepCard = ({ step }: { step: (typeof siteData.process)[0] }) => {
 };
 
 const ProcessSection = () => {
+  const siteData = useSiteData();
   return (
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text={siteData.processWatermark} />

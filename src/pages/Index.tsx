@@ -6,19 +6,25 @@ import ProcessSection from "@/components/ProcessSection";
 import ClientsSection from "@/components/ClientsSection";
 import AboutSection from "@/components/AboutSection";
 import ContactFooter from "@/components/ContactFooter";
+import { useSheetData } from "@/hooks/useSheetData";
+import { SiteDataProvider } from "@/contexts/SiteDataContext";
 
 const Index = () => {
+  const data = useSheetData();
+
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <HeroSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <ProcessSection />
-      <ClientsSection />
-      <AboutSection />
-      <ContactFooter />
-    </div>
+    <SiteDataProvider value={data}>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <HeroSection />
+        <ServicesSection />
+        <ProjectsSection />
+        <ProcessSection />
+        <ClientsSection />
+        <AboutSection />
+        <ContactFooter />
+      </div>
+    </SiteDataProvider>
   );
 };
 

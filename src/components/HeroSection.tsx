@@ -1,6 +1,7 @@
-import { siteData } from "@/data/cms";
+import { useSiteData } from "@/contexts/SiteDataContext";
 
 const HeroSection = () => {
+  const siteData = useSiteData();
   const { titleEn1, titleEn2, titleHe1, titleHe2, body } = siteData.hero;
 
   return (

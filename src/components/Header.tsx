@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { siteData } from "@/data/cms";
+import { useSiteData } from "@/contexts/SiteDataContext";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo-ragid.png";
 
 const Header = () => {
+  const siteData = useSiteData();
   const { links } = siteData.header;
   const [open, setOpen] = useState(false);
 

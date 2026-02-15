@@ -13,7 +13,7 @@ const ServicesSection = () => {
     <section id="services" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שירותים" />
       <div className="container-narrow relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {siteData.services.map((s, i) => {
             const Icon = iconMap[s.icon] || Zap;
             const isOpen = openIndex === i;

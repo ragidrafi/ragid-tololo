@@ -155,7 +155,7 @@ export function MorphingCardStack({
                   className={cn(
                     "cursor-pointer rounded-xl border border-border bg-card p-5",
                     "hover:border-primary/50 transition-colors",
-                    layout === "stack" && "absolute w-80 md:w-96 h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-transparent",
+                    layout === "stack" && "absolute w-80 md:w-96 h-[300px] overflow-y-auto scrollbar-thin",
                     layout === "stack" && isTopCard && "cursor-grab active:cursor-grabbing",
                     layout === "grid" && "w-full min-h-[200px]",
                     layout === "list" && "w-full",

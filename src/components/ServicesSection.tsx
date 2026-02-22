@@ -31,6 +31,7 @@ const ServicesSection = () => {
                 </div>
                 {s.details && (
                   <>
+                    <div className="flex-1" />
                     <button
                       onClick={() => setOpenIndex(isOpen ? null : i)}
                       className="mx-auto mt-5 flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors"

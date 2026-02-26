@@ -1,58 +1,73 @@
-import { Compass, HardHat, FlaskConical, Settings, type LucideIcon } from "lucide-react";
+import { useState } from "react";
+import { Compass, HardHat, FlaskConical, Settings, ChevronDown, type LucideIcon } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
 import { useSiteData } from "@/contexts/SiteDataContext";
 
 const iconMap: Record<string, LucideIcon> = { Compass, HardHat, FlaskConical, Settings };
 
-interface ProcessStep {
-  step: number;
-  title: string;
-  subtitle: string;
-  description: string;
-  icon: string;
-}
-
-const StepCard = ({ step }: { step: ProcessStep }) => {
-  const Icon = iconMap[step.icon] ?? Compass;
-  return (
-    <div className="flex flex-col items-center text-center group">
-      <div className="relative z-10 mb-5">
-        <div className="w-24 h-24 rounded-full border-2 border-secondary/40 bg-background flex items-center justify-center group-hover:border-primary group-hover:shadow-[0_0_30px_rgba(82,172,66,0.25)] transition-all duration-300">
-          <Icon className="text-primary" size={36} />
-        </div>
-        <span className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center shadow-lg">
-          {step.step}
-        </span>
-      </div>
-      <h4 className="text-2xl font-bold text-foreground mb-1">{step.title}</h4>
-      <span className="text-sm text-primary font-semibold mb-3 tracking-wide">{step.subtitle}</span>
-      <p className="text-lg text-foreground/65 leading-[1.8] max-w-[280px]">{step.description}</p>
-    </div>
-  );
-};
-
 const ProcessSection = () => {
   const siteData = useSiteData();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text={siteData.processWatermark} />
       <div className="container-narrow relative z-10">
-        {/* Desktop layout: single row of 4 */}
-        <div className="hidden md:grid grid-cols-4 gap-8">
-          {siteData.process.map((s) => (
-            <StepCard key={s.step} step={s} />
-          ))}
-        </div>
-        {/* Mobile layout: vertical stack */}
-        <div className="md:hidden flex flex-col items-center gap-2">
-          {siteData.process.map((s, i) => (
-            <div key={s.step} className="flex flex-col items-center">
-              <StepCard step={s} />
-              {i < siteData.process.length - 1 && (
-                <div className="w-px h-10 bg-primary/30 my-2" />
-              )}
-            </div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-stretch">
+          {siteData.process.map((s, i) => {
+            const Icon = iconMap[s.icon] ?? Compass;
+            const isOpen = openIndex === i;
+            return (
+              <div
+                key={s.step}
+                className="floating-card bg-card/60 backdrop-blur-sm p-8 flex flex-col"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-5">
+                    <Icon className="text-primary" size={28} />
+                  </div>
+                  <h4 className="text-xl font-bold text-secondary mb-1">{s.title}</h4>
+                  <span className="text-sm text-primary font-semibold mb-4 tracking-wide">{s.subtitle}</span>
+                  {s.bullets && s.bullets.length > 0 && (
+                    <ul className="space-y-3 text-start w-full">
+                      {s.bullets.map((b, j) => (
+                        <li
+                          key={j}
+                          className="text-lg text-foreground/80 leading-[1.8] flex items-start gap-2"
+                        >
+                          <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                {s.description && (
+                  <>
+                    <div className="flex-1" />
+                    <button
+                      onClick={() => setOpenIndex(isOpen ? null : i)}
+                      className="mx-auto mt-5 flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors"
+                      aria-label={isOpen ? "סגור פרטים" : "פתח פרטים"}
+                    >
+                      <ChevronDown
+                        className={`text-primary transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                        size={22}
+                      />
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        isOpen ? "max-h-[500px] opacity-100 mt-5" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className="w-full h-px bg-white/10 mb-5" />
+                      <p className="text-lg text-foreground/70 leading-[1.8] text-center">{s.description}</p>
+                    </div>
+                  </>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

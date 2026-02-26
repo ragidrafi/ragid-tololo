@@ -57,6 +57,7 @@ function parseProcess(rows: CSVRow[]) {
     subtitle: r.subtitle || "",
     description: r.description || "",
     icon: r.icon || "Compass",
+    bullets: r.bullets ? r.bullets.split("|").map((b: string) => b.trim()) : [],
   }));
 }
 

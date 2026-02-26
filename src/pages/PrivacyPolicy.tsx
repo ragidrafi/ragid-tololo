@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground" dir="rtl">
       <div className="container-narrow py-20 px-4">
@@ -60,6 +65,14 @@ const PrivacyPolicy = () => {
           <p>בכל מקרה של מחלוקת, תהא לבתי המשפט (השלום או המחוזי) תל אביב-יפו הסמכות הבלעדית לדון בה.</p>
           <p>הדין החל על השימוש באתר, על ההזמנה ועל תקנון זה, לרבות פרשנותו ואכיפתו של התקנון הוא הדין הישראלי בלבד.</p>
         </div>
+
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-primary hover:underline mt-12 text-lg"
+        >
+          <ArrowRight size={18} />
+          חזרה לעמוד הראשי
+        </Link>
       </div>
     </div>
   );

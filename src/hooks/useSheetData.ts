@@ -142,7 +142,12 @@ export function useSheetData(): SiteData {
     processWatermark: siteData.processWatermark,
     process: dataMap.process && dataMap.process.length > 0 ? parseProcess(dataMap.process) : siteData.process,
     clients: siteData.clients, // stays static
-    gallery: parsedGallery.length >= siteData.gallery.length ? parsedGallery : siteData.gallery,
+    gallery: parsedGallery.length > 0
+      ? siteData.gallery.map((fallback) => {
+          const sheetItem = parsedGallery.find((g) => g.number === fallback.number);
+          return sheetItem ? { ...fallback, text: sheetItem.text } : fallback;
+        })
+      : siteData.gallery,
     about: dataMap.about && dataMap.about.length > 0 ? parseAbout(dataMap.about) : siteData.about,
     contact: siteData.contact, // stays static
     footer: dataMap.footer ? parseFooter(dataMap.footer) : siteData.footer,

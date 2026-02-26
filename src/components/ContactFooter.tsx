@@ -67,7 +67,7 @@ const ContactFooter = () => {
       {/* Footer */}
       <footer className="bg-secondary py-14">
         <div className="container-narrow">
-          <div className="grid md:grid-cols-3 gap-10 text-secondary-foreground">
+          <div className="grid md:grid-cols-2 gap-10 text-secondary-foreground">
             <div>
               <img src={footerLogo} alt="Ragid" className="h-20 mb-4" />
               <ul className="space-y-2 text-sm">
@@ -75,15 +75,6 @@ const ContactFooter = () => {
                   <li key={l.href}>
                     <a href={l.href} className="opacity-80 hover:opacity-100 transition-opacity">{l.label}</a>
                   </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-4">{footer.col2Title}</h4>
-              <ul className="space-y-2 text-sm">
-                {siteData.services.map((s, i) => (
-                  <li key={i} className="opacity-80">{s.title}</li>
                 ))}
               </ul>
             </div>

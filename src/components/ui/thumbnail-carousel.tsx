@@ -38,25 +38,16 @@ export default function ThumbnailCarousel({ items }: ThumbnailCarouselProps) {
     <div className="w-full max-w-4xl mx-auto">
       {/* Main slide area */}
       <div className="relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: "3 / 2" }}>
-        <div
-          className="flex h-full"
-          style={{
-            width: `${items.length * 100}%`,
-            transform: `translateX(${-(index * 100) / items.length}%)`,
-            transition: "transform 500ms ease",
-          }}
-        >
-          {items.map((item) => (
-            <div key={item.id} className="h-full" style={{ width: `${100 / items.length}%` }}>
-              <img
-                src={item.url}
-                alt={item.title}
-                className="w-full h-full object-cover"
-                draggable={false}
-              />
-            </div>
-          ))}
-        </div>
+        {items.map((item, i) => (
+          <img
+            key={item.id}
+            src={item.url}
+            alt={item.title}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+            style={{ opacity: i === index ? 1 : 0, zIndex: i === index ? 1 : 0 }}
+            draggable={false}
+          />
+        ))}
 
         {/* Previous */}
         <button

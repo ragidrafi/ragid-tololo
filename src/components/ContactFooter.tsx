@@ -1,5 +1,6 @@
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Phone, Mail, MapPin, Linkedin, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 import SectionWatermark from "@/components/SectionWatermark";
 import logo from "@/assets/logo-ragid.png";
 import footerLogo from "@/assets/logo-ragid-footer.png";
@@ -122,8 +123,11 @@ const ContactFooter = () => {
             </div>
           </div>
 
-          <div className="mt-10 pt-6 border-t border-white/20 text-center text-sm text-secondary-foreground/70">
-            {footer.copyright}
+          <div className="mt-10 pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-secondary-foreground/70">
+            <span>{footer.copyright}</span>
+            <Link to="/privacy-policy" className="hover:text-secondary-foreground transition-colors">
+              מדיניות פרטיות
+            </Link>
           </div>
         </div>
       </footer>

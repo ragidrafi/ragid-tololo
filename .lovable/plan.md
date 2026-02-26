@@ -1,16 +1,29 @@
 
 
-## Fix: Gallery Not Using Google Sheet Titles
+## Fix: Gallery Not Reading Sheet Data Due to Header Mismatch
 
 ### Root Cause
-The gallery fallback logic on line 145 of `useSheetData.ts` requires the sheet to return **exactly 10 valid items** (`parsedGallery.length >= siteData.gallery.length`). Your sheet has a duplicate `number=3` and is missing `number=4`, so only 9 unique valid items are parsed. This causes the entire sheet data to be discarded in favor of the local cms.ts fallback.
+The `parseGallery` function accesses `r.number` and `r.text` assuming the Google Sheet headers are exactly `number` and `text`. If the sheet headers are different (e.g., capitalized, Hebrew, or slightly different spelling), those fields resolve to `undefined` and all rows get filtered out, falling back to cms.ts.
 
 ### Fix (1 file)
 
-**`src/hooks/useSheetData.ts`**
-- Change the gallery merge logic: instead of all-or-nothing, merge sheet data with fallback. For each of the 10 gallery slots, use the sheet title if available, otherwise fall back to cms.ts.
-- Line 145: Replace `parsedGallery.length >= siteData.gallery.length ? parsedGallery : siteData.gallery` with a merge that maps over `siteData.gallery` and overrides `text` from the sheet data when a matching `number` exists.
+**`src/hooks/useSheetData.ts`** — Make `parseGallery` resilient to header naming:
+- Instead of relying on exact header names `r.number` and `r.text`, get the first and second column values positionally using `Object.values(r)`.
+- First column value → number, second column value → text.
+- This matches the user's sheet structure (A = number, B = text) regardless of header names.
 
-### Also Recommended
-Your sheet has `number=3` twice and no `number=4`. You may want to fix that in the sheet so all 10 images get the correct title.
+```typescript
+function parseGallery(rows: CSVRow[]) {
+  return rows
+    .map((r) => {
+      const values = Object.values(r);
+      return {
+        number: Number.parseInt(String(values[0] ?? ""), 10),
+        text: (values[1] ?? "").trim(),
+      };
+    })
+    .filter(...)  // keep existing filter
+    .sort(...);   // keep existing sort
+}
+```
 

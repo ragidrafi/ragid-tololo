@@ -1,33 +1,25 @@
 
 
-## Plan: Replace Gallery with Framer Motion Thumbnail Carousel
+## Plan: Replace Gallery with Simple Carousel + Thumbnails
 
-### Problem
-The current Embla-based gallery only shows 3 images. The user wants to replace it with a Luxe UI-style thumbnail carousel using Framer Motion.
-
-### Approach
-The pasted component code had its JSX stripped during copy-paste. I will reconstruct the full thumbnail carousel component based on the visible logic (drag gestures, thumbnail strip, motion values) and integrate it with the existing gallery data and local images.
+The `wa-carousel` is a Web Awesome web component and can't be used in React directly. I'll build an equivalent React carousel with the same behavior: single slide view, prev/next arrows, looping, and a thumbnail strip below.
 
 ### Steps
 
-1. **Create `src/components/ui/thumbnail-carousel.tsx`**
-   - Framer Motion-based carousel with drag support
-   - Main image area with swipe/drag navigation
-   - Thumbnail strip at the bottom with active-state highlighting (expanded width for selected, collapsed for others)
-   - Previous/Next arrow buttons
-   - Image counter overlay
-   - Component accepts `items` prop (array of `{id, url, title}`) instead of hardcoded data
+1. **Rewrite `src/components/ui/thumbnail-carousel.tsx`**
+   - Remove Framer Motion drag-based approach (causing issues)
+   - Simple state-based carousel: CSS `transform: translateX()` with CSS transitions
+   - Loop support (wraps from last→first and first→last)
+   - Navigation arrows (ChevronLeft/ChevronRight)
+   - Thumbnail strip below: 64×64px thumbnails, active one has opacity 1, others 0.3, click to navigate
+   - Accepts `items` prop as before
 
-2. **Rewrite `src/components/GallerySection.tsx`**
-   - Remove all Embla carousel code
-   - Import the new thumbnail carousel component
-   - Map gallery data + local image imports into the items format
-   - Keep the `SectionWatermark` with "גלריה"
+2. **Keep `src/components/GallerySection.tsx` as-is**
+   - Already correctly maps local images to items and passes to ThumbnailCarousel
+   - Watermark "גלריה" stays
 
 ### Technical Details
-- `framer-motion` is already installed
-- Uses `useMotionValue` + `animate` for smooth spring transitions
-- Drag with velocity-based and offset-based index changes
-- Thumbnail strip auto-scrolls to center the active thumbnail
-- Local images mapped via the existing `imageMap` pattern
+- Pure CSS transitions (`transition: transform 500ms ease`) instead of Framer Motion for reliability
+- 3:2 aspect ratio for main image area
+- Thumbnail strip uses `scrollIntoView` for active thumbnail centering
 

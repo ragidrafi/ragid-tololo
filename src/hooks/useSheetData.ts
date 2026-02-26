@@ -51,14 +51,19 @@ function parseProjects(rows: CSVRow[]) {
 }
 
 function parseProcess(rows: CSVRow[]) {
-  return rows.map((r) => ({
-    step: parseInt(r.step, 10) || 0,
-    title: r.title || "",
-    subtitle: r.subtitle || "",
-    description: r.description || "",
-    icon: r.icon || "Compass",
-    bullets: r.bullets ? r.bullets.split("|").map((b: string) => b.trim()) : [],
-  }));
+  return rows.map((r) => {
+    const step = parseInt(r.step, 10) || 0;
+    return {
+      step,
+      title: r.title || "",
+      subtitle: r.subtitle || "",
+      description: r.description || "",
+      icon: r.icon || "Compass",
+      bullets: r.bullets
+        ? r.bullets.split("|").map((b: string) => b.trim())
+        : (siteData.process.find(p => p.step === step)?.bullets ?? []),
+    };
+  });
 }
 
 function parseAbout(rows: CSVRow[]) {

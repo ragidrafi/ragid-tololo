@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Phone, Mail, MapPin, Linkedin, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -34,25 +35,23 @@ const ContactFooter = () => {
             {/* Form - right side */}
             <div className="w-full md:max-w-md">
               <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
-                <div className="grid grid-cols-2 gap-5">
-                  <input type="text" placeholder="שם מלא" className={inputClass} />
-                  <input type="text" placeholder="תפקיד" className={inputClass} />
-                </div>
-                <div className="grid grid-cols-2 gap-5">
-                  <input type="email" placeholder="אימייל" className={inputClass} />
-                  <input type="tel" placeholder="נייד" className={inputClass} />
-                </div>
-                <input type="text" placeholder="פרטי פניה" className={inputClass} />
-                <select className={`${inputClass} appearance-none`} defaultValue="">
-                  <option value="" disabled>סוג פרויקט</option>
-                  <option>תחנת כח</option>
-                  <option>מרכז נתונים</option>
-                  <option>פארמה/מעבדות</option>
-                  <option>בית חולים</option>
-                  <option>מתקן תעשייתי</option>
-                  <option>אחר</option>
-                </select>
-                <textarea rows={4} placeholder="הודעה" className={`${inputClass} resize-none`} />
+                <input type="text" placeholder="שם" className={inputClass} />
+                <input type="email" placeholder="מייל *" required className={inputClass} />
+                <textarea rows={4} placeholder="פרטי הפניה" className={`${inputClass} resize-none`} />
+                <label className="flex items-start gap-3 cursor-pointer text-sm text-foreground/70 leading-relaxed">
+                  <input
+                    type="checkbox"
+                    defaultChecked
+                    className="mt-1 h-4 w-4 rounded border-white/20 accent-primary shrink-0"
+                  />
+                  <span>
+                    אני מאשר/ת כי קראתי את{" "}
+                    <Link to="/privacy-policy" className="text-primary underline hover:brightness-110">
+                      מדיניות הפרטיות
+                    </Link>{" "}
+                    של החברה, מסכים/ה לעיבוד המידע בהתאם לה ומסכים/ה לקבל מהחברה מידע ועדכונים שיווקיים באמצעי תקשורת שונים.
+                  </span>
+                </label>
                 <button
                   type="submit"
                   className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110 transition-all"

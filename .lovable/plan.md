@@ -1,26 +1,33 @@
 
 
-## Analysis
+## Plan: Replace Gallery with Framer Motion Thumbnail Carousel
 
-The Google Sheet "gallery" tab likely has only 3 rows of data. Since the fetch succeeds with 3 rows, the code uses the sheet data (3 items) instead of the fallback (10 items). The condition `dataMap.gallery.length > 0` is true, so it skips the fallback.
+### Problem
+The current Embla-based gallery only shows 3 images. The user wants to replace it with a Luxe UI-style thumbnail carousel using Framer Motion.
 
-## Fix Plan
+### Approach
+The pasted component code had its JSX stripped during copy-paste. I will reconstruct the full thumbnail carousel component based on the visible logic (drag gestures, thumbnail strip, motion values) and integrate it with the existing gallery data and local images.
 
-Two changes needed:
+### Steps
 
-### 1. Use fallback when sheet has fewer items than expected
-In `src/hooks/useSheetData.ts` (line 134), change the gallery condition to also check if the sheet returned a reasonable number of items (e.g., at least the fallback count), or merge sheet data with fallback:
+1. **Create `src/components/ui/thumbnail-carousel.tsx`**
+   - Framer Motion-based carousel with drag support
+   - Main image area with swipe/drag navigation
+   - Thumbnail strip at the bottom with active-state highlighting (expanded width for selected, collapsed for others)
+   - Previous/Next arrow buttons
+   - Image counter overlay
+   - Component accepts `items` prop (array of `{id, url, title}`) instead of hardcoded data
 
-```ts
-gallery: dataMap.gallery && dataMap.gallery.length >= siteData.gallery.length
-  ? parseGallery(dataMap.gallery)
-  : siteData.gallery,
-```
+2. **Rewrite `src/components/GallerySection.tsx`**
+   - Remove all Embla carousel code
+   - Import the new thumbnail carousel component
+   - Map gallery data + local image imports into the items format
+   - Keep the `SectionWatermark` with "גלריה"
 
-This ensures the fallback (10 items) is used if the sheet has fewer entries than expected.
-
-### 2. Alternative: Ask user to fill all 10 rows
-The user may simply need to add all 10 rows to their Google Sheet gallery tab. The current code works correctly — it just trusts whatever the sheet returns.
-
-**Recommended approach**: Apply fix #1 so partial sheet data doesn't override complete fallback data, and also inform the user they should fill all 10 rows in the sheet.
+### Technical Details
+- `framer-motion` is already installed
+- Uses `useMotionValue` + `animate` for smooth spring transitions
+- Drag with velocity-based and offset-based index changes
+- Thumbnail strip auto-scrolls to center the active thumbnail
+- Local images mapped via the existing `imageMap` pattern
 

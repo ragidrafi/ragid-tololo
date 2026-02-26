@@ -105,9 +105,10 @@ const ContactFooter = () => {
                   href={footer.pharmaWebsite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-secondary-foreground/10 flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
+                  className="flex items-center gap-2 h-9 px-3 rounded-full bg-secondary-foreground/10 hover:bg-secondary-foreground/20 transition-colors text-sm"
                 >
                   <Globe size={16} />
+                  <span>לאתר רגיד פארמה</span>
                 </a>
               </div>
             </div>

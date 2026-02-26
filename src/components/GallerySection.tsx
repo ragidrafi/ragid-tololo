@@ -51,11 +51,6 @@ const GallerySection = () => {
       <SectionWatermark text="גלריה" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">גלריה</h2>
-          <div className="w-16 h-1 bg-primary mx-auto mt-4" />
-        </div>
-
         <div className="relative">
           {/* Navigation arrows */}
           <button
@@ -81,7 +76,7 @@ const GallerySection = () => {
                 return (
                   <div
                     key={slide.number}
-                    className="flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_40%] min-w-0 px-2 md:px-3"
+                    className="flex-[0_0_80%] sm:flex-[0_0_45%] md:flex-[0_0_35%] lg:flex-[0_0_30%] min-w-0 px-2 md:px-3"
                   >
                     <div
                       className={`transition-all duration-500 ease-out ${

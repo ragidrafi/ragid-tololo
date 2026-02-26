@@ -131,7 +131,7 @@ export function useSheetData(): SiteData {
     processWatermark: siteData.processWatermark,
     process: dataMap.process && dataMap.process.length > 0 ? parseProcess(dataMap.process) : siteData.process,
     clients: siteData.clients, // stays static
-    gallery: dataMap.gallery && dataMap.gallery.length > 0 ? parseGallery(dataMap.gallery) : siteData.gallery,
+    gallery: dataMap.gallery && dataMap.gallery.length >= siteData.gallery.length ? parseGallery(dataMap.gallery) : siteData.gallery,
     about: dataMap.about && dataMap.about.length > 0 ? parseAbout(dataMap.about) : siteData.about,
     contact: siteData.contact, // stays static
     footer: dataMap.footer ? parseFooter(dataMap.footer) : siteData.footer,

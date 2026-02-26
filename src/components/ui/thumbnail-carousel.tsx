@@ -39,14 +39,21 @@ export default function ThumbnailCarousel({ items }: ThumbnailCarouselProps) {
       {/* Main slide area */}
       <div className="relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: "3 / 2" }}>
         {items.map((item, i) => (
-          <img
+          <div
             key={item.id}
-            src={item.url}
-            alt={item.title}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+            className="absolute inset-0 transition-opacity duration-300"
             style={{ opacity: i === index ? 1 : 0, zIndex: i === index ? 1 : 0 }}
-            draggable={false}
-          />
+          >
+            <img
+              src={item.url}
+              alt={item.title}
+              className="w-full h-full object-cover"
+              draggable={false}
+            />
+            <div className="absolute bottom-4 left-4 z-10 text-white text-sm font-medium drop-shadow-lg">
+              {item.title}
+            </div>
+          </div>
         ))}
 
         {/* Previous */}

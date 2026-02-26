@@ -27,9 +27,21 @@ const ServicesSection = () => {
                     <Icon className="text-primary" size={28} />
                   </div>
                   <h3 className="text-xl font-bold text-secondary mb-3">{s.title}</h3>
-                  <p className="text-lg text-foreground/80 leading-[1.8]">{s.description}</p>
+                  {s.details && (
+                    <ul className="space-y-3 text-start">
+                      {s.details.map((d, j) => (
+                        <li
+                          key={j}
+                          className="text-lg text-foreground/80 leading-[1.8] flex items-start gap-2"
+                        >
+                          <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-                {s.details && (
+                {s.description && (
                   <>
                     <div className="flex-1" />
                     <button
@@ -48,17 +60,7 @@ const ServicesSection = () => {
                       }`}
                     >
                       <div className="w-full h-px bg-white/10 mb-5" />
-                      <ul className="space-y-3">
-                        {s.details.map((d, j) => (
-                          <li
-                            key={j}
-                            className="text-lg text-foreground/70 leading-[1.8] flex items-start gap-2"
-                          >
-                            <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                            {d}
-                          </li>
-                        ))}
-                      </ul>
+                      <p className="text-lg text-foreground/70 leading-[1.8] text-center">{s.description}</p>
                     </div>
                   </>
                 )}

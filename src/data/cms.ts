@@ -130,6 +130,19 @@ export const siteData = {
     ],
   },
 
+  gallery: [
+    { number: 1, text: "אשלים - אנרגיה חליפית" },
+    { number: 2, text: "אשלים" },
+    { number: 3, text: "ים המלח" },
+    { number: 4, text: "מתקן התפלה" },
+    { number: 5, text: "מתקן התפלה 2" },
+    { number: 6, text: "רותם OPC" },
+    { number: 7, text: "רותם 2 OPC" },
+    { number: 8, text: "תחנת כוח MRC" },
+    { number: 9, text: "פאנלים סולריים PV" },
+    { number: 10, text: "אשלים 2" },
+  ],
+
   contact: {
     title: "יצירת קשר",
     buttonText: "שליחת הודעה",

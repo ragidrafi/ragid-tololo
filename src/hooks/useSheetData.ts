@@ -9,6 +9,7 @@ const SHEETS = {
   process:  { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=1375900065&single=true&output=csv", hasHeaders: true },
   about:    { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=981619803&single=true&output=csv", hasHeaders: true },
   footer:   { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=1248903055&single=true&output=csv", hasHeaders: false },
+  gallery:  { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiZFtz9pzP50bTgbxugz5yKtncFPLrP5x4gFnMWTLf4_YrH6qdy5vpypJNI6ntOkZZ1Px6g3Ql7BSH/pub?gid=153140412&single=true&output=csv", hasHeaders: true },
 };
 
 const STALE_TIME = 5 * 60 * 1000; // 5 minutes
@@ -77,6 +78,13 @@ function parseAbout(rows: CSVRow[]) {
   };
 }
 
+function parseGallery(rows: CSVRow[]) {
+  return rows.map((r) => ({
+    number: parseInt(r.number, 10) || 0,
+    text: r.text || "",
+  }));
+}
+
 function parseFooter(rows: CSVRow[]) {
   const map: Record<string, string> = {};
   rows.forEach((r) => {
@@ -123,6 +131,7 @@ export function useSheetData(): SiteData {
     processWatermark: siteData.processWatermark,
     process: dataMap.process && dataMap.process.length > 0 ? parseProcess(dataMap.process) : siteData.process,
     clients: siteData.clients, // stays static
+    gallery: dataMap.gallery && dataMap.gallery.length > 0 ? parseGallery(dataMap.gallery) : siteData.gallery,
     about: dataMap.about && dataMap.about.length > 0 ? parseAbout(dataMap.about) : siteData.about,
     contact: siteData.contact, // stays static
     footer: dataMap.footer ? parseFooter(dataMap.footer) : siteData.footer,

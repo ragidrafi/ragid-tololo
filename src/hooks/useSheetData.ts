@@ -80,10 +80,13 @@ function parseAbout(rows: CSVRow[]) {
 
 function parseGallery(rows: CSVRow[]) {
   return rows
-    .map((r) => ({
-      number: Number.parseInt(String(r.number ?? ""), 10),
-      text: (r.text ?? "").trim(),
-    }))
+    .map((r) => {
+      const values = Object.values(r);
+      return {
+        number: Number.parseInt(String(values[0] ?? ""), 10),
+        text: (values[1] ?? "").trim(),
+      };
+    })
     .filter(
       (item) =>
         !Number.isNaN(item.number) &&

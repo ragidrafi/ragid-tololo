@@ -3,8 +3,8 @@ import { useSiteData } from "@/contexts/SiteDataContext";
 import { Phone, Mail, MapPin, Linkedin, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import SectionWatermark from "@/components/SectionWatermark";
-import logo from "@/assets/logo-ragid.png";
-import footerLogo from "@/assets/logo-ragid-footer.png";
+import logo from "@/assets/logo-ragid-new.png";
+import footerLogo from "@/assets/logo-ragid-new.png";
 
 const inputClass =
   "w-full rounded-2xl bg-card border border-white/10 px-5 py-3 text-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50";

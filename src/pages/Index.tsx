@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -12,6 +13,11 @@ import { SiteDataProvider } from "@/contexts/SiteDataContext";
 
 const Index = () => {
   const data = useSheetData();
+
+  // Scroll to top on mount
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <SiteDataProvider value={data}>

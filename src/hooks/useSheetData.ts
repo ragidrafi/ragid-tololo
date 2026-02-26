@@ -79,10 +79,19 @@ function parseAbout(rows: CSVRow[]) {
 }
 
 function parseGallery(rows: CSVRow[]) {
-  return rows.map((r) => ({
-    number: parseInt(r.number, 10) || 0,
-    text: r.text || "",
-  }));
+  return rows
+    .map((r) => ({
+      number: Number.parseInt(String(r.number ?? ""), 10),
+      text: (r.text ?? "").trim(),
+    }))
+    .filter(
+      (item) =>
+        !Number.isNaN(item.number) &&
+        item.number >= 1 &&
+        item.number <= siteData.gallery.length &&
+        item.text.length > 0
+    )
+    .sort((a, b) => a.number - b.number);
 }
 
 function parseFooter(rows: CSVRow[]) {
@@ -123,6 +132,8 @@ export function useSheetData(): SiteData {
     dataMap[key] = results[i].data;
   });
 
+  const parsedGallery = dataMap.gallery ? parseGallery(dataMap.gallery) : [];
+
   return {
     header: siteData.header, // stays static
     hero: dataMap.hero ? parseHero(dataMap.hero) : siteData.hero,
@@ -131,7 +142,7 @@ export function useSheetData(): SiteData {
     processWatermark: siteData.processWatermark,
     process: dataMap.process && dataMap.process.length > 0 ? parseProcess(dataMap.process) : siteData.process,
     clients: siteData.clients, // stays static
-    gallery: dataMap.gallery && dataMap.gallery.length >= siteData.gallery.length ? parseGallery(dataMap.gallery) : siteData.gallery,
+    gallery: parsedGallery.length >= siteData.gallery.length ? parsedGallery : siteData.gallery,
     about: dataMap.about && dataMap.about.length > 0 ? parseAbout(dataMap.about) : siteData.about,
     contact: siteData.contact, // stays static
     footer: dataMap.footer ? parseFooter(dataMap.footer) : siteData.footer,

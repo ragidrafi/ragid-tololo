@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo-ragid.png";
+import logo from "@/assets/logo-ragid-new.png";
 
 const Header = () => {
   const siteData = useSiteData();

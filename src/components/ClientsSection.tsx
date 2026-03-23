@@ -22,7 +22,9 @@ const ClientsSection = () => {
       <SectionWatermark text="לקוחות" />
       <div className="relative py-8 mt-10">
         <div className="absolute inset-0 bg-white/[0.04] rounded-2xl" />
-        <div className="flex items-center justify-center gap-12 md:gap-16 flex-wrap px-8">
+
+        {/* Desktop: centered wrap */}
+        <div className="hidden md:flex items-center justify-center gap-16 flex-wrap px-8">
           {logos.map((logo, i) => (
             <img
               key={i}
@@ -31,6 +33,20 @@ const ClientsSection = () => {
               className="h-24 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
           ))}
+        </div>
+
+        {/* Mobile: infinite scroll marquee */}
+        <div className="md:hidden overflow-hidden px-0">
+          <div className="flex items-center gap-10 animate-marquee w-max">
+            {[...logos, ...logos].map((logo, i) => (
+              <img
+                key={i}
+                src={logo.src}
+                alt={logo.alt}
+                className="h-20 w-auto object-contain opacity-70 flex-shrink-0"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

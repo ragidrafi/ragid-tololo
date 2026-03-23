@@ -16,7 +16,7 @@ const HeroSection = () => {
       </div>
 
       <div className="container-narrow relative z-10 pt-20 space-y-6 text-center">
-        <h1 className="font-black leading-tight text-foreground animate-fade-up flex flex-col text-left" dir="ltr">
+        <h1 className="font-black leading-tight text-foreground animate-fade-up flex flex-col items-center text-center" dir="ltr">
           <span className="text-2xl md:text-3xl lg:text-4xl">We run and operate energy facilities</span>
           <span className="text-3xl md:text-5xl lg:text-6xl">reliably, safely,</span>
           <span className="text-5xl md:text-7xl lg:text-8xl">from day 1.</span>

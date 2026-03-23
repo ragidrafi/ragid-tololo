@@ -122,8 +122,27 @@ const ServicesSection = () => {
     <section id="services" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שירותים" />
       <div className="container-narrow relative z-10">
+        {/* Toggle */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-2 gap-2">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative px-8 py-4 rounded-xl text-base md:text-lg font-semibold transition-colors ${
+                  activeTab === tab.id
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Industries strip */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-10">
           <p className="text-lg text-foreground/80 mb-5">למי זה מתאים (מתאים לשני השירותים הרצה והפעלה):</p>
           <div className="flex items-center justify-center gap-8 flex-wrap">
             {[
@@ -138,25 +157,6 @@ const ServicesSection = () => {
                 </div>
                 <span className="text-sm font-medium text-foreground/80">{item.label}</span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Toggle */}
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-2 gap-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative px-8 py-4 rounded-xl text-base md:text-lg font-semibold transition-colors ${
-                  activeTab === tab.id
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {tab.label}
-              </button>
             ))}
           </div>
         </div>

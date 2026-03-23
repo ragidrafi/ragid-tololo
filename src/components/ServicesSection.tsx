@@ -151,7 +151,7 @@ const ServicesSection = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`relative px-8 py-4 rounded-xl text-base md:text-lg font-semibold transition-colors ${
                   activeTab === tab.id
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-[hsl(210,70%,50%)] text-white"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >

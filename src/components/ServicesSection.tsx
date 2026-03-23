@@ -8,7 +8,7 @@ const tabs = [
     label: "Operations / CRO | מפעילי חדר בקרה",
     content: (
       <div className="text-start space-y-6">
-        <p className="text-2xl font-bold text-secondary">Operate safer. Perform better.</p>
+        <p className="text-3xl md:text-4xl font-bold text-secondary text-center">Operate safer. Perform better</p>
 
         <p className="text-foreground/80 leading-[1.8]">
           הפעלה של מתקני אנרגיה מחדר הבקרה ובשטח, 24/7 - עם צוות מפעילים מקומיים ובינ״ל, תגבור משמרות, מעטפת ניהול מלאה ותיאום מלא מול צוות הלקוח.
@@ -85,7 +85,7 @@ const tabs = [
     label: "Commissioning + Start‑Up | הרצה",
     content: (
       <div className="text-start space-y-6">
-        <p className="text-2xl font-bold text-secondary">Operation that works from day 1.</p>
+        <p className="text-3xl md:text-4xl font-bold text-secondary text-center">Operation that works from day 1</p>
 
         <p className="text-foreground/80 leading-[1.8]">
           אנחנו מובילים את תהליך ההרצה מקצה לקצה - מהרצות קרות ועד חמות, מאינטגרציה ועד קבלה ו־O&M Ready.

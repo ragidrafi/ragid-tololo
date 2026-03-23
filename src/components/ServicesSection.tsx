@@ -1,72 +1,163 @@
 import { useState } from "react";
-import { useSiteData } from "@/contexts/SiteDataContext";
 import SectionWatermark from "@/components/SectionWatermark";
-import { Zap, Server, Network, ChevronDown, type LucideIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const iconMap: Record<string, LucideIcon> = { Zap, Server, Network };
+const tabs = [
+  {
+    id: "operations",
+    label: "Operations / CRO | מפעילי חדר בקרה",
+    content: (
+      <div className="text-start space-y-6">
+        <p className="text-2xl font-bold text-secondary">Operate safer. Perform better.</p>
+
+        <p className="text-foreground/80 leading-[1.8]">
+          הפעלה של מתקני אנרגיה מחדר הבקרה ובשטח, 24/7 - עם צוות מפעילים מקומיים ובינ״ל, תגבור משמרות, מעטפת ניהול מלאה ותיאום מלא מול צוות הלקוח.
+          <br />
+          הלקוח לא צריך לדאוג לדבר - רק לשבץ משמרות.
+        </p>
+
+        <div>
+          <p className="font-bold text-secondary mb-2">אחריות CRO בחדר בקרה:</p>
+          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
+            {[
+              "ניטור תהליכים, טרנדים והתראות דרך DCS",
+              "ביצוע פעולות שגרה ותיאום עם מפעילי שטח",
+              "סיוע באתחולים, כיבויים ומעברי מצב (בהרשאה)",
+              "תגובה לאזעקות ומצבים לא שגרתיים לפי מטריצת הסלמה",
+              "תיעוד משמרת, לוגים, העברת קו ברורה",
+              "עמידה מלאה ב‑Safety, Permit‑to‑Work ונהלי האתר",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-bold text-secondary mb-2">מודל העסקה חיצוני מקצה‑לקצה (Outsourced Employment Model):</p>
+          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
+            {[
+              "איתור, מיון והתאמת מפעילים ייעודיים לחדר בקרה",
+              "העסקה מלאה לפי דיני עבודה בישראל",
+              "רילוקיישן מלא למפעילים מחו״ל (טיסות, דיור, רכב/הסעות, סים)",
+              "ניהול שכר, HR מקומי, רווחה וטיפול במקרים חריגים",
+              "קהילת מפעילים פעילה – יציבות ושימור ידע",
+              "Governance: נקודת קשר אחת, חיוב מרוכז חודשי",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-bold text-secondary mb-2">גמישות משמרות וכוח‑אדם:</p>
+          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
+            {[
+              "שילוב מפעילים מקומיים + בינ״ל לפי הצורך",
+              "תגבור משמרות לילה / שבתות / חגים",
+              "שחרור מפעילי לקוח בחגים ושבתות",
+              "מעטפת אדמיניסטרטיבית מלאה: משמרות, נוכחות, דוחות, שכר, רווחה, חופשות מולדת",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-bold text-secondary mb-2">אחריות הלקוח:</p>
+          <p className="text-foreground/80 leading-[1.8]">
+            לקבוע משימות ולהנחות תפעולית - שאר התעסוקה/ניהול/אדמיניסטרציה עלינו.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "commissioning",
+    label: "Commissioning + Start‑Up | הרצה",
+    content: (
+      <div className="text-start space-y-6">
+        <p className="text-2xl font-bold text-secondary">Operation that works from day 1.</p>
+
+        <p className="text-foreground/80 leading-[1.8]">
+          אנחנו מובילים את תהליך ההרצה מקצה לקצה - מהרצות קרות ועד חמות, מאינטגרציה ועד קבלה ו־O&M Ready.
+        </p>
+
+        <div>
+          <p className="font-bold text-secondary mb-2">מה כולל השירות:</p>
+          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
+            {[
+              "בדיקות התקנה (מכני / חשמל / בקרה) + דו״ח פערים",
+              "ניהול וסגירת Punch‑List",
+              "הרצות קרות → הרצות חמות",
+              "מבחני קבלה לפי נהלי האתר",
+              "מסירה לתפעול (O&M) עם תיעוד מלא וצ'קליסטים",
+              "אינטגרציה רב־מערכתית ותיאום ספקים עד יציבות מלאה",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ),
+  },
+];
 
 const ServicesSection = () => {
-  const siteData = useSiteData();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState("operations");
 
   return (
     <section id="services" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שירותים" />
       <div className="container-narrow relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-          {siteData.services.map((s, i) => {
-            const Icon = iconMap[s.icon] || Zap;
-            const isOpen = openIndex === i;
-            return (
-              <div
-                key={i}
-                className="floating-card bg-card/60 backdrop-blur-sm p-8 flex flex-col"
+        {/* Toggle */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex rounded-xl border border-border bg-card/60 backdrop-blur-sm p-1.5 gap-1">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative px-5 py-2.5 rounded-lg text-sm md:text-base font-medium transition-colors ${
+                  activeTab === tab.id
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-5">
-                    <Icon className="text-primary" size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold text-secondary mb-3">{s.title}</h3>
-                  {s.details && (
-                    <ul className="space-y-3 text-start">
-                      {s.details.map((d, j) => (
-                        <li
-                          key={j}
-                          className="text-lg text-foreground/80 leading-[1.8] flex items-start gap-2"
-                        >
-                          <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                {s.description && (
-                  <>
-                    <div className="flex-1" />
-                    <button
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                      className="mx-auto mt-5 flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors"
-                      aria-label={isOpen ? "סגור פרטים" : "פתח פרטים"}
-                    >
-                      <ChevronDown
-                        className={`text-primary transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                        size={22}
-                      />
-                    </button>
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isOpen ? "max-h-[500px] opacity-100 mt-5" : "max-h-0 opacity-0"
-                      }`}
-                    >
-                      <div className="w-full h-px bg-white/10 mb-5" />
-                      <p className="text-lg text-foreground/70 leading-[1.8] text-center">{s.description}</p>
-                    </div>
-                  </>
-                )}
-              </div>
-            );
-          })}
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="floating-card bg-card/60 backdrop-blur-sm p-8 md:p-12">
+          <AnimatePresence mode="wait">
+            {tabs.map(
+              (tab) =>
+                activeTab === tab.id && (
+                  <motion.div
+                    key={tab.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {tab.content}
+                  </motion.div>
+                )
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

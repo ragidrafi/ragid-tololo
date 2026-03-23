@@ -36,7 +36,7 @@ const ClientsSection = () => {
         </div>
 
         {/* Mobile: infinite scroll marquee */}
-        <div className="md:hidden overflow-hidden px-0">
+        <div className="md:hidden overflow-hidden px-0" dir="ltr">
           <div className="flex items-center gap-10 animate-marquee w-max">
             {[...logos, ...logos].map((logo, i) => (
               <img

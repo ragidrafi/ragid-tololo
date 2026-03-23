@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SectionWatermark from "@/components/SectionWatermark";
 import { motion, AnimatePresence } from "framer-motion";
+import { Zap, Sun, Server, Factory } from "lucide-react";
 
 const tabs = [
   {

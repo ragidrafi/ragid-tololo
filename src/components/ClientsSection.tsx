@@ -1,24 +1,19 @@
 import SectionWatermark from "@/components/SectionWatermark";
-import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
-import siemensLogo from "@/assets/clients/siemens.svg";
-import poeocLogo from "@/assets/clients/poeoc.svg";
-import googleLogo from "@/assets/clients/google.svg";
-import iphiroLogo from "@/assets/clients/iphiro.svg";
-import shebaLogo from "@/assets/clients/sheba.svg";
-import tevaLogo from "@/assets/clients/teva.svg";
-import aiclLogo from "@/assets/clients/aicl.svg";
-import doubleringLogo from "@/assets/clients/doublering.svg";
+import ctsLogo from "@/assets/clients/cts.png";
+import perrigoLogo from "@/assets/clients/perrigo.png";
+import phibroLogo from "@/assets/clients/phibro.png";
+import shebaLogo from "@/assets/clients/sheba.png";
+import tevaLogo from "@/assets/clients/teva.png";
+import iclLogo from "@/assets/clients/icl.png";
 
 const logos = [
-  { src: siemensLogo, alt: "Siemens" },
-  { src: poeocLogo, alt: "POSCO" },
-  { src: googleLogo, alt: "Google" },
-  { src: iphiroLogo, alt: "IPHIRO" },
+  { src: ctsLogo, alt: "CTS" },
+  { src: perrigoLogo, alt: "Perrigo" },
+  { src: phibroLogo, alt: "Phibro" },
   { src: shebaLogo, alt: "Sheba" },
   { src: tevaLogo, alt: "Teva" },
-  { src: aiclLogo, alt: "AICL" },
-  { src: doubleringLogo, alt: "Partner" },
+  { src: iclLogo, alt: "ICL" },
 ];
 
 const ClientsSection = () => {
@@ -26,22 +21,17 @@ const ClientsSection = () => {
     <section className="section-spacing relative overflow-hidden">
       <SectionWatermark text="לקוחות" />
       <div className="relative py-8 mt-10">
-        {/* Light strip background */}
         <div className="absolute inset-0 bg-white/[0.04] rounded-2xl" />
-        {/* Fade edges */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
-
-        <InfiniteSlider gap={60} duration={25} reverse>
+        <div className="flex items-center justify-center gap-12 md:gap-16 flex-wrap px-8">
           {logos.map((logo, i) => (
             <img
               key={i}
               src={logo.src}
               alt={logo.alt}
-              className="h-20 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+              className="h-16 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
             />
           ))}
-        </InfiniteSlider>
+        </div>
       </div>
     </section>
   );

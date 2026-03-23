@@ -124,7 +124,7 @@ const ServicesSection = () => {
       <div className="container-narrow relative z-10">
         {/* Industries strip */}
         <div className="text-center mb-8">
-          <p className="text-lg text-foreground/80 mb-5">למי זה מתאים (מתאים לשני השירותים הרצה והפעלה):</p>
+          <p className="text-lg text-foreground/80 mb-5">למי זה מתאים?</p>
           <div className="flex items-center justify-center gap-8 flex-wrap">
             {[
               { icon: Zap, label: "תחנות כוח" },

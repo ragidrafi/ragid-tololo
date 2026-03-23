@@ -160,22 +160,6 @@ const ServicesSection = () => {
             ))}
           </div>
         </div>
-          <div className="inline-flex rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-2 gap-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative px-8 py-4 rounded-xl text-base md:text-lg font-semibold transition-colors ${
-                  activeTab === tab.id
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* Content */}
         <div className="floating-card bg-card/60 backdrop-blur-sm p-8 md:p-12">

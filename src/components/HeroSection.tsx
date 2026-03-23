@@ -1,9 +1,6 @@
-import { useSiteData } from "@/contexts/SiteDataContext";
+import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
-  const siteData = useSiteData();
-  const { titleEn1, titleEn2, titleHe1, titleHe2, body } = siteData.hero;
-
   return (
     <section id="hero" className="relative min-h-[85vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
@@ -20,19 +17,21 @@ const HeroSection = () => {
 
       <div className="container-narrow relative z-10 pt-20 space-y-6 text-center">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight text-foreground animate-fade-up">
-          {titleEn1}
-          <br />
-          {titleEn2}
+          We run and operate energy facilities — reliably, safely, from day 1.
         </h1>
         <div className="green-line mx-auto" />
         <h2 className="text-2xl md:text-3xl font-bold text-secondary leading-relaxed max-w-3xl mx-auto">
-          {titleHe1}
-          <br />
-          {titleHe2}
+          הרצה והפעלה של תחנות כוח, מתקני אנרגיה, דטה־סנטרים ומתקנים תעשייתיים כבדים. צוותי הרצה ותפעול מקומיים ובינ״ל, זמינות 24/7.
         </h2>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-[1.8]">
-          {body}
-        </p>
+        <div className="pt-4">
+          <Button
+            size="lg"
+            className="text-lg px-10"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            צרו קשר
+          </Button>
+        </div>
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ const ProjectsSection = () => {
     <section id="projects" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="פרויקטים" />
       <div className="container-narrow relative z-10">
-        <div className="flex flex-col gap-4 max-w-2xl mx-auto">
+        <div className="flex flex-col gap-4 mt-8">
           {siteData.projects.map((p, i) => {
             const IconComponent = iconMap[p.icon];
             const statPart = p.stat && p.statLabel ? `${p.stat} ${p.statLabel} — ` : "";

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SectionWatermark from "@/components/SectionWatermark";
 import { motion, AnimatePresence } from "framer-motion";
+import { Zap, Sun, Server, Factory } from "lucide-react";
 
 const tabs = [
   {
@@ -121,6 +122,26 @@ const ServicesSection = () => {
     <section id="services" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שירותים" />
       <div className="container-narrow relative z-10">
+        {/* Industries strip */}
+        <div className="text-center mb-8">
+          <p className="text-lg text-foreground/80 mb-5">למי זה מתאים (מתאים לשני השירותים הרצה והפעלה):</p>
+          <div className="flex items-center justify-center gap-8 flex-wrap">
+            {[
+              { icon: Zap, label: "תחנות כוח" },
+              { icon: Sun, label: "מתקני אנרגיה" },
+              { icon: Server, label: "Data Centers" },
+              { icon: Factory, label: "תעשייה כבדה" },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center gap-2">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <item.icon className="text-primary" size={22} />
+                </div>
+                <span className="text-sm font-medium text-foreground/80">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Toggle */}
         <div className="flex justify-center mb-10">
           <div className="inline-flex rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-2 gap-2">

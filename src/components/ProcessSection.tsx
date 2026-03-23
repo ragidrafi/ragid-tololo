@@ -1,71 +1,61 @@
-import { useState } from "react";
-import { Compass, HardHat, FlaskConical, Settings, ChevronDown, type LucideIcon } from "lucide-react";
+import { Zap, Sun, Server, Factory } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
-import { useSiteData } from "@/contexts/SiteDataContext";
+import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 
-const iconMap: Record<string, LucideIcon> = { Compass, HardHat, FlaskConical, Settings };
+const industries: { icon: LucideIcon; title: string; description: string }[] = [
+  {
+    icon: Zap,
+    title: "תחנות כוח",
+    description: "CCGT / קיטור / גז, 100–500MW, חדרי בקרה, GIS, DCS, תפעול 24/7.",
+  },
+  {
+    icon: Sun,
+    title: "מתקני אנרגיה",
+    description: "PV, אגירה (BESS), Utility‑Scale ותשתיות אנרגיה משלימות.",
+  },
+  {
+    icon: Server,
+    title: "Data Centers",
+    description: "מערכות חשמל/קירור/בקרה קריטיות, אינטגרציה בין ספקים, מוכנות O&M.",
+  },
+  {
+    icon: Factory,
+    title: "תעשייה כבדה",
+    description: "התפלת מים, מתקני פסולת, ייצור מימן, ייצור CO₂, מפעלי כימיה ופטרוכימיה.",
+  },
+];
 
 const ProcessSection = () => {
-  const siteData = useSiteData();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
   return (
     <section className="section-spacing relative overflow-hidden">
-      <SectionWatermark text={siteData.processWatermark} />
+      <SectionWatermark text="תעשיות" />
       <div className="container-narrow relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-stretch">
-          {siteData.process.map((s, i) => {
-            const Icon = iconMap[s.icon] ?? Compass;
-            const isOpen = openIndex === i;
+        <div className="text-center mb-10 space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary">Energy. Data. Industry</h2>
+          <p className="text-lg text-foreground/80 max-w-2xl mx-auto leading-[1.8]">
+            אנחנו פועלים ב-4 שווקים מרכזיים - כולם מבוססים על ניסיון מוכח.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {industries.map((item, i) => {
+            const Icon = item.icon;
             return (
-              <div
-                key={s.step}
-                className="floating-card bg-card/60 backdrop-blur-sm p-8 flex flex-col"
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="floating-card bg-card/60 backdrop-blur-sm p-8 flex flex-col items-center text-center"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-5">
-                    <Icon className="text-primary" size={28} />
-                  </div>
-                  <h4 className="text-xl font-bold text-secondary mb-1">{s.title}</h4>
-                  <span className="text-sm text-primary font-semibold mb-4 tracking-wide">{s.subtitle}</span>
-                  {s.bullets && s.bullets.length > 0 && (
-                    <ul className="space-y-3 text-start w-full">
-                      {s.bullets.map((b, j) => (
-                        <li
-                          key={j}
-                          className="text-lg text-foreground/80 leading-[1.8] flex items-start gap-2"
-                        >
-                          <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-5">
+                  <Icon className="text-primary" size={28} />
                 </div>
-                {s.description && (
-                  <>
-                    <div className="flex-1" />
-                    <button
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                      className="mx-auto mt-5 flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors"
-                      aria-label={isOpen ? "סגור פרטים" : "פתח פרטים"}
-                    >
-                      <ChevronDown
-                        className={`text-primary transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                        size={22}
-                      />
-                    </button>
-                    <div
-                      className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                        isOpen ? "max-h-[1000px] opacity-100 mt-5" : "max-h-0 opacity-0"
-                      }`}
-                    >
-                      <div className="w-full h-px bg-white/10 mb-5" />
-                      <p className="text-lg text-foreground/70 leading-[1.8] text-center">{s.description}</p>
-                    </div>
-                  </>
-                )}
-              </div>
+                <h3 className="text-xl font-bold text-secondary mb-3">{item.title}</h3>
+                <p className="text-foreground/80 leading-[1.8]">{item.description}</p>
+              </motion.div>
             );
           })}
         </div>

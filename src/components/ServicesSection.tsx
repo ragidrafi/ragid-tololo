@@ -123,12 +123,12 @@ const ServicesSection = () => {
       <div className="container-narrow relative z-10">
         {/* Toggle */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex rounded-xl border border-border bg-card/60 backdrop-blur-sm p-1.5 gap-1">
+          <div className="inline-flex rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-2 gap-2">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative px-5 py-2.5 rounded-lg text-sm md:text-base font-medium transition-colors ${
+                className={`relative px-8 py-4 rounded-xl text-base md:text-lg font-semibold transition-colors ${
                   activeTab === tab.id
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"

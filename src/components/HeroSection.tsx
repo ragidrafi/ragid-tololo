@@ -16,10 +16,10 @@ const HeroSection = () => {
       </div>
 
       <div className="container-narrow relative z-10 pt-20 space-y-6 text-center">
-        <h1 className="font-black leading-tight text-foreground animate-fade-up flex flex-col">
-          <span className="text-2xl md:text-3xl lg:text-4xl">We run and operate energy facilities —</span>
-          <span className="text-3xl md:text-5xl lg:text-6xl">reliably, safely, from</span>
-          <span className="text-5xl md:text-7xl lg:text-8xl">day 1.</span>
+        <h1 className="font-black leading-tight text-foreground animate-fade-up flex flex-col text-left" dir="ltr">
+          <span className="text-2xl md:text-3xl lg:text-4xl">We run and operate energy facilities</span>
+          <span className="text-3xl md:text-5xl lg:text-6xl">reliably, safely,</span>
+          <span className="text-5xl md:text-7xl lg:text-8xl">from day 1.</span>
         </h1>
         <div className="green-line mx-auto" />
         <h2 className="text-2xl md:text-3xl font-bold text-secondary leading-relaxed max-w-3xl mx-auto">

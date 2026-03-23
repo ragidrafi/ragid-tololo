@@ -28,7 +28,7 @@ const ClientsSection = () => {
               key={i}
               src={logo.src}
               alt={logo.alt}
-              className="h-16 w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+              className="h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
           ))}
         </div>

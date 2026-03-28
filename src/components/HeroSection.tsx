@@ -37,15 +37,13 @@ const HeroSection = () => {
       </div>
 
       <div className="container-narrow relative z-10 pt-20 space-y-6 text-center">
-        <h1 className="font-black leading-tight text-foreground animate-fade-up flex flex-col items-center text-center" dir="ltr">
-          <span className="text-2xl md:text-3xl lg:text-4xl">We run and operate energy facilities</span>
-          <span className="text-3xl md:text-5xl lg:text-6xl">reliably, safely,</span>
-          <span className="text-5xl md:text-7xl lg:text-8xl">day 1.</span>
+        <h1 className="font-black text-3xl md:text-4xl lg:text-5xl leading-relaxed text-white animate-fade-up" dir="rtl">
+          <span className="block">הרצה והפעלה של תחנות כוח, מתקני אנרגיה,</span>
+          <span className="block">דאטה־סנטרים ומתקנים תעשייתיים כבדים.</span>
+          <span className="block">צוותי הרצה ותפעול מקומיים ובינ״ל,</span>
+          <span className="block">זמינות 24/7.</span>
         </h1>
         <div className="green-line mx-auto" />
-        <h2 className="text-2xl md:text-3xl font-bold text-secondary leading-relaxed max-w-3xl mx-auto">
-          הרצה והפעלה של תחנות כוח, מתקני אנרגיה, דטה־סנטרים ומתקנים תעשייתיים כבדים. צוותי הרצה ותפעול מקומיים ובינ״ל, זמינות 24/7.
-        </h2>
         <div className="pt-4">
           <Button
             size="lg"

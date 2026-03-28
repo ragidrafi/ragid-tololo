@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SectionWatermark from "@/components/SectionWatermark";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, Sun, Server, Factory } from "lucide-react";
+
 
 const tabs = [
   {
@@ -89,19 +89,60 @@ const tabs = [
         <p className="text-3xl md:text-4xl font-bold text-secondary text-center">Operation that works from day 1</p>
 
         <p className="text-foreground/80 leading-[1.8]">
-          אנחנו מובילים את תהליך ההרצה מקצה לקצה - מהרצות קרות ועד חמות, מאינטגרציה ועד קבלה ו־O&M Ready.
+          זהו השלב שמחבר בין סיום ההקמה לבין תחילת התפעול בפועל. זהו תהליך שיטתי שמוודא שכל המערכות - חשמל, מכניקה, בקרה ותהליכים - פועלות יחד בצורה מלאה, יציבה ובהתאם לתכנון. ברגיד מובילים את התהליך מקצה לקצה, עם ניסיון של למעלה מ־20 שנה בפרויקטים מורכבים בתחנות כוח, מתקני אנרגיה ותעשייה כבדה.
+        </p>
+
+        <p className="text-foreground/80 leading-[1.8]">
+          התהליך משלב עבודה מוקדמת לצד פעילות אינטנסיבית בשטח, מתוך מטרה לזהות ולפתור פערים בזמן אמת, לצמצם תקלות לפני המסירה ולהבטיח מעבר מהיר וחלק לתפעול מלא (COD). הגישה של רגיד מבוססת על אינטגרציה מלאה בין כל הגורמים בפרויקט - מה שמאפשר לקצר לוחות זמנים, לשפר אמינות ולהביא את המערכת לביצועים מלאים בצורה מדויקת ובטוחה.
         </p>
 
         <div>
-          <p className="font-bold text-secondary mb-2">מה כולל השירות:</p>
+          <p className="font-bold text-secondary mb-2">מה כולל תהליך הקומישנינג?</p>
+        </div>
+
+        <div>
+          <p className="font-bold text-secondary mb-2">שלב ההכנה</p>
           <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
             {[
-              "בדיקות התקנה (מכני / חשמל / בקרה) + דו״ח פערים",
-              "ניהול וסגירת Punch‑List",
-              "הרצות קרות → הרצות חמות",
-              "מבחני קבלה לפי נהלי האתר",
-              "מסירה לתפעול (O&M) עם תיעוד מלא וצ'קליסטים",
-              "אינטגרציה רב־מערכתית ותיאום ספקים עד יציבות מלאה",
+              "בדיקות תיעוד",
+              "סגירת חוסרים ופערים",
+              "בניית תיק קומישנינג מסודר",
+              "תיאום עם צוותי ההנדסה וההקמה",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-bold text-secondary mb-2">ביצוע בשטח</p>
+          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
+            {[
+              "בדיקות התקנה (MC)",
+              "ניהול Punch Lists",
+              "הרצות קרות",
+              "הרצות חמות",
+              "אימות ביצועים ועמידה ב-KPIs",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-bold text-secondary mb-2">מסירה והעברה לתפעול</p>
+          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
+            {[
+              "מבחני קבלה",
+              "מסירה מסודרת",
+              "ליווי עד הפעלה מלאה (COD)",
+              "טיפול בריג'קטים עד סגירה מלאה",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
                 <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
@@ -122,26 +163,6 @@ const ServicesSection = () => {
     <section id="services" className="section-spacing relative overflow-hidden">
       <SectionWatermark text="שירותים" />
       <div className="container-narrow relative z-10">
-        {/* Industries strip */}
-        <div className="text-center mb-8">
-          <p className="text-lg text-foreground/80 mb-5">למי זה מתאים?</p>
-          <div className="flex items-center justify-center gap-8 flex-wrap">
-            {[
-              { icon: Zap, label: "תחנות כוח" },
-              { icon: Sun, label: "מתקני אנרגיה" },
-              { icon: Server, label: "Data Centers" },
-              { icon: Factory, label: "תעשייה כבדה" },
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <item.icon className="text-primary" size={22} />
-                </div>
-                <span className="text-sm font-medium text-foreground/80">{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Card with Toggle + Content */}
         <div className="floating-card bg-card/60 backdrop-blur-sm p-8 md:p-12">
           {/* Toggle */}

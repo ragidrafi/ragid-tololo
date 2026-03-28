@@ -1,3 +1,14 @@
+import deadSea from "@/assets/projects/dead-sea.png";
+import sorek2 from "@/assets/projects/sorek2.png";
+import opcRotem from "@/assets/projects/opc-rotem.png";
+import dalia from "@/assets/projects/dalia.jpeg";
+import dorad from "@/assets/projects/dorad.jpeg";
+import etgal from "@/assets/projects/etgal.jpeg";
+import sugat from "@/assets/projects/sugat.jpeg";
+import alonTavor from "@/assets/projects/alon-tavor.png";
+import ashalimA from "@/assets/projects/ashalim-a.jpeg";
+import ashalimB from "@/assets/projects/ashalim-b.png";
+
 export interface ProjectData {
   id: string;
   title: string;
@@ -11,7 +22,7 @@ export const projectsData: ProjectData[] = [
     id: "dead-sea",
     title: "תחנת הכוח ים המלח - 220MW",
     subtitle: "שירות: צוותי הרצה, הפעלה ותמיכה שוטפת",
-    image: "/placeholder.svg",
+    image: deadSea,
     text: `תחנה חדשה בהספק 220MW, המיועדת לתמוך באחד מאתרי התעשייה הגדולים בישראל. רגיד סיפקה צוותי הפעלה לתחנה הקיימת ובהמשך השתלבה באופן מלא בתהליך הקומישנינג של התחנה החדשה.
 
 צוות המפעילים שכלל עובדים זרים, אפשר לצוות המקומי להתמקד בהכשרה ובהיכרות עם מערכות ההפעלה החדשות. במקביל, צוותי רגיד ליוו את תהליכי ההרצה, בדיקות המערכות והמעבר למסירה, עד להגעה לייצור מסחרי.
@@ -24,7 +35,7 @@ export const projectsData: ProjectData[] = [
     id: "sorek2",
     title: "שורק 2 – בלוק אנרגיה (130–140MW)",
     subtitle: "שירות: הרצה והפעלה",
-    image: "/placeholder.svg",
+    image: sorek2,
     text: `בלוק אנרגיה מתקדם התומך באחד ממפעלי ההתפלה הגדולים בישראל.
 רגיד ביצעה תהליך קומישנינג מלא - הכנת מסמכים, בדיקות התקנה, Punch List והרצות.
 העבודה כללה שילוב מערכות אנרגיה, מים ובקרה ברמת מורכבות גבוהה.
@@ -35,14 +46,14 @@ export const projectsData: ProjectData[] = [
     id: "opc-rotem",
     title: "OPC רותם – 450MW מחזור משולב",
     subtitle: "שירות: ניהול ביצוע וכוח אדם הנדסי",
-    image: "/placeholder.svg",
+    image: opcRotem,
     text: `OPC רותם הוא אחד הפרויקטים הגדולים בישראל בתחום ייצור החשמל בגז טבעי, וכולל טורבינות מתקדמות בשילוב מערכת קיטורית. אנשי רגיד היו אחראים לניהול הפרויקט מטעם הקבלן, כולל תיאום בין הצוותים הישראלים והקוריאנים של POSCO, וניהול תהליך התאמת התכנון לתקינה הישראלית. בפרויקט נדרש תאום תכנון ובצוע של מערכות מורכבות ותיאום מול מספר רב של בעלי עניין. בזכות תהליך מדויק, ההפעלה בוצעה בצורה בטוחה, מהירה וחלקה - והתחנה נכנסה לפעולה מלאה בהתאם ליעדי הייצור.`,
   },
   {
     id: "dalia",
     title: "דליה אנרגיה - פרויקט ליבה לאומי בהיקף גדול",
     subtitle: "שירות: פיקוח ובניית צוותים",
-    image: "/placeholder.svg",
+    image: dalia,
     text: `דליה אנרגיה היא בין תחנות הכוח הגדולות והמורכבות בישראל. רגיד הייתה שותפה בפרויקט מהשלב הראשון.
 הובלנו את תכנון ההתארגנות להקמה ולהרצה וליווינו את גיוס כוח האדם לפרויקט ולצוות ההפעלה הקבוע.
 סיפקנו מהנדסי פיקוח לשטח לניהול עבודות קבלנים ובדיקות ההתקנה.
@@ -54,7 +65,7 @@ export const projectsData: ProjectData[] = [
     id: "dorad",
     title: "דוראד - 800MW",
     subtitle: "שירות: צוות קומישנינג ומסירה",
-    image: "/placeholder.svg",
+    image: dorad,
     text: `דוראד היא תחנת כוח פרטית מהגדולות בישראל, המבוססת על גז טבעי.
 רגיד הייתה חלק מרכזי בצוות הקבלה וההרצה, כולל ניהול אלפי פריטי Punch List ותיאום מול קבלני EPC.
 צוותינו ליוו את מבחני הקבלה, בדיקות אינטגרציה ופתרון תקלות בזמן אמת.
@@ -65,7 +76,7 @@ export const projectsData: ProjectData[] = [
     id: "etgal",
     title: "תחנת הכוח אתגל (Ashdod Peaking Plant)",
     subtitle: "שירות: הרצה",
-    image: "/placeholder.svg",
+    image: etgal,
     text: `תחנת שיא המופעלת בגז טבעי ודורשת תגובה מהירה לשינויים בביקוש.
 רגיד ניהלה את הקומישנינג: הרצות גנרטורים ודיזלים, בדיקות חשמל ובקרה ומבחני עומס.
 העבודה דרשה דיוק גבוה ועמידה בתקן של יחידות המיועדות להפעלה קצרה ועתירת הספק.
@@ -75,7 +86,7 @@ export const projectsData: ProjectData[] = [
     id: "sugat",
     title: "תחנת סוגת – 120MW) Cogeneration)",
     subtitle: "שירות: פיקוח והפעלה",
-    image: "/placeholder.svg",
+    image: sugat,
     text: `תחנת קוגנרציה המספקת חשמל וקיטור למתקן תעשייתי.
 רגיד סיפקה מהנדסים לשלב ההקמה ומפעילים מיומנים מחו"ל להפעלה הראשונית.
 הצוות שלנו תומך עד היום בהפעלה השוטפת, ומביא ניסיון רחב במערכות סימנס ובקרה תעשייתית.
@@ -85,7 +96,7 @@ export const projectsData: ProjectData[] = [
     id: "alon-tavor",
     title: "תחנת אלון תבור MRC",
     subtitle: "שירות: פיקוח והפעלה",
-    image: "/placeholder.svg",
+    image: alonTavor,
     text: `פרויקט אנרגיה המשלב תעשייה ותשתיות בצפון.
 רגיד סיפקה מפקחים לקבלן והובילה את הרצת מערכות הקוגנרציה באתר.
 תיאום מול יזם, קבלן ותפעול דרש תקשורת טכנית ברורה ויעילה.
@@ -95,7 +106,7 @@ export const projectsData: ProjectData[] = [
     id: "ashalim-a",
     title: "אשלים PLOT A - תחנת אנרגיה תרמו־סולארית (CSP)",
     subtitle: "שירות: פיקוח וליווי הפעלה",
-    image: "/placeholder.svg",
+    image: ashalimA,
     text: `פרויקט CSP רחב היקף המשלב ייצור תרמי ואגירת חום.
 מהנדסי רגיד שולבו בצוות הקבלן לפיקוח על מערכות השטח והמגדל.
 הובלנו את תהליכי הבדיקות, האינטגרציה וההרצות במערכות מורכבות של חום ובקרה.
@@ -105,7 +116,7 @@ export const projectsData: ProjectData[] = [
     id: "ashalim-b",
     title: "אשלים PLOT B - מגדל השמש",
     subtitle: "שירות: פיקוח וליווי הרצה",
-    image: "/placeholder.svg",
+    image: ashalimB,
     text: `פרויקט מתקדם המשלב ייצור תרמו־סולארי עם מערכות אגירה.
 רגיד סיפקה מהנדסים לניהול ההקמה, פיקוח וריכוז עבודות קבלני המשנה.
 צוותינו הובילו תהליך הרצה מלא ופתרו פערים טכניים בשטח.

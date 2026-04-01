@@ -1,5 +1,5 @@
 import deadSea from "@/assets/projects/dead-sea.png";
-import sorek2 from "@/assets/projects/sorek2.png";
+
 import opcRotem from "@/assets/projects/opc-rotem.png";
 import dalia from "@/assets/projects/dalia.jpeg";
 import dorad from "@/assets/projects/dorad.jpeg";
@@ -30,17 +30,6 @@ export const projectsData: ProjectData[] = [
 בנוסף, רגיד מפעילה צוות קבוע באתר מעל עשור, עם ביצוע של למעלה מ־50 פרויקטים לאורך השנים. הפעילות כוללת הרצות, שדרוגים, בדיקות מתקנים ופתרון תקלות בתשתיות מורכבות.
 
 הנוכחות המתמשכת באתר והיכולת להפעיל צוותים מקצועיים לאורך זמן מאפשרות שמירה על רציפות תפעולית, שיפור ביצועים ומתן מענה מהיר לצרכים משתנים.`,
-  },
-  {
-    id: "sorek2",
-    title: "שורק 2 – בלוק אנרגיה (130–140MW)",
-    subtitle: "שירות: הרצה והפעלה",
-    image: sorek2,
-    text: `בלוק אנרגיה מתקדם התומך באחד ממפעלי ההתפלה הגדולים בישראל.
-רגיד ביצעה תהליך קומישנינג מלא - הכנת מסמכים, בדיקות התקנה, Punch List והרצות.
-העבודה כללה שילוב מערכות אנרגיה, מים ובקרה ברמת מורכבות גבוהה.
-ניהול נכון של התיאומים בין קבלנים תרם לעמידה בלוחות זמנים.
-התוצאה: הפעלה יציבה ומהירה של בלוק האנרגיה.`,
   },
   {
     id: "opc-rotem",

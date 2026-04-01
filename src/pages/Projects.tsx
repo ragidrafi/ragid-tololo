@@ -51,7 +51,7 @@ const ProjectsPageContent = () => {
                   {project.title}
                 </h2>
                 <p className="font-bold text-primary mb-4">{project.subtitle}</p>
-                <p className="text-foreground/80 leading-relaxed whitespace-pre-line">
+                <p className="text-foreground/80 leading-[1.8] whitespace-pre-line">
                   {project.text}
                 </p>
               </div>

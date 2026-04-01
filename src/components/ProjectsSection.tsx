@@ -41,8 +41,8 @@ const ProjectsSection = () => {
             </div>
             <div className="p-5" dir="rtl">
               <h3 className="font-bold text-secondary text-lg">{firstProject.title}</h3>
-              <p className="font-bold text-primary text-sm mt-1">{firstProject.subtitle}</p>
-              <p className="text-sm text-foreground/80 leading-relaxed mt-2 line-clamp-3">
+              <p className="font-bold text-primary mt-1">{firstProject.subtitle}</p>
+              <p className="text-foreground/80 leading-[1.8] mt-2 line-clamp-3">
                 {firstProject.text}
               </p>
             </div>

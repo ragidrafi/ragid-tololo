@@ -12,7 +12,10 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleClick = (e: React.MouseEvent, href: string) => {
-    if (href.startsWith("#") && location.pathname !== "/") {
+    if (href.startsWith("/")) {
+      e.preventDefault();
+      navigate(href);
+    } else if (href.startsWith("#") && location.pathname !== "/") {
       e.preventDefault();
       navigate("/" + href);
     }

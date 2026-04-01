@@ -5,7 +5,7 @@ export const siteData = {
     links: [
       { label: "ראשי", href: "#hero" },
       { label: "שירותים", href: "#services" },
-      { label: "פרויקטים", href: "#projects" },
+      { label: "פרויקטים", href: "/projects" },
       { label: "אודות", href: "#about" },
       { label: "יצירת קשר", href: "#contact" },
     ],

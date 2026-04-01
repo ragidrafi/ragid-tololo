@@ -1,5 +1,5 @@
 import deadSea from "@/assets/projects/dead-sea.png";
-import sorek2 from "@/assets/projects/sorek2.png";
+
 import opcRotem from "@/assets/projects/opc-rotem.png";
 import dalia from "@/assets/projects/dalia.jpeg";
 import dorad from "@/assets/projects/dorad.jpeg";

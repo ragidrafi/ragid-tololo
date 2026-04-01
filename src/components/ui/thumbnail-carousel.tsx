@@ -50,7 +50,7 @@ export default function ThumbnailCarousel({ items }: ThumbnailCarouselProps) {
               className="w-full h-full object-cover"
               draggable={false}
             />
-            <div className="absolute bottom-4 left-4 z-10 text-white text-sm font-medium drop-shadow-lg">
+            <div className="absolute bottom-4 left-4 z-10 text-white font-medium drop-shadow-lg">
               {item.title}
             </div>
           </div>

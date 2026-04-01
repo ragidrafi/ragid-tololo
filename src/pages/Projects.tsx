@@ -16,18 +16,17 @@ const ProjectsPageContent = () => {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       <Header />
-      <div className="pt-24 pb-16 container-narrow">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 text-sm font-medium"
-        >
-          <ArrowRight size={18} />
-          חזרה לעמוד הראשי
-        </Link>
-
-        <h1 className="text-3xl md:text-4xl font-black text-foreground mb-12">
-          הפרויקטים שלנו
-        </h1>
+      <div className="pt-24 pb-16 container-narrow relative overflow-hidden">
+        <SectionWatermark text="פרויקטים" />
+        <div className="relative z-10">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 text-sm font-medium"
+          >
+            <ArrowRight size={18} />
+            חזרה לעמוד הראשי
+          </Link>
+        </div>
 
         <div className="flex flex-col gap-12">
           {projectsData.map((project, i) => (

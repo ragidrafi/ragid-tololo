@@ -172,10 +172,10 @@ const ServicesSection = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative px-8 py-4 rounded-xl text-base md:text-lg font-semibold transition-colors ${
+                  className={`relative px-6 py-3 md:px-8 md:py-4 rounded-xl text-sm md:text-lg font-semibold transition-all duration-200 ${
                     activeTab === tab.id
-                      ? "bg-[hsl(var(--toggle-active))] text-white"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "bg-[hsl(var(--toggle-active))] text-white shadow-lg"
+                      : "text-muted-foreground hover:bg-primary/15 hover:text-primary border border-transparent hover:border-primary/30"
                   }`}
                 >
                   {tab.label}

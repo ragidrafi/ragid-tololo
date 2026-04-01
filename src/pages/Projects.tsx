@@ -28,7 +28,7 @@ const ProjectsPageContent = () => {
           </Link>
         </div>
 
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-12 relative z-10">
           {projectsData.map((project, i) => (
             <motion.article
               key={project.id}

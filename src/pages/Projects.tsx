@@ -21,7 +21,7 @@ const ProjectsPageContent = () => {
         <div className="relative z-10">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 text-sm font-medium"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 font-medium"
           >
             <ArrowRight size={18} />
             חזרה לעמוד הראשי
@@ -47,7 +47,7 @@ const ProjectsPageContent = () => {
                 />
               </div>
               <div className="p-6 md:p-8">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                <h2 className="font-bold text-foreground mb-2">
                   {project.title}
                 </h2>
                 <p className="font-bold text-primary mb-4">{project.subtitle}</p>

@@ -47,7 +47,7 @@ const ProjectsPageContent = () => {
                 />
               </div>
               <div className="p-6 md:p-8">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                <h2 className="font-bold text-foreground mb-2">
                   {project.title}
                 </h2>
                 <p className="font-bold text-primary mb-4">{project.subtitle}</p>

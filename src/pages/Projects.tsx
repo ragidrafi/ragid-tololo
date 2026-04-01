@@ -21,7 +21,7 @@ const ProjectsPageContent = () => {
         <div className="relative z-10">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 text-sm font-medium"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 font-medium"
           >
             <ArrowRight size={18} />
             חזרה לעמוד הראשי

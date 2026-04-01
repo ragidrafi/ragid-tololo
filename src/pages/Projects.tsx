@@ -1,5 +1,6 @@
 import { projectsData } from "@/data/projects";
 import Header from "@/components/Header";
+import SectionWatermark from "@/components/SectionWatermark";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";

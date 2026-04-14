@@ -8,7 +8,7 @@ import tevaLogo from "@/assets/clients/teva.png";
 
 import hevratHashmalLogo from "@/assets/clients/hevrat-hashmal.png";
 import belectricLogo from "@/assets/clients/belectric.png";
-
+import ragidLogo from "@/assets/clients/ragid.png";
 import carlisleLogo from "@/assets/clients/carlisle.png";
 import doradLogo from "@/assets/clients/dorad.png";
 import ideLogo from "@/assets/clients/ide.png";
@@ -30,7 +30,7 @@ const logos = [
   
   { src: hevratHashmalLogo, alt: "חברת החשמל" },
   { src: belectricLogo, alt: "Belectric" },
-  
+  { src: ragidLogo, alt: "Ragid" },
   { src: carlisleLogo, alt: "Carlisle" },
   { src: doradLogo, alt: "דוראד אנרגיה" },
   { src: ideLogo, alt: "IDE Technologies" },
@@ -51,7 +51,7 @@ const ClientsSection = () => {
         <div className="absolute inset-0 bg-white/[0.04] rounded-2xl" />
 
         {/* Desktop: centered wrap */}
-        <div className="hidden md:grid grid-cols-6 items-center justify-items-center gap-12 px-8">
+        <div className="hidden md:flex items-center justify-center gap-16 flex-wrap px-8">
           {logos.map((logo, i) => (
             <img
               key={i}

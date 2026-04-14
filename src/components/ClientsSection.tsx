@@ -38,6 +38,10 @@ const logos = [
   { src: geVernovaLogo, alt: "GE Vernova" },
   { src: dalyaLogo, alt: "דליה" },
   { src: alstomLogo, alt: "Alstom" },
+  { src: mifaleYamLogo, alt: "מפעלי ים המלח" },
+  { src: shikunLogo, alt: "שיכון ובינוי" },
+  { src: poscoLogo, alt: "Posco" },
+  { src: siemensEnergyLogo, alt: "Siemens Energy" },
 ];
 
 const ClientsSection = () => {

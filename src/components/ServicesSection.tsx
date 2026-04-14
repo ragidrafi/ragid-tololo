@@ -201,24 +201,26 @@ const ServicesSection = () => {
                     {tab.content}
 
                     {/* Mini navigation buttons */}
-                    <div className="flex items-center justify-center gap-3 mt-10 pt-6 border-t border-primary/40">
-                      {tabs.map((t) => (
-                        <button
-                          key={t.id}
-                          onClick={() => {
-                            setActiveTab(t.id);
-                            document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                          dir="rtl"
-                          className={`px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 border ${
-                            activeTab === t.id
-                              ? "bg-[hsl(var(--toggle-active))] text-white border-[hsl(var(--toggle-active))]"
-                              : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50"
-                          }`}
-                        >
-                          {t.label}
-                        </button>
-                      ))}
+                    <div className="mt-10 pt-6 border-t border-primary/40">
+                      <div className="flex items-center justify-center gap-3">
+                        {tabs.map((t) => (
+                          <button
+                            key={t.id}
+                            onClick={() => {
+                              setActiveTab(t.id);
+                              document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            dir="rtl"
+                            className={`px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 border ${
+                              activeTab === t.id
+                                ? "bg-[hsl(var(--toggle-active))] text-white border-[hsl(var(--toggle-active))]"
+                                : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50"
+                            }`}
+                          >
+                            {t.label}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </motion.div>
                 )

@@ -166,35 +166,21 @@ const ServicesSection = () => {
         <p className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10" dir="rtl">רגיד פועלת בשני תחומים עיקריים:</p>
 
         <div className="flex justify-center mb-10">
-          <div className="inline-flex gap-12 md:gap-16 items-center">
-            <div className="relative">
-              <span className="absolute -top-8 -right-10 text-[50px] md:text-[90px] font-black text-foreground/[0.08] leading-none select-none pointer-events-none">1</span>
+          <div className="inline-flex gap-4">
+            {tabs.map((tab) => (
               <button
-                onClick={() => setActiveTab(tabs[0].id)}
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
                 dir="rtl"
-                className={`relative z-10 px-8 py-4 md:px-10 md:py-5 rounded-xl text-sm md:text-lg font-semibold transition-all duration-200 border-2 ${
-                  activeTab === tabs[0].id
+                className={`relative px-8 py-4 md:px-10 md:py-5 rounded-xl text-sm md:text-lg font-semibold transition-all duration-200 border-2 ${
+                  activeTab === tab.id
                     ? "bg-[hsl(var(--toggle-active))] text-white shadow-lg border-[hsl(var(--toggle-active))]"
                     : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50 shadow-sm"
                 }`}
               >
-                {tabs[0].label}
+                {tab.label}
               </button>
-            </div>
-            <div className="relative">
-              <span className="absolute -top-8 -right-10 text-[50px] md:text-[90px] font-black text-foreground/[0.08] leading-none select-none pointer-events-none">2</span>
-              <button
-                onClick={() => setActiveTab(tabs[1].id)}
-                dir="rtl"
-                className={`relative z-10 px-8 py-4 md:px-10 md:py-5 rounded-xl text-sm md:text-lg font-semibold transition-all duration-200 border-2 ${
-                  activeTab === tabs[1].id
-                    ? "bg-[hsl(var(--toggle-active))] text-white shadow-lg border-[hsl(var(--toggle-active))]"
-                    : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50 shadow-sm"
-                }`}
-              >
-                {tabs[1].label}
-              </button>
-            </div>
+            ))}
           </div>
         </div>
 

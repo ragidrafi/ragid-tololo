@@ -52,7 +52,7 @@ const ClientsSection = () => {
                 key={i}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-20 w-auto object-contain opacity-70 flex-shrink-0"
+                className="h-20 w-auto object-contain opacity-70 flex-shrink-0 grayscale"
               />
             ))}
           </div>

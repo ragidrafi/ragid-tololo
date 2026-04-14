@@ -14,6 +14,11 @@ import doradLogo from "@/assets/clients/dorad.png";
 import electraLogo from "@/assets/clients/electra.png";
 import ideLogo from "@/assets/clients/ide.png";
 import geVernovaLogo from "@/assets/clients/ge-vernova.png";
+import alstomLogo from "@/assets/clients/alstom.png";
+import deadSeaLogo from "@/assets/clients/dead-sea.png";
+import shikunBinuiLogo from "@/assets/clients/shikun-binui.png";
+import poscoLogo from "@/assets/clients/posco.png";
+import siemensEnergyLogo from "@/assets/clients/siemens-energy.png";
 
 const logos = [
   { src: ctsLogo, alt: "CTS" },

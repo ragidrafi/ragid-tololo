@@ -5,7 +5,7 @@ import perrigoLogo from "@/assets/clients/perrigo.png";
 import phibroLogo from "@/assets/clients/phibro.png";
 import shebaLogo from "@/assets/clients/sheba.png";
 import tevaLogo from "@/assets/clients/teva.png";
-import iclLogo from "@/assets/clients/icl.png";
+
 import hevratHashmalLogo from "@/assets/clients/hevrat-hashmal.png";
 import belectricLogo from "@/assets/clients/belectric.png";
 import ragidLogo from "@/assets/clients/ragid.png";
@@ -27,7 +27,7 @@ const logos = [
   { src: phibroLogo, alt: "Phibro" },
   { src: shebaLogo, alt: "Sheba" },
   { src: tevaLogo, alt: "Teva" },
-  { src: iclLogo, alt: "ICL" },
+  
   { src: hevratHashmalLogo, alt: "חברת החשמל" },
   { src: belectricLogo, alt: "Belectric" },
   { src: ragidLogo, alt: "Ragid" },
@@ -57,7 +57,7 @@ const ClientsSection = () => {
               key={i}
               src={logo.src}
               alt={logo.alt}
-              className="h-24 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+              className="h-24 w-auto object-contain"
             />
           ))}
         </div>
@@ -70,7 +70,7 @@ const ClientsSection = () => {
                 key={i}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-20 w-auto object-contain opacity-70 flex-shrink-0"
+                className="h-20 w-auto object-contain flex-shrink-0"
               />
             ))}
           </div>

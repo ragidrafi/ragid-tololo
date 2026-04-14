@@ -1,24 +1,11 @@
+
+
 import ctsLogo from "@/assets/clients/cts.png";
 import perrigoLogo from "@/assets/clients/perrigo.png";
 import phibroLogo from "@/assets/clients/phibro.png";
 import shebaLogo from "@/assets/clients/sheba.png";
 import tevaLogo from "@/assets/clients/teva.png";
 import iclLogo from "@/assets/clients/icl.png";
-import daliaLogo from "@/assets/clients/dalia.png";
-import ragidLogo from "@/assets/clients/ragid.png";
-import ranproLogo from "@/assets/clients/ranpro.png";
-import iecLogo from "@/assets/clients/iec.png";
-import belectricLogo from "@/assets/clients/belectric.png";
-import carlisleLogo from "@/assets/clients/carlisle.png";
-import doradLogo from "@/assets/clients/dorad.png";
-import electraLogo from "@/assets/clients/electra.png";
-import ideLogo from "@/assets/clients/ide.png";
-import geVernovaLogo from "@/assets/clients/ge-vernova.png";
-import alstomLogo from "@/assets/clients/alstom.png";
-import deadSeaLogo from "@/assets/clients/dead-sea.png";
-import shikunBinuiLogo from "@/assets/clients/shikun-binui.png";
-import poscoLogo from "@/assets/clients/posco.png";
-import siemensEnergyLogo from "@/assets/clients/siemens-energy.png";
 
 const logos = [
   { src: ctsLogo, alt: "CTS" },
@@ -27,21 +14,6 @@ const logos = [
   { src: shebaLogo, alt: "Sheba" },
   { src: tevaLogo, alt: "Teva" },
   { src: iclLogo, alt: "ICL" },
-  { src: daliaLogo, alt: "Dalia" },
-  { src: ragidLogo, alt: "Ragid" },
-  { src: ranproLogo, alt: "Ranpro" },
-  { src: iecLogo, alt: "IEC" },
-  { src: belectricLogo, alt: "Belectric" },
-  { src: carlisleLogo, alt: "Carlisle" },
-  { src: doradLogo, alt: "Dorad Energy" },
-  { src: electraLogo, alt: "Electra" },
-  { src: ideLogo, alt: "IDE Technologies" },
-  { src: geVernovaLogo, alt: "GE Vernova" },
-  { src: alstomLogo, alt: "Alstom" },
-  { src: deadSeaLogo, alt: "מפעלי ים המלח" },
-  { src: shikunBinuiLogo, alt: "שיכון ובינוי" },
-  { src: poscoLogo, alt: "Posco" },
-  { src: siemensEnergyLogo, alt: "Siemens Energy" },
 ];
 
 const ClientsSection = () => {

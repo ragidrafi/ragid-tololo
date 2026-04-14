@@ -199,6 +199,24 @@ const ServicesSection = () => {
                     transition={{ duration: 0.3 }}
                   >
                     {tab.content}
+
+                    {/* Mini navigation buttons */}
+                    <div className="flex justify-center gap-3 mt-10 pt-6 border-t border-border/50">
+                      {tabs.map((t) => (
+                        <button
+                          key={t.id}
+                          onClick={() => setActiveTab(t.id)}
+                          dir="rtl"
+                          className={`px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 border ${
+                            activeTab === t.id
+                              ? "bg-[hsl(var(--toggle-active))] text-white border-[hsl(var(--toggle-active))]"
+                              : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50"
+                          }`}
+                        >
+                          {t.label}
+                        </button>
+                      ))}
+                    </div>
                   </motion.div>
                 )
             )}

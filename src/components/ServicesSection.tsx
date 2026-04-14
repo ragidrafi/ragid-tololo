@@ -217,7 +217,7 @@ const ServicesSection = () => {
                                 : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50"
                             }`}
                           >
-                            {t.label}
+                            {t.label.split('|')[0].trim()}
                           </button>
                         ))}
                       </div>

@@ -168,7 +168,7 @@ const ServicesSection = () => {
         <div className="flex justify-center mb-10">
           <div className="inline-flex gap-6 items-center">
             <div className="relative">
-              <span className="absolute -top-6 -right-2 text-[40px] md:text-[80px] font-black text-foreground/[0.08] leading-none select-none pointer-events-none">1</span>
+              <span className="absolute -top-8 -right-10 text-[50px] md:text-[90px] font-black text-foreground/[0.08] leading-none select-none pointer-events-none">1</span>
               <button
                 onClick={() => setActiveTab(tabs[0].id)}
                 dir="rtl"
@@ -182,7 +182,7 @@ const ServicesSection = () => {
               </button>
             </div>
             <div className="relative">
-              <span className="absolute -top-6 -right-2 text-[40px] md:text-[80px] font-black text-foreground/[0.08] leading-none select-none pointer-events-none">2</span>
+              <span className="absolute -top-8 -right-10 text-[50px] md:text-[90px] font-black text-foreground/[0.08] leading-none select-none pointer-events-none">2</span>
               <button
                 onClick={() => setActiveTab(tabs[1].id)}
                 dir="rtl"

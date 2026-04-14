@@ -16,6 +16,10 @@ import iclNewLogo from "@/assets/clients/icl-new.png";
 import geVernovaLogo from "@/assets/clients/ge-vernova.png";
 import dalyaLogo from "@/assets/clients/dalya.png";
 import alstomLogo from "@/assets/clients/alstom.png";
+import mifaleYamLogo from "@/assets/clients/mifale-yam-hamelach.png";
+import shikunLogo from "@/assets/clients/shikun-ubinui.png";
+import poscoLogo from "@/assets/clients/posco.png";
+import siemensEnergyLogo from "@/assets/clients/siemens-energy.png";
 
 const logos = [
   { src: ctsLogo, alt: "CTS" },
@@ -34,6 +38,10 @@ const logos = [
   { src: geVernovaLogo, alt: "GE Vernova" },
   { src: dalyaLogo, alt: "דליה" },
   { src: alstomLogo, alt: "Alstom" },
+  { src: mifaleYamLogo, alt: "מפעלי ים המלח" },
+  { src: shikunLogo, alt: "שיכון ובינוי" },
+  { src: poscoLogo, alt: "Posco" },
+  { src: siemensEnergyLogo, alt: "Siemens Energy" },
 ];
 
 const ClientsSection = () => {

@@ -201,7 +201,7 @@ const ServicesSection = () => {
                     {tab.content}
 
                     {/* Mini navigation buttons */}
-                    <div className="flex justify-center gap-3 mt-10 pt-6 border-t border-border/50">
+                    <div className="flex items-center justify-center gap-3 mt-10 pt-6 border-t border-primary/40">
                       {tabs.map((t) => (
                         <button
                           key={t.id}

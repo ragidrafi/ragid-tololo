@@ -39,7 +39,7 @@ const ClientsSection = () => {
               key={i}
               src={logo.src}
               alt={logo.alt}
-              className="h-24 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+              className="h-24 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale"
             />
           ))}
         </div>

@@ -37,6 +37,11 @@ const logos = [
   { src: electraLogo, alt: "Electra" },
   { src: ideLogo, alt: "IDE Technologies" },
   { src: geVernovaLogo, alt: "GE Vernova" },
+  { src: alstomLogo, alt: "Alstom" },
+  { src: deadSeaLogo, alt: "מפעלי ים המלח" },
+  { src: shikunBinuiLogo, alt: "שיכון ובינוי" },
+  { src: poscoLogo, alt: "Posco" },
+  { src: siemensEnergyLogo, alt: "Siemens Energy" },
 ];
 
 const ClientsSection = () => {

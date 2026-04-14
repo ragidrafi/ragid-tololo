@@ -40,7 +40,7 @@ const Header = () => {
         </nav>
 
         <a href="#hero" onClick={logoClick} className="md:order-last">
-          <img src={logo} alt="Ragid" <img src={logo} alt="Ragid" className="h-[4.2rem]" /> />
+          <img src={logo} alt="Ragid" className="h-[4.2rem]" />
         </a>
 
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Toggle menu">

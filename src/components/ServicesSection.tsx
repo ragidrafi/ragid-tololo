@@ -166,7 +166,7 @@ const ServicesSection = () => {
         <p className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10" dir="rtl">רגיד פועלת בשני תחומים עיקריים:</p>
 
         <div className="flex justify-center mb-10">
-          <div className="inline-flex gap-6 items-center">
+          <div className="inline-flex gap-12 md:gap-16 items-center">
             <div className="relative">
               <span className="absolute -top-8 -right-10 text-[50px] md:text-[90px] font-black text-foreground/[0.08] leading-none select-none pointer-events-none">1</span>
               <button

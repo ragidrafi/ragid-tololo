@@ -6,6 +6,16 @@ import phibroLogo from "@/assets/clients/phibro.png";
 import shebaLogo from "@/assets/clients/sheba.png";
 import tevaLogo from "@/assets/clients/teva.png";
 import iclLogo from "@/assets/clients/icl.png";
+import hevratHashmalLogo from "@/assets/clients/hevrat-hashmal.png";
+import belectricLogo from "@/assets/clients/belectric.png";
+import ragidLogo from "@/assets/clients/ragid.png";
+import carlisleLogo from "@/assets/clients/carlisle.png";
+import doradLogo from "@/assets/clients/dorad.png";
+import ideLogo from "@/assets/clients/ide.png";
+import iclNewLogo from "@/assets/clients/icl-new.png";
+import geVernovaLogo from "@/assets/clients/ge-vernova.png";
+import dalyaLogo from "@/assets/clients/dalya.png";
+import alstomLogo from "@/assets/clients/alstom.png";
 
 const logos = [
   { src: ctsLogo, alt: "CTS" },
@@ -14,6 +24,16 @@ const logos = [
   { src: shebaLogo, alt: "Sheba" },
   { src: tevaLogo, alt: "Teva" },
   { src: iclLogo, alt: "ICL" },
+  { src: hevratHashmalLogo, alt: "חברת החשמל" },
+  { src: belectricLogo, alt: "Belectric" },
+  { src: ragidLogo, alt: "Ragid" },
+  { src: carlisleLogo, alt: "Carlisle" },
+  { src: doradLogo, alt: "דוראד אנרגיה" },
+  { src: ideLogo, alt: "IDE Technologies" },
+  { src: iclNewLogo, alt: "ICL" },
+  { src: geVernovaLogo, alt: "GE Vernova" },
+  { src: dalyaLogo, alt: "דליה" },
+  { src: alstomLogo, alt: "Alstom" },
 ];
 
 const ClientsSection = () => {

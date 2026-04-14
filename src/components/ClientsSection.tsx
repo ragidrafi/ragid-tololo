@@ -1,15 +1,11 @@
+
+
 import ctsLogo from "@/assets/clients/cts.png";
 import perrigoLogo from "@/assets/clients/perrigo.png";
 import phibroLogo from "@/assets/clients/phibro.png";
-import shebaLogo from "@/assets/clients/sheba.svg";
-import tevaLogo from "@/assets/clients/teva.svg";
+import shebaLogo from "@/assets/clients/sheba.png";
+import tevaLogo from "@/assets/clients/teva.png";
 import iclLogo from "@/assets/clients/icl.png";
-import aiclLogo from "@/assets/clients/aicl.svg";
-import doubleringLogo from "@/assets/clients/doublering.svg";
-import googleLogo from "@/assets/clients/google.svg";
-import iphiroLogo from "@/assets/clients/iphiro.svg";
-import poeocLogo from "@/assets/clients/poeoc.svg";
-import siemensLogo from "@/assets/clients/siemens.svg";
 
 const logos = [
   { src: ctsLogo, alt: "CTS" },
@@ -18,12 +14,6 @@ const logos = [
   { src: shebaLogo, alt: "Sheba" },
   { src: tevaLogo, alt: "Teva" },
   { src: iclLogo, alt: "ICL" },
-  { src: aiclLogo, alt: "AICL" },
-  { src: doubleringLogo, alt: "Double Ring" },
-  { src: googleLogo, alt: "Google" },
-  { src: iphiroLogo, alt: "Iphiro" },
-  { src: poeocLogo, alt: "POEOC" },
-  { src: siemensLogo, alt: "Siemens" },
 ];
 
 const ClientsSection = () => {
@@ -39,7 +29,7 @@ const ClientsSection = () => {
               key={i}
               src={logo.src}
               alt={logo.alt}
-              className="h-24 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale"
+              className="h-24 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
           ))}
         </div>
@@ -52,7 +42,7 @@ const ClientsSection = () => {
                 key={i}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-20 w-auto object-contain opacity-70 flex-shrink-0 grayscale"
+                className="h-20 w-auto object-contain opacity-70 flex-shrink-0"
               />
             ))}
           </div>

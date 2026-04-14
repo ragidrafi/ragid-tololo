@@ -166,17 +166,17 @@ const ServicesSection = () => {
         {/* Card with Toggle + Content */}
         <div className="floating-card bg-card/60 backdrop-blur-sm p-8 md:p-12">
           {/* Toggle */}
-          <div className="flex justify-center mb-10">
-            <div className="inline-flex rounded-2xl border border-border bg-background/60 backdrop-blur-sm p-2 gap-2">
+           <div className="flex justify-center mb-10">
+            <div className="inline-flex gap-4">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   dir="rtl"
-                  className={`relative px-6 py-3 md:px-8 md:py-4 rounded-xl text-sm md:text-lg font-semibold transition-all duration-200 ${
+                  className={`relative px-8 py-4 md:px-10 md:py-5 rounded-xl text-sm md:text-lg font-semibold transition-all duration-200 border-2 ${
                     activeTab === tab.id
-                      ? "bg-[hsl(var(--toggle-active))] text-white shadow-lg"
-                      : "text-muted-foreground hover:bg-primary/15 hover:text-primary border border-transparent hover:border-primary/30"
+                      ? "bg-[hsl(var(--toggle-active))] text-white shadow-lg border-[hsl(var(--toggle-active))]"
+                      : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50 shadow-sm"
                   }`}
                 >
                   {tab.label}

@@ -51,13 +51,13 @@ const ClientsSection = () => {
         <div className="absolute inset-0 bg-white/[0.04] rounded-2xl" />
 
         {/* Desktop: centered wrap */}
-        <div className="hidden md:grid grid-cols-6 items-center justify-items-center gap-12 px-8">
+        <div className="hidden md:grid grid-cols-6 items-center justify-items-center gap-8 px-16">
           {logos.map((logo, i) => (
             <img
               key={i}
               src={logo.src}
               alt={logo.alt}
-              className="h-24 w-auto object-contain rounded-xl"
+              className="h-16 w-auto object-contain rounded-xl"
             />
           ))}
         </div>

@@ -205,7 +205,10 @@ const ServicesSection = () => {
                       {tabs.map((t) => (
                         <button
                           key={t.id}
-                          onClick={() => setActiveTab(t.id)}
+                          onClick={() => {
+                            setActiveTab(t.id);
+                            document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                          }}
                           dir="rtl"
                           className={`px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 border ${
                             activeTab === t.id

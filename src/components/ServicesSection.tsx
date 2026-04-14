@@ -211,7 +211,7 @@ const ServicesSection = () => {
                               document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
                             }}
                             dir="rtl"
-                            className={`px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 border ${
+                            className={`flex-1 px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 border ${
                               activeTab === t.id
                                 ? "bg-[hsl(var(--toggle-active))] text-white border-[hsl(var(--toggle-active))]"
                                 : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50"

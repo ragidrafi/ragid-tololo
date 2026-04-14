@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 const tabs = [
   {
     id: "operations",
-    label: "Operations / CRO | מפעילי חדר בקרה",
+    label: "מפעילי חדר בקרה | Operations & CRO",
     content: (
       <div className="text-start space-y-6">
-        <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">מפעילי חדר בקרה | Operations / CRO</p>
+        <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">מפעילי חדר בקרה | Operations & CRO</p>
 
         <p className="text-lg md:text-xl text-foreground leading-[1.8] font-medium">
           הפעלה של מתקני אנרגיה מחדר הבקרה ובשטח, 24/7 - עם צוות מפעילים מקומיים ובינ״ל, תגבור משמרות, מעטפת ניהול מלאה ותיאום מלא מול צוות הלקוח.
@@ -83,10 +83,10 @@ const tabs = [
   },
   {
     id: "commissioning",
-    label: "Commissioning + Start‑Up | הרצה",
+    label: "הרצה | Commissioning & Start‑Up",
     content: (
       <div className="text-start space-y-6">
-        <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">הרצה | Commissioning + Start‑Up</p>
+        <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">הרצה | Commissioning & Start‑Up</p>
 
         <p className="text-foreground/80 leading-[1.8]">
           זהו השלב שמחבר בין סיום ההקמה לבין תחילת התפעול בפועל. זהו תהליך שיטתי שמוודא שכל המערכות - חשמל, מכניקה, בקרה ותהליכים - פועלות יחד בצורה מלאה, יציבה ובהתאם לתכנון. ברגיד מובילים את התהליך מקצה לקצה, עם ניסיון של למעלה מ־20 שנה בפרויקטים מורכבים בתחנות כוח, מתקני אנרגיה ותעשייה כבדה.

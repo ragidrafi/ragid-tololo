@@ -50,27 +50,14 @@ const ClientsSection = () => {
       <div className="relative py-8 mt-10">
         <div className="absolute inset-0 bg-white/[0.04] rounded-2xl" />
 
-        {/* Desktop: centered wrap */}
-        <div className="hidden md:flex items-center justify-center gap-16 flex-wrap px-8">
-          {logos.map((logo, i) => (
-            <img
-              key={i}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-24 w-auto object-contain rounded-xl"
-            />
-          ))}
-        </div>
-
-        {/* Mobile: infinite scroll marquee */}
-        <div className="md:hidden overflow-hidden px-0" dir="ltr">
-          <div className="flex items-center gap-10 animate-marquee w-max">
-            {[...logos, ...logos].map((logo, i) => (
+        <div className="overflow-hidden" dir="ltr">
+          <div className="flex items-center gap-12 animate-marquee w-max">
+            {[...logos, ...logos, ...logos].map((logo, i) => (
               <img
                 key={i}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-20 w-auto object-contain flex-shrink-0 rounded-xl"
+                className="h-20 md:h-24 w-auto object-contain flex-shrink-0 rounded-xl"
               />
             ))}
           </div>

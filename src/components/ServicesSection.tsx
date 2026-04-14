@@ -166,7 +166,9 @@ const ServicesSection = () => {
         {/* Card with Toggle + Content */}
         <div className="floating-card bg-card/60 backdrop-blur-sm p-8 md:p-12">
           {/* Toggle */}
-           <div className="flex justify-center mb-10">
+          <p className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10" dir="rtl">רגיד פועלת בשני תחומים עיקריים:</p>
+
+          <div className="flex justify-center mb-10">
             <div className="inline-flex gap-4">
               {tabs.map((tab) => (
                 <button

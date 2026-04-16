@@ -166,7 +166,7 @@ const ServicesSection = () => {
         <p className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10" dir="rtl">רגיד פועלת בשני תחומים עיקריים:</p>
 
         <div className="flex justify-center mb-10">
-          <div className="flex gap-4 w-full max-w-4xl">
+          <div className="flex gap-4 w-full max-w-4xl items-stretch">
             {tabs.map((tab) => (
               <button
                 key={tab.id}

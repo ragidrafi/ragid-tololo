@@ -166,13 +166,13 @@ const ServicesSection = () => {
         <p className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10" dir="rtl">רגיד פועלת בשני תחומים עיקריים:</p>
 
         <div className="flex justify-center mb-10">
-          <div className="inline-flex gap-4">
+          <div className="flex gap-4 w-full max-w-4xl">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 dir="rtl"
-                className={`relative px-8 py-4 md:px-10 md:py-5 rounded-xl text-sm md:text-lg font-semibold transition-all duration-200 border-2 ${
+                className={`flex-1 relative px-8 py-4 md:px-10 md:py-5 rounded-xl text-sm md:text-lg font-semibold transition-all duration-200 border-2 ${
                   activeTab === tab.id
                     ? "bg-[hsl(var(--toggle-active))] text-white shadow-lg border-[hsl(var(--toggle-active))]"
                     : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50 shadow-sm"

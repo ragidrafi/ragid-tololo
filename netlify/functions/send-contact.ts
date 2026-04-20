@@ -1,20 +1,21 @@
 import { Resend } from "resend";
+import type { Handler } from "@netlify/functions";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async (req: Request) => {
-  if (req.method !== "POST") {
-    return new Response("Method not allowed", { status: 405 });
+export const handler: Handler = async (event) => {
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method not allowed" };
   }
 
   try {
-    const { name, email, message } = await req.json();
+    const { name, email, message } = JSON.parse(event.body || "{}");
 
     if (!email) {
-      return new Response(JSON.stringify({ error: "Email is required" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Email is required" }),
+      };
     }
 
     await resend.emails.send({
@@ -32,17 +33,15 @@ export default async (req: Request) => {
       `,
     });
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ success: true }),
+    };
   } catch (err) {
     console.error("send-contact error:", err);
-    return new Response(JSON.stringify({ error: "Failed to send email" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Failed to send email" }),
+    };
   }
 };
-
-export const config = { path: "/api/send-contact" };

@@ -22,7 +22,7 @@ const ContactFooter = () => {
     e.preventDefault();
     setStatus("loading");
     try {
-      const res = await fetch("/api/send-contact", {
+      const res = await fetch("/.netlify/functions/send-contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),

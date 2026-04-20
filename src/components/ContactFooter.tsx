@@ -140,10 +140,12 @@ const ContactFooter = () => {
               <h4 className="font-bold text-lg mb-4">{footer.col3Title}</h4>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-2 opacity-80">
-                  <Phone size={16} /> {footer.phone}
+                  <Phone size={16} />
+                  <a href={`tel:${footer.phone}`} className="hover:opacity-100 transition-opacity">{footer.phone}</a>
                 </li>
                 <li className="flex items-center gap-2 opacity-80">
-                  <Mail size={16} /> {footer.email}
+                  <Mail size={16} />
+                  <a href={`mailto:${footer.email}`} className="hover:opacity-100 transition-opacity">{footer.email}</a>
                 </li>
                 <li className="flex items-center gap-2 opacity-80">
                   <MapPin size={16} /> {footer.address}

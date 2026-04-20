@@ -13,6 +13,33 @@ const ContactFooter = () => {
   const siteData = useSiteData();
   const { contact, footer, header } = siteData;
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <>
       {/* Contact */}
@@ -34,31 +61,61 @@ const ContactFooter = () => {
 
             {/* Form - right side */}
             <div className="w-full md:max-w-md">
-              <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
-                <input type="text" placeholder="שם" className={inputClass} />
-                <input type="email" placeholder="מייל *" required className={inputClass} />
-                <textarea rows={4} placeholder="פרטי הפניה" className={`${inputClass} resize-none`} />
-                <label className="flex items-start gap-3 cursor-pointer text-sm text-foreground/70 leading-relaxed">
+              {status === "success" ? (
+                <div className="rounded-2xl bg-primary/10 border border-primary/30 px-6 py-8 text-center text-foreground">
+                  <p className="text-xl font-semibold text-primary mb-2">תודה!</p>
+                  <p className="text-foreground/80">פנייתך התקבלה. נחזור אליך בהקדם.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <input
-                    type="checkbox"
-                    defaultChecked
-                    className="mt-1 h-4 w-4 rounded border-white/20 accent-primary shrink-0"
+                    type="text"
+                    placeholder="שם"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className={inputClass}
                   />
-                  <span>
-                    אני מאשר/ת כי קראתי את{" "}
-                    <Link to="/privacy-policy" className="text-primary underline hover:brightness-110">
-                      מדיניות הפרטיות
-                    </Link>{" "}
-                    של החברה, מסכים/ה לעיבוד המידע בהתאם לה ומסכים/ה לקבל מהחברה מידע ועדכונים שיווקיים באמצעי תקשורת שונים.
-                  </span>
-                </label>
-                <button
-                  type="submit"
-                  className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110 transition-all"
-                >
-                  {contact.buttonText}
-                </button>
-              </form>
+                  <input
+                    type="email"
+                    placeholder="מייל *"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={inputClass}
+                  />
+                  <textarea
+                    rows={4}
+                    placeholder="פרטי הפניה"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className={`${inputClass} resize-none`}
+                  />
+                  <label className="flex items-start gap-3 cursor-pointer text-sm text-foreground/70 leading-relaxed">
+                    <input
+                      type="checkbox"
+                      defaultChecked
+                      className="mt-1 h-4 w-4 rounded border-white/20 accent-primary shrink-0"
+                    />
+                    <span>
+                      אני מאשר/ת כי קראתי את{" "}
+                      <Link to="/privacy-policy" className="text-primary underline hover:brightness-110">
+                        מדיניות הפרטיות
+                      </Link>{" "}
+                      של החברה, מסכים/ה לעיבוד המידע בהתאם לה ומסכים/ה לקבל מהחברה מידע ועדכונים שיווקיים באמצעי תקשורת שונים.
+                    </span>
+                  </label>
+                  {status === "error" && (
+                    <p className="text-sm text-red-400">אירעה שגיאה. אנא נסה שוב.</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110 transition-all disabled:opacity-60"
+                  >
+                    {status === "loading" ? "שולח..." : contact.buttonText}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

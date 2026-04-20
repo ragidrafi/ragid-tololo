@@ -19,7 +19,7 @@ export default async (req: Request) => {
 
     await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
-      to: ["info@ragid.co.il"],
+      to: ["ragid.rafi@gmail.com"],
       replyTo: email,
       subject: `פניה חדשה מהאתר${name ? ` - ${name}` : ""}`,
       html: `

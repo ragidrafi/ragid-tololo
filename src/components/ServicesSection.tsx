@@ -11,7 +11,7 @@ const tabs = [
       <div className="text-start space-y-6">
         <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">מפעילי חדר בקרה | Operations & CRO</p>
 
-        <p className="text-lg md:text-xl text-foreground leading-[1.8] font-medium">
+        <p className="text-foreground/80 leading-[1.8]">
           הפעלה של מתקני אנרגיה מחדר הבקרה ובשטח, 24/7 - עם צוות מפעילים מקומיים ובינ״ל, תגבור משמרות, מעטפת ניהול מלאה ותיאום מלא מול צוות הלקוח.
           <br />
           הלקוח לא צריך לדאוג לדבר - רק לשבץ משמרות.

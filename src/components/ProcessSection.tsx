@@ -1,4 +1,4 @@
-import { Zap, Sun, Server, Factory } from "lucide-react";
+import { Zap, Sun, Server } from "lucide-react";
 import SectionWatermark from "@/components/SectionWatermark";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
@@ -7,22 +7,17 @@ const industries: { icon: LucideIcon; title: string; description: string }[] = [
   {
     icon: Zap,
     title: "תחנות כוח",
-    description: "CCGT / קיטור / גז, 100–500MW, חדרי בקרה, GIS, DCS, תפעול 24/7.",
+    description: "תמיכה ניהולית והנדסית בהקמה של תחנות חדשות ושדרוג קיימות, פיקוח, הרצה, הפעלה",
   },
   {
     icon: Sun,
     title: "מתקני אנרגיה",
-    description: "PV, אגירה (BESS), Utility‑Scale ותשתיות אנרגיה משלימות.",
+    description: "ליווי הנדסי ניהולי בפרוייקטים של הקמת תחנות משנה, PV, טורבינות גז וקיטור, אגירה. אינטגרציה והפעלה",
   },
   {
     icon: Server,
-    title: "Data Centers",
-    description: "מערכות חשמל/קירור/בקרה קריטיות, אינטגרציה בין ספקים, מוכנות O&M.",
-  },
-  {
-    icon: Factory,
-    title: "תעשייה כבדה",
-    description: "התפלת מים, מתקני פסולת, ייצור מימן, ייצור CO₂, מפעלי כימיה ופטרוכימיה.",
+    title: "דאטא סנטר",
+    description: "תכנון DC בכול הגדלים בשיתוף חברות התכנון המובילות בעולם. ניהול הקמה ,פיקוח וקומישנינג",
   },
 ];
 
@@ -34,11 +29,11 @@ const ProcessSection = () => {
         <div className="text-center mb-10 space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary">Energy. Data. Industry</h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto leading-[1.8]">
-            אנחנו פועלים ב-4 שווקים מרכזיים - כולם מבוססים על ניסיון מוכח.
+            אנחנו פועלים ב-3 שווקים מרכזיים - כולם מבוססים על ניסיון מוכח.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {industries.map((item, i) => {
             const Icon = item.icon;
             return (

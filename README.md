@@ -1,6 +1,6 @@
 # Welcome to your project
 
-## Project info
+## Project info -
 
 **URL**: https://ragidenergy.com/
 

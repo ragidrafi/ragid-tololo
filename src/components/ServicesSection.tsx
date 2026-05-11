@@ -6,76 +6,33 @@ import { motion, AnimatePresence } from "framer-motion";
 const tabs = [
   {
     id: "operations",
-    label: "מפעילי חדר בקרה | Operations & CRO",
+    label: "מפעילי חדר בקרה",
     content: (
       <div className="text-start space-y-6">
         <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">מפעילי חדר בקרה | Operations & CRO</p>
 
-        <p className="text-foreground/80 leading-[1.8]">
-          הפעלה של מתקני אנרגיה מחדר הבקרה ובשטח, 24/7 - עם צוות מפעילים מקומיים ובינ״ל, תגבור משמרות, מעטפת ניהול מלאה ותיאום מלא מול צוות הלקוח.
-          <br />
-          הלקוח לא צריך לדאוג לדבר - רק לשבץ משמרות.
+        <p className="text-foreground/80 leading-[1.8]" dir="rtl">
+          הפעלת מתקני אנרגיה מחדר הבקרה ובשטח, 24/7, באמצעות צוות מפעילים מקומיים ובינלאומיים, כולל תגבור משמרות ומעטפת ניהול מלאה בתיאום שוטף עם צוות הלקוח. הלקוח נדרש רק לשיבוץ משמרות, קביעת משימות והנחיה תפעולית — בעוד שכל תחומי ההעסקה, הניהול והאדמיניסטרציה מנוהלים על ידינו.
         </p>
 
         <div>
-          <p className="font-bold text-secondary mb-2">אחריות CRO בחדר בקרה:</p>
-          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
-            {[
-              "ניטור תהליכים, טרנדים והתראות דרך DCS",
-              "ביצוע פעולות שגרה ותיאום עם מפעילי שטח",
-              "סיוע באתחולים, כיבויים ומעברי מצב (בהרשאה)",
-              "תגובה לאזעקות ומצבים לא שגרתיים לפי מטריצת הסלמה",
-              "תיעוד משמרת, לוגים, העברת קו ברורה",
-              "עמידה מלאה ב‑Safety, Permit‑to‑Work ונהלי האתר",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <p className="font-bold text-secondary mb-2" dir="rtl">אחריות CRO בחדר בקרה</p>
+          <p className="text-foreground/80 leading-[1.8]" dir="rtl">
+            אחריות ה-CRO בחדר הבקרה כוללת ניטור שוטף של תהליכים, טרנדים והתראות דרך מערכת ה-DCS, לצד ביצוע פעולות שגרה ותיאום רציף עם מפעילי השטח. במסגרת התפקיד נדרש סיוע באתחולים, כיבויים ומעברי מצב בהתאם להרשאות, וכן תגובה לאזעקות ומצבים לא שגרתיים לפי מטריצת הסלמה מוגדרת. בנוסף, התפקיד כולל תיעוד מלא של המשמרת והלוגים, העברת קו מסודרת בין משמרות, והקפדה מלאה על נהלי בטיחות, Permit-to-Work ונהלי האתר.
+          </p>
         </div>
 
         <div>
-          <p className="font-bold text-secondary mb-2">מודל העסקה חיצוני מקצה‑לקצה (Outsourced Employment Model):</p>
-          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
-            {[
-              "איתור, מיון והתאמת מפעילים ייעודיים לחדר בקרה",
-              "העסקה מלאה לפי דיני עבודה בישראל",
-              "רילוקיישן מלא למפעילים מחו״ל (טיסות, דיור, רכב/הסעות, סים)",
-              "ניהול שכר, HR מקומי, רווחה וטיפול במקרים חריגים",
-              "קהילת מפעילים פעילה – יציבות ושימור ידע",
-              "Governance: נקודת קשר אחת, חיוב מרוכז חודשי",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <p className="font-bold text-secondary mb-2" dir="rtl">מודל ההעסקה החיצוני מקצה־לקצה</p>
+          <p className="text-foreground/80 leading-[1.8]" dir="rtl">
+            המודל כולל איתור, מיון והתאמה של מפעילים ייעודיים לחדר הבקרה, לצד העסקה מלאה בהתאם לדיני העבודה בישראל. במקרים של גיוס מחו״ל, ניתן מענה מלא לתהליך הרילוקיישן, כולל טיסות, דיור, רכב או הסעות וסים. בנוסף, מתבצע ניהול שוטף של שכר, HR מקומי, רווחה וטיפול במקרים חריגים, תוך תחזוקת קהילת מפעילים פעילה שמסייעת ליציבות ושימור ידע. כל הפעילות מנוהלת תחת Governance מסודר, עם נקודת קשר אחת וחיוב חודשי מרוכז.
+          </p>
         </div>
 
         <div>
-          <p className="font-bold text-secondary mb-2">גמישות משמרות וכוח‑אדם:</p>
-          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
-            {[
-              "שילוב מפעילים מקומיים + בינ״ל לפי הצורך",
-              "תגבור משמרות לילה / שבתות / חגים",
-              "שחרור מפעילי לקוח בחגים ושבתות",
-              "מעטפת אדמיניסטרטיבית מלאה: משמרות, נוכחות, דוחות, שכר, רווחה, חופשות מולדת",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <p className="font-bold text-secondary mb-2">אחריות הלקוח:</p>
-          <p className="text-foreground/80 leading-[1.8]">
-            לקבוע משימות ולהנחות תפעולית - שאר התעסוקה/ניהול/אדמיניסטרציה עלינו.
+          <p className="font-bold text-secondary mb-2" dir="rtl">גמישות משמרות וכוח־אדם</p>
+          <p className="text-foreground/80 leading-[1.8]" dir="rtl">
+            המודל מאפשר גמישות מלאה בניהול המשמרות וכוח האדם, תוך שילוב בין מפעילים מקומיים ובינלאומיים בהתאם לצורך. ניתן לתגבר משמרות לילה, שבתות וחגים, ואף לאפשר שחרור של מפעילי הלקוח בזמנים אלה. בנוסף, ניתנת מעטפת אדמיניסטרטיבית מלאה הכוללת ניהול משמרות, נוכחות, דוחות, שכר, רווחה ותיאום חופשות מולדת, כך שהפעילות מתנהלת באופן רציף, מסודר וללא עומס תפעולי על הלקוח.
           </p>
         </div>
       </div>
@@ -83,73 +40,38 @@ const tabs = [
   },
   {
     id: "commissioning",
-    label: "הרצה | Commissioning & Start‑Up",
+    label: "קומישנניג והרצה",
     content: (
       <div className="text-start space-y-6">
-        <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">הרצה | Commissioning & Start‑Up</p>
+        <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">קומישנניג והרצה | Commissioning & Start‑Up</p>
 
-        <p className="text-foreground/80 leading-[1.8]">
+        <p className="text-foreground/80 leading-[1.8]" dir="rtl">
           זהו השלב שמחבר בין סיום ההקמה לבין תחילת התפעול בפועל. זהו תהליך שיטתי שמוודא שכל המערכות - חשמל, מכניקה, בקרה ותהליכים - פועלות יחד בצורה מלאה, יציבה ובהתאם לתכנון. ברגיד מובילים את התהליך מקצה לקצה, עם ניסיון של למעלה מ־20 שנה בפרויקטים מורכבים בתחנות כוח, מתקני אנרגיה ותעשייה כבדה.
         </p>
 
-        <p className="text-foreground/80 leading-[1.8]">
+        <p className="text-foreground/80 leading-[1.8]" dir="rtl">
           התהליך משלב עבודה מוקדמת לצד פעילות אינטנסיבית בשטח, מתוך מטרה לזהות ולפתור פערים בזמן אמת, לצמצם תקלות לפני המסירה ולהבטיח מעבר מהיר וחלק לתפעול מלא (COD). הגישה של רגיד מבוססת על אינטגרציה מלאה בין כל הגורמים בפרויקט - מה שמאפשר לקצר לוחות זמנים, לשפר אמינות ולהביא את המערכת לביצועים מלאים בצורה מדויקת ובטוחה.
         </p>
 
         <div>
-          <p className="font-bold text-secondary mb-2">מה כולל תהליך הקומישנינג?</p>
+          <p className="font-bold text-secondary mb-2" dir="rtl">שלב ההכנה</p>
+          <p className="text-foreground/80 leading-[1.8]" dir="rtl">
+            בשלב ההכנה מתבצעות בדיקות תיעוד מקיפות, זיהוי וסגירת חוסרים ופערים, בניית תיק קומישנינג מסודר ותיאום הדוק עם צוותי ההנדסה וההקמה, כדי להבטיח מוכנות מלאה לעלייה לשטח.
+          </p>
         </div>
 
         <div>
-          <p className="font-bold text-secondary mb-2">שלב ההכנה</p>
-          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
-            {[
-              "בדיקות תיעוד",
-              "סגירת חוסרים ופערים",
-              "בניית תיק קומישנינג מסודר",
-              "תיאום עם צוותי ההנדסה וההקמה",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <p className="font-bold text-secondary mb-2" dir="rtl">ביצוע בשטח</p>
+          <p className="text-foreground/80 leading-[1.8]" dir="rtl">
+            בשלב הביצוע מתבצעות בדיקות התקנה (MC), ניהול שוטף של Punch Lists, הרצות קרות ולאחר מכן הרצות חמות, תוך בקרה ואימות ביצועים בהתאם ליעדים ול-KPIs שהוגדרו מראש.
+          </p>
         </div>
 
         <div>
-          <p className="font-bold text-secondary mb-2">ביצוע בשטח</p>
-          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
-            {[
-              "בדיקות התקנה (MC)",
-              "ניהול Punch Lists",
-              "הרצות קרות",
-              "הרצות חמות",
-              "אימות ביצועים ועמידה ב-KPIs",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <p className="font-bold text-secondary mb-2">מסירה והעברה לתפעול</p>
-          <ul className="space-y-1.5 text-foreground/80 leading-[1.8]">
-            {[
-              "מבחני קבלה",
-              "מסירה מסודרת",
-              "ליווי עד הפעלה מלאה (COD)",
-              "טיפול בריג'קטים עד סגירה מלאה",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <p className="font-bold text-secondary mb-2" dir="rtl">מסירה והעברה לתפעול</p>
+          <p className="text-foreground/80 leading-[1.8]" dir="rtl">
+            בשלב המסירה וההעברה לתפעול מתבצעים מבחני קבלה, מסירה מסודרת של המערכות, ליווי צמוד עד להפעלה מלאה (COD), וטיפול בריג'קטים ובחריגות עד לסגירה מלאה ולהבטחת תפקוד יציב ורציף של המתקן.
+          </p>
         </div>
       </div>
     ),
@@ -217,7 +139,7 @@ const ServicesSection = () => {
                                 : "bg-card text-muted-foreground border-border hover:bg-primary/15 hover:text-primary hover:border-primary/50"
                             }`}
                           >
-                            {t.label.split('|')[0].trim()}
+                            {t.label}
                           </button>
                         ))}
                       </div>

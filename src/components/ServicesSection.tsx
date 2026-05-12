@@ -40,10 +40,10 @@ const tabs = [
   },
   {
     id: "commissioning",
-    label: "קומישנניג והרצה",
+    label: "קומישנינג והרצה",
     content: (
       <div className="text-start space-y-6">
-        <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">קומישנניג והרצה | Commissioning & Start‑Up</p>
+        <p className="text-3xl md:text-4xl font-bold text-secondary text-right" dir="rtl">קומישנינג והרצה | Commissioning & Start‑Up</p>
 
         <p className="text-foreground/80 leading-[1.8]" dir="rtl">
           זהו השלב שמחבר בין סיום ההקמה לבין תחילת התפעול בפועל. זהו תהליך שיטתי שמוודא שכל המערכות - חשמל, מכניקה, בקרה ותהליכים - פועלות יחד בצורה מלאה, יציבה ובהתאם לתכנון. ברגיד מובילים את התהליך מקצה לקצה, עם ניסיון של למעלה מ־20 שנה בפרויקטים מורכבים בתחנות כוח, מתקני אנרגיה ותעשייה כבדה.
